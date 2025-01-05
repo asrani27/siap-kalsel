@@ -227,7 +227,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="/superadmin/coa"
                                 class="nav-link {{request()->is('superadmin/coa*') ? 'active':''}}">
                                 <i class="nav-icon fas fa-chart-bar"></i>
@@ -235,7 +235,7 @@
                                     Chart Of Account (COA)
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
 
 
                         @else
