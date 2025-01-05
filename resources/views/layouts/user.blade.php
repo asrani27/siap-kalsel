@@ -74,10 +74,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="/dpd" class="nav-link {{request()->is('dpd') ? 'active':''}}"
                                 style="color: white"><i class="fa fa-home"></i> Home</a>
                         </li>
+                        @if (Auth::user()->roles == 'dpd')
                         <li class="nav-item">
                             <a href="/dpd/rfk" class="nav-link {{request()->is('dpd/rfk*') ? 'active':''}}"
                                 style="color: white"><i class="fa fa-money-bill"></i> RFK</a>
                         </li>
+                        @endif
+
                     </ul>
 
 
