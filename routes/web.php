@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RFKController;
+use App\Http\Controllers\SuperadminController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('/login', [LoginController::class, 'index']);
@@ -25,6 +26,9 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/superadmin/user/edit/{id}', [UserController::class, 'edit']);
     Route::post('/superadmin/user/edit/{id}', [UserController::class, 'update']);
     Route::get('/superadmin/user/delete/{id}', [UserController::class, 'delete']);
+
+    Route::get('/superadmin/datadpk', [SuperadminController::class, 'dpk']);
+    Route::post('/superadmin/datadpk/import', [SuperadminController::class, 'importdpk']);
 
     Route::get('/superadmin/coa', [COAController::class, 'index']);
     Route::get('/superadmin/coa/create', [COAController::class, 'create']);

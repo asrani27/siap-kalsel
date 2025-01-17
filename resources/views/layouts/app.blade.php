@@ -227,6 +227,15 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/superadmin/datadpk"
+                                class="nav-link {{request()->is('superadmin/datadpk*') ? 'active':''}}">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    DPK
+                                </p>
+                            </a>
+                        </li>
                         {{-- <li class="nav-item">
                             <a href="/superadmin/coa"
                                 class="nav-link {{request()->is('superadmin/coa*') ? 'active':''}}">
