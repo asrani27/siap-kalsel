@@ -87,6 +87,13 @@ Route::middleware(['auth', 'dpd'])->group(function () {
 
 Route::middleware(['auth', 'dpk'])->group(function () {
     Route::get('/dpk', [DPKController::class, 'index']);
+    Route::get('/dpk/rfk', [DPKController::class, 'rfk']);
+    Route::get('/dpk/rfk/create', [DPKController::class, 'rfk_create']);
+    Route::post('/dpk/rfk/create', [DPKController::class, 'rfk_store']);
+    Route::get('/dpk/rfk/edit/{id}', [DPKController::class, 'rfk_edit']);
+    Route::post('/dpk/rfk/edit/{id}', [DPKController::class, 'rfk_update']);
+    Route::get('/dpk/rfk/delete/{id}', [DPKController::class, 'rfk_delete']);
+    Route::get('/dpk/rfk/detail/{id}', [DPKController::class, 'rfk_detail']);
 });
 
 

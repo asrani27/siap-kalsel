@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-12">
             <br />
-            <a href="/dpd/rfk" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
+            <a href="/dpk/rfk" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
                 Kembali
             </a><br /><br />
             <div class="card">
@@ -24,10 +24,10 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form method="post" action="/dpd/rfk/create">
+                    <form method="post" action="/dpk/rfk/create">
                         @csrf
                         <div class="form-group">
-                            <label>Nama</label>
+                            <label>Nama Kab/Kota</label>
                             <input type="text" class="form-control" value="{{Auth::user()->name}}" name="nama">
                         </div>
                         <div class="form-group">

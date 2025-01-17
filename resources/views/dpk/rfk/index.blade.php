@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-12">
             <br />
-            <a href="/dpd/rfk/create" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i> Buat
+            <a href="/dpk/rfk/create" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i> Buat
                 Laporan</a><br /><br />
             <div class="card">
                 <div class="card-header" style="cursor: move;">
@@ -47,13 +47,12 @@
                                 <td>{{$item->nama}}</td>
                                 <td>{{\Carbon\Carbon::parse($item->kondisi)->format('d-m-Y')}}</td>
                                 <td>
-                                    <a href="/dpd/rfk/detail/{{$item->id}}/akun"
-                                        class="btn btn-xs btn-primary text-bold">
+                                    <a href="/dpk/rfk/detail/{{$item->id}}" class="btn btn-xs btn-primary text-bold">
                                         DETAIL
                                         RFK</a>
-                                    <a href="/dpd/rfk/edit/{{$item->id}}" class="btn btn-xs btn-success text-bold"> EDIT
+                                    <a href="/dpk/rfk/edit/{{$item->id}}" class="btn btn-xs btn-success text-bold"> EDIT
                                     </a>
-                                    <a href="/dpd/rfk/delete/{{$item->id}}" class="btn btn-xs btn-danger text-bold"
+                                    <a href="/dpk/rfk/delete/{{$item->id}}" class="btn btn-xs btn-danger text-bold"
                                         onclick="return confirm('Yakin ingin dihapus?');">
                                         HAPUS
                                     </a>

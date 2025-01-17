@@ -9,6 +9,10 @@ class RFK extends Model
     protected $table = 'rfk';
     protected $guarded = ['id'];
 
+    public function detail()
+    {
+        return $this->hasMany(RfkDetail::class, 'rfk_id');
+    }
     public function okk()
     {
         return $this->hasMany(RFKokk::class, 'rfk_id');

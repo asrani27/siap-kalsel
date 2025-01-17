@@ -70,13 +70,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="collapse navbar-collapse order-3" id="navbarCollapse">
                     <!-- Left navbar links -->
                     <ul class="navbar-nav">
+                        @if (Auth::user()->roles == 'dpd')
                         <li class="nav-item" style="">
                             <a href="/dpd" class="nav-link {{request()->is('dpd') ? 'active':''}}"
                                 style="color: white"><i class="fa fa-home"></i> Home</a>
                         </li>
-                        @if (Auth::user()->roles == 'dpd')
                         <li class="nav-item">
                             <a href="/dpd/rfk" class="nav-link {{request()->is('dpd/rfk*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-money-bill"></i> RFK</a>
+                        </li>
+                        @endif
+                        @if (Auth::user()->roles == 'dpk')
+                        <li class="nav-item" style="">
+                            <a href="/dpk" class="nav-link {{request()->is('dpk') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-home"></i> Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dpk/rfk" class="nav-link {{request()->is('dpk/rfk*') ? 'active':''}}"
                                 style="color: white"><i class="fa fa-money-bill"></i> RFK</a>
                         </li>
                         @endif
