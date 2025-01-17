@@ -101,12 +101,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="card-body">
                                         <h2 class="text-center"><u>LOGIN APLIKASI RFK</u></h2><br />
                                         <div class="form-group">
-                                            <label>Username</label>
-                                            <input type="text" class="form-control" name="username"
-                                                placeholder="username">
-                                            @error('username')
-                                            <small class="text-danger">{{$message}}</small>
-                                            @enderror
+                                            <select id="kota" class="form-control" name="kota" onchange="getDPK()">
+                                                <option value="">Pilih Kota</option>
+                                                @foreach($kota as $ko)
+                                                <option value="{{ $ko->nama }}">{{ $ko->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select id="dpk" name="dpk" class="form-control" required>
+                                                <option value="">Pilih dpk/dpw</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select id="bidang" name="bidang" class="form-control" required>
+                                                <option value="">Pilih Bidang</option>
+                                                @foreach($bidang as $bi)
+                                                <option value="{{ $bi->nama }}">{{ $bi->nama }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label>Password</label>
@@ -156,6 +169,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="/assets/dist/js/adminlte.min.js"></script>
     <script type="text/javascript">
         @include('layouts.notif')
+    </script>
+
+    <script>
+        function getDPK() {
+            var kota_id = $('#kota').val(); // Ambil nilai kota yang dipilih
+            console.log(kota_id);
+            if (kota_id) {
+                $.ajax({
+                    url: '/get-dpk/' + kota_id,
+                    type: 'GET',
+                    success: function(response) {
+                        // Kosongkan dropdown kota
+                        $('#dpk').empty();
+                        $('#dpk').append('<option value="">Pilih dpk</option>'); // Tambahkan opsi default
+
+                        // Tambahkan opsi dpk berdasarkan kota
+                        $.each(response, function(key, dpk) {
+                            $('#dpk').append('<option value="' + dpk.nama + '">' + dpk.nama + '</option>');
+                        });
+                    }
+                });
+            } else {
+                // Jika tidak ada kota yang dipilih, kosongkan dropdown kota
+                $('#kota').empty();
+                $('#kota').append('<option value="">Pilih Kota</option>');
+            }
+        }
     </script>
 </body>
 

@@ -16,6 +16,7 @@ use App\Http\Controllers\SuperadminController;
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'login']);
+Route::get('/get-dpk/{kota_id}', [LoginController::class, 'getDpk'])->name('get.dpk');
 
 Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/superadmin', [HomeController::class, 'superadmin']);

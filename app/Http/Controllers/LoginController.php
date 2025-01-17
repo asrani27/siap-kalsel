@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dpk;
+use App\Models\Kota;
+use App\Models\Bidang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
+    public function getDpk($kota_id)
+    {
+        // Ambil daftar kota berdasarkan provinsi_id
+        $dpk = Dpk::where('kota', $kota_id)->where('bidang', null)->get();
+
+        // Mengembalikan data sebagai response JSON
+        return response()->json($dpk);
+    }
     public function index()
     {
         if (Auth::check()) {
@@ -30,23 +41,21 @@ class LoginController extends Controller
             return redirect('login');
         }
 
-        return view('login2');
+        $kota = Kota::get();
+        $bidang = Bidang::get();
+        return view('login2', compact('kota', 'bidang'));
     }
     public function login(Request $req)
     {
-        // if ($req->get('cf-turnstile-response') == null) {
-        //     Session::flash('warning', 'Checklist Captcha');
-        //     return back();
-        // } else {
-        //     $turnstile = new TurnstileLaravel;
-        //     $response = $turnstile->validate($req->get('cf-turnstile-response'));
+        $username = Dpk::where('nama', $req->dpk)->where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
 
-        //     if ($response['status'] == true) {
-
+        $param['username'] = $username;
+        $param['password'] = $req->password;
+        
         $remember = $req->remember ? true : false;
         $credential = $req->only('username', 'password');
 
-        if (Auth::attempt($credential, $remember)) {
+        if (Auth::attempt($param, $remember)) {
             $role = Auth::user()->roles;
             $routes = [
                 'superadmin' => '/superadmin',
