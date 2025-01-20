@@ -1,24 +1,11 @@
 @extends('layouts.user')
 @push('css')
-<style>
-    .column1 {
-        width: 1000px;
-    }
 
-    .column2 {
-        width: 200px;
-    }
-
-    .column3 {
-        width: 300px;
-    }
-</style>
 @endpush
 @section('content')
 <div class="row">
     <div class="col-12">
         <br />
-
 
         <br /> <br />
 
@@ -42,8 +29,7 @@
                     </tr>
                 </table>
 
-                <table class="table table-sm" style="border: 1px solid black; text-align:center" width="100%">
-
+                <table class="table table-sm" style="border: 1px solid black; text-align:center">
                     <thead>
                         <tr style="font-size:12px" class="bg-warning" style="border: 1px solid black">
                             <th style="border: 1px solid black" rowspan="3"></th>
@@ -135,15 +121,219 @@
                         </tr>
 
                         @foreach ($data->detail as $key=> $item)
+                        @if ($item->id === $edit->id)
+
+                        <tr style="font-size:12px; background-color:rgb(211, 247, 236)">
+                            <form id="edit-form" method="post" action="/dpk/rfk/detail/{{$id}}/edit/{{$item->id}}">
+                                @csrf
+                                <td>
+                                    <button type="submit" class="btn btn-xs btn-primary"> UPDATE
+                                    </button><br /><br />
+                                    <a href="/dpk/rfk/detail/{{$id}}" class="btn btn-danger btn-xs btn-block">BATAL</a>
+                                </td>
+                                <td style="border: 1px solid black">{{$key+1}}</td>
+                                <td style="border: 1px solid black" class="text-bold text-left">
+                                    {{$item->kode_akun}}
+                                </td>
+                                <td style="border: 1px solid black" class="text-bold text-left">
+                                    {{$item->program}}
+                                </td>
+                                <td style="border: 1px solid black" class="text-bold text-left">
+                                    <textarea name="indikator" rows="5">{{$item->indikator}}</textarea>
+                                </td>
+                                <td style="border: 1px solid black" class="text-bold text-left">
+                                    <textarea name="kegiatan" rows="5">{{$item->kegiatan}}</textarea>
+                                </td>
+                                <td style="border: 1px solid black" class="text-bold text-left">
+                                    <textarea name="penanggung_jawab" rows="5">{{$item->penanggung_jawab}}</textarea>
+                                </td>
+                                <td style="border: 1px solid black" class="text-bold text-left">
+                                    <textarea name="tanggal_pelaksanaan"
+                                        rows="5">{{$item->tanggal_pelaksanaan}}</textarea>
+                                </td>
+                                <td style="border: 1px solid black" class="text-bold text-center">
+                                    {{number_format($item->sub->sum('volume'))}}</td>
+                                <td style="border: 1px solid black" class="text-bold text-left">
+                                    <input type="text" name="satuan" value="{{$item->satuan}}">
+                                </td>
+
+                            </form>
+                            <td style="border: 1px solid black" class="text-bold text-right">
+                                {{number_format($item->sub->sum('harga_satuan'))}}</td>
+                            <td style="border: 1px solid black" class="text-bold text-right">
+                                {{number_format($item->total_jumlah_anggaran)}}</td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->total_bobot_persen,2) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{number_format($item->sub->sum('volume_rr'))}}</td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->total_fisik_rr,2) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->total_tertimbang_rr,2) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-right">
+                                {{ number_format($item->total_keuangan_rr) }}
+                            </td>
+
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->sub->sum('jan')) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->sub->sum('feb')) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->sub->sum('mar')) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->sub->sum('apr')) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->sub->sum('mei')) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->sub->sum('jun')) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->sub->sum('jul')) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->sub->sum('augt')) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->sub->sum('sept')) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->sub->sum('okt')) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->sub->sum('nov')) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->sub->sum('des')) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->total_volume_rf) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->total_fisik_rf,2) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->total_tertimbang_rf,2) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-right">
+                                {{ number_format($item->total_rupiah_rk) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->total_persen_rk,2) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-center">
+                                {{ number_format($item->total_tertimbang_rk,2) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-bold text-right">
+                                {{ number_format($item->total_sisa_anggaran) }}
+                            </td>
+                        </tr>
+                        @foreach ($item->sub as $subkey => $subitem)
+                        <tr style="font-size:12px; background-color:rgb(255, 255, 251)">
+
+                            <td style="display:flex;">
+                                <a href="/dpk/rfk/detail/{{$id}}/editsub/{{$subitem->id}}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+
+                            </td>
+                            <td style="border: 1px solid black"></td>
+                            <td style="border: 1px solid black" class="text-left">{{$subitem->kode_akun}}
+
+
+                            </td>
+                            <td style="border: 1px solid black" class="text-left">{{$subitem->program}}</td>
+                            <td style="border: 1px solid black" class="text-left">{{$subitem->indikator}}</td>
+                            <td style="border: 1px solid black" class="text-left">{{$subitem->kegiatan}}</td>
+                            <td style="border: 1px solid black" class="text-left">
+                                {{$subitem->penanggung_jawab}}
+                            </td>
+                            <td style="border: 1px solid black" class="text-left">
+                                {{$subitem->tanggal_pelaksanaan}}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{number_format($subitem->volume)}}</td>
+                            <td style="border: 1px solid black" class="text-left">
+                                {{$subitem->satuan}}</td>
+                            <td style="border: 1px solid black" class="text-right">
+                                {{number_format($subitem->harga_satuan)}}</td>
+                            <td style="border: 1px solid black" class="text-right">
+                                {{number_format($subitem->JumlahAnggaran)}}
+                            </td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->bobot_persen,2) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{number_format($subitem->volume_rr)}}</td>
+                            </td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->fisik_rr,2) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->tertimbang_rr,2) }}
+                            </td>
+
+                            <td style="border: 1px solid black" class="text-right">
+                                {{ number_format($subitem->keuangan_rr) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->jan) }}
+                            </td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->feb) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->mar) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->apr) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->mei) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->jun) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->jul) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->augt) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->sept) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->okt) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->nov) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->des) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->volume_rf) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->fisik_rf, 2) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->tertimbang_rf, 2) }}</td>
+                            <td style="border: 1px solid black" class="text-right">
+                                {{ number_format($subitem->rupiah_rk) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->persen_rk,2) }}</td>
+                            <td style="border: 1px solid black" class="text-center">
+                                {{ number_format($subitem->tertimbang_rk,2) }}</td>
+                            <td style="border: 1px solid black" class="text-right">
+                                {{ number_format($subitem->sisa_anggaran) }}</td>
+                        </tr>
+                        @endforeach
+                        @else
+
                         <tr style="font-size:12px; background-color:rgb(235, 235, 232)">
 
                             <td style="display:flex;">
                                 <a href="/dpk/rfk/detail/{{$id}}/edit/{{$item->id}}"> <i class="fa fa-edit"></i>
                                 </a>
+
                             </td>
                             <td style="border: 1px solid black">{{$key+1}}</td>
-                            <td style="border: 1px solid black;" class="text-bold text-left">
-                                {{$item->kode_akun}}
+                            <td style="border: 1px solid black" class="text-bold text-left">{{$item->kode_akun}}
                             </td>
                             <td style="border: 1px solid black" class="text-bold text-left">
                                 {{$item->program}}</td>
@@ -235,7 +425,6 @@
                                 {{ number_format($item->total_sisa_anggaran) }}
                             </td>
                         </tr>
-
                         @foreach ($item->sub as $subkey => $subitem)
                         <tr style="font-size:12px; background-color:rgb(255, 255, 251)">
 
@@ -243,6 +432,7 @@
                                 <a href="/dpk/rfk/detail/{{$id}}/editsub/{{$subitem->id}}">
                                     <i class="fa fa-edit"></i>
                                 </a>
+
                             </td>
                             <td style="border: 1px solid black"></td>
                             <td style="border: 1px solid black" class="text-left">{{$subitem->kode_akun}}
@@ -323,91 +513,91 @@
                                 {{ number_format($subitem->sisa_anggaran) }}</td>
                         </tr>
                         @endforeach
+                        @endif
                         @endforeach
+
                         <tr style="font-size:12px;background-color:rgb(191, 253, 233)">
                             <th style="border: 1px solid black; vertical-align:top" colspan="8">JUMLAH</th>
-                            <th style="border: 1px solid black">{{$data->detail->sum('total_volume')}}</th>
+                            <th style="border: 1px solid black">{{$data->okk->sum('total_volume')}}</th>
                             <th style="border: 1px solid black"></th>
-                            <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_harga_satuan'))}}
+                            <th style="border: 1px solid black">{{number_format($data->okk->sum('total_harga_satuan'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_jumlah_anggaran'))}}
+                                {{number_format($data->okk->sum('total_jumlah_anggaran'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_bobot_persen'))}}
+                                {{number_format($data->okk->sum('total_bobot_persen'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_volume_rr'))}}
+                                {{number_format($data->okk->sum('total_volume_rr'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_fisik_rr'))}}
+                                {{number_format($data->okk->sum('total_fisik_rr'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_tertimbang_rr'))}}
+                                {{number_format($data->okk->sum('total_tertimbang_rr'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_keuangan_rr'))}}
+                                {{number_format($data->okk->sum('total_keuangan_rr'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_jan'))}}
+                                {{number_format($data->okk->sum('total_jan'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_feb'))}}
+                                {{number_format($data->okk->sum('total_feb'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_mar'))}}
+                                {{number_format($data->okk->sum('total_mar'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_apr'))}}
+                                {{number_format($data->okk->sum('total_apr'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_mei'))}}
+                                {{number_format($data->okk->sum('total_mei'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_jun'))}}
+                                {{number_format($data->okk->sum('total_jun'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_jul'))}}
+                                {{number_format($data->okk->sum('total_jul'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_augt'))}}
+                                {{number_format($data->okk->sum('total_augt'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_sept'))}}
+                                {{number_format($data->okk->sum('total_sept'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_okt'))}}
+                                {{number_format($data->okk->sum('total_okt'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_nov'))}}
+                                {{number_format($data->okk->sum('total_nov'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_des'))}}
+                                {{number_format($data->okk->sum('total_des'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_volume_rf'))}}
+                                {{number_format($data->okk->sum('total_volume_rf'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_fisik_rf'))}}
+                                {{number_format($data->okk->sum('total_fisik_rf'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_tertimbang_rf'))}}
+                                {{number_format($data->okk->sum('total_tertimbang_rf'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_rupiah_rk'))}}
+                                {{number_format($data->okk->sum('total_rupiah_rk'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_persen_rk'))}}
+                                {{number_format($data->okk->sum('total_persen_rk'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_tertimbang_rk'))}}
+                                {{number_format($data->okk->sum('total_tertimbang_rk'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->detail->sum('total_sisa_anggaran'))}}
+                                {{number_format($data->okk->sum('total_sisa_anggaran'))}}
                             </th>
                         </tr>
-
                     </thead>
                 </table>
             </div>
@@ -416,6 +606,7 @@
 </div>
 @endsection
 @push('js')
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Periksa apakah ada data posisi scroll yang disimpan
