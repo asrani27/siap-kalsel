@@ -110,7 +110,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                         <div class="form-group">
                                             <select id="dpk" name="dpk" class="form-control" required>
-                                                <option value="">Pilih dpk/dpw</option>
+                                                <option value="">Pilih</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -182,7 +182,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     success: function(response) {
                         // Kosongkan dropdown kota
                         $('#dpk').empty();
-                        $('#dpk').append('<option value="">Pilih dpk</option>'); // Tambahkan opsi default
+                        $('#dpk').append('<option value="">-Pilih-</option>');
+                        $('#dpk').append('<option value="DPW">DPW</option>'); // Tambahkan opsi default
 
                         // Tambahkan opsi dpk berdasarkan kota
                         $.each(response, function(key, dpk) {

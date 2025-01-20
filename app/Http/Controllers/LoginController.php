@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dpk;
+use App\Models\Dpw;
 use App\Models\Kota;
 use App\Models\Bidang;
 use Illuminate\Http\Request;
@@ -47,7 +48,11 @@ class LoginController extends Controller
     }
     public function login(Request $req)
     {
-        $username = Dpk::where('nama', $req->dpk)->where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
+        if($req->dpk == 'DPW'){
+            $username = Dpw::where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
+        }else{
+            $username = Dpk::where('nama', $req->dpk)->where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
+        }
 
         $param['username'] = $username;
         $param['password'] = $req->password;

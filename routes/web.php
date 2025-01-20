@@ -99,7 +99,20 @@ Route::middleware(['auth', 'dpk'])->group(function () {
     Route::get('/dpk/rfk/detail/{id}/editsub/{detail_sub_id}', [DPKController::class, 'rfk_detail_editsub']);
     Route::post('/dpk/rfk/detail/{id}/editsub/{detail_sub_id}', [DPKController::class, 'rfk_detail_updatesub']);
 });
-
+Route::middleware(['auth', 'dpw'])->group(function () {
+    Route::get('/dpw', [DPWController::class, 'index']);
+    Route::get('/dpw/rfk', [DPWController::class, 'rfk']);
+    Route::get('/dpw/rfk/create', [DPWController::class, 'rfk_create']);
+    Route::post('/dpw/rfk/create', [DPWController::class, 'rfk_store']);
+    Route::get('/dpw/rfk/edit/{id}', [DPWController::class, 'rfk_edit']);
+    Route::post('/dpw/rfk/edit/{id}', [DPWController::class, 'rfk_update']);
+    Route::get('/dpw/rfk/delete/{id}', [DPWController::class, 'rfk_delete']);
+    Route::get('/dpw/rfk/detail/{id}', [DPWController::class, 'rfk_detail']);
+    Route::get('/dpw/rfk/detail/{id}/edit/{detail_id}', [DPWController::class, 'rfk_detail_edit']);
+    Route::post('/dpw/rfk/detail/{id}/edit/{detail_id}', [DPWController::class, 'rfk_detail_update']);
+    Route::get('/dpw/rfk/detail/{id}/editsub/{detail_sub_id}', [DPWController::class, 'rfk_detail_editsub']);
+    Route::post('/dpw/rfk/detail/{id}/editsub/{detail_sub_id}', [DPWController::class, 'rfk_detail_updatesub']);
+});
 
 Route::get('/logout', function () {
     Auth::logout();

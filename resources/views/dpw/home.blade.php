@@ -26,12 +26,10 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <p>Silahkan pilih menu di bawah ini untuk mengelola konten anda</p>
-                    {{-- <a href="/dpd/rfk" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                    <a href="/dpw/rfk" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
                         <i class="fa fa-money-bill"></i> <strong>RFK</strong>
                     </a>
-                    <a class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
-                        <i class="fa fa-cube"></i> <strong>INVENTARIS</strong>
-                    </a> --}}
+
                 </div>
                 <!-- /.card-body -->
             </div>
