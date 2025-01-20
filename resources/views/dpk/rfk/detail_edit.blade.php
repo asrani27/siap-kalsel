@@ -518,84 +518,85 @@
 
                         <tr style="font-size:12px;background-color:rgb(191, 253, 233)">
                             <th style="border: 1px solid black; vertical-align:top" colspan="8">JUMLAH</th>
-                            <th style="border: 1px solid black">{{$data->okk->sum('total_volume')}}</th>
+                            <th style="border: 1px solid black">{{$data->detail->sum('total_volume')}}</th>
                             <th style="border: 1px solid black"></th>
-                            <th style="border: 1px solid black">{{number_format($data->okk->sum('total_harga_satuan'))}}
+                            <th style="border: 1px solid black">
+                                {{number_format($data->detail->sum('total_harga_satuan'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_jumlah_anggaran'))}}
+                                {{number_format($data->detail->sum('total_jumlah_anggaran'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_bobot_persen'))}}
+                                {{number_format($data->detail->sum('total_bobot_persen'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_volume_rr'))}}
+                                {{number_format($data->detail->sum('total_volume_rr'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_fisik_rr'))}}
+                                {{number_format($data->detail->sum('total_fisik_rr'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_tertimbang_rr'))}}
+                                {{number_format($data->detail->sum('total_tertimbang_rr'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_keuangan_rr'))}}
+                                {{number_format($data->detail->sum('total_keuangan_rr'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_jan'))}}
+                                {{number_format($data->detail->sum('total_jan'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_feb'))}}
+                                {{number_format($data->detail->sum('total_feb'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_mar'))}}
+                                {{number_format($data->detail->sum('total_mar'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_apr'))}}
+                                {{number_format($data->detail->sum('total_apr'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_mei'))}}
+                                {{number_format($data->detail->sum('total_mei'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_jun'))}}
+                                {{number_format($data->detail->sum('total_jun'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_jul'))}}
+                                {{number_format($data->detail->sum('total_jul'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_augt'))}}
+                                {{number_format($data->detail->sum('total_augt'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_sept'))}}
+                                {{number_format($data->detail->sum('total_sept'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_okt'))}}
+                                {{number_format($data->detail->sum('total_okt'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_nov'))}}
+                                {{number_format($data->detail->sum('total_nov'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_des'))}}
+                                {{number_format($data->detail->sum('total_des'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_volume_rf'))}}
+                                {{number_format($data->detail->sum('total_volume_rf'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_fisik_rf'))}}
+                                {{number_format($data->detail->sum('total_fisik_rf'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_tertimbang_rf'))}}
+                                {{number_format($data->detail->sum('total_tertimbang_rf'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_rupiah_rk'))}}
+                                {{number_format($data->detail->sum('total_rupiah_rk'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_persen_rk'))}}
+                                {{number_format($data->detail->sum('total_persen_rk'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_tertimbang_rk'))}}
+                                {{number_format($data->detail->sum('total_tertimbang_rk'))}}
                             </th>
                             <th style="border: 1px solid black">
-                                {{number_format($data->okk->sum('total_sisa_anggaran'))}}
+                                {{number_format($data->detail->sum('total_sisa_anggaran'))}}
                             </th>
                         </tr>
                     </thead>
