@@ -321,7 +321,128 @@ class DPKController extends Controller
                 ],
             ];
         }
-
+        if (Auth::user()->dpk->bidang == 'PELAYANAN') {
+            $details = [
+                [
+                    'kode_akun' => 'Optimalisasi kualitas pelayanan keperawatan',
+                    'subs' => [
+                        ['program' => 'Sosialisasi PAK pada tingkat  DPK', 'satuan' => 'kali'],
+                        ['program' => 'Monev pelaksanaan PAK pada tingkat DPK', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Mengembangkan Pelayanan Perawat Desa (One Village One Nurse)',
+                    'subs' => [
+                        ['program' => 'Sosialisasi Juknis Program OVON pada tingkat  DPK', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi kepada Pemeritah Daerah tentang Program Perawat Desa (OVON)', 'satuan' => 'kali'],
+                        ['program' => 'Advokasi implementasi MoU Kemdagri-PPNI tentang Perawat Desa kepada Pemda', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Mengembangkan Praktik Keperawatan Mandiri (PKM)',
+                    'subs' => [
+                        ['program' => 'Sosialisasi dan Simulasi Permohonan SIPP PKM pada tingkat DPD', 'satuan' => 'kali'],
+                        ['program' => 'Melakukan visitasi PMK', 'satuan' => 'kali'],
+                        ['program' => 'Menerbitkan rekomendasi SIPP PMK atas nama DPP PPNI', 'satuan' => 'kali'],
+                        ['program' => 'Advokasi pendirian PMK pada pihak terkait di tingkat provinsi ', 'satuan' => 'kali'],
+                        ['program' => 'Monev PMK pada PMK di kab/kota', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Pengembangan jabatan dan jenjang karier perawat',
+                    'subs' => [
+                        ['program' => 'Sosialisasi jabatan fungsional dan  tunjangan jabatan fungsional perawat di tingkat DPK', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penanganan Bencana',
+                    'subs' => [
+                        ['program' => 'Menangani bencana di tingkat daerah', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Sertifkasi Tim Penanganan Bencana',
+                    'subs' => [
+                        ['program' => 'Mengikuti sertifikasi Tim Penanganan Bencana', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penguatan organisasi pelayanan keperawatan',
+                    'subs' => [
+                        ['program' => 'Berkontribusi dan melakukan advokasi pada kebijakan-kebijakan di tingkat daerah yang dapat menguatkan organisasi pelayanan keperawatan', 'satuan' => 'kali'],
+                    ],
+                ],
+            ];
+        }
+        if (Auth::user()->dpk->bidang == 'KESEJAHTERAAN') {
+            $details = [
+                [
+                    'kode_akun' => 'Optimalisasi kualitas pelayanan keperawatan',
+                    'subs' => [
+                        ['program' => 'Melakukan audiensi dengan Bupati/Walikota setempat, DPRD Propinsi, Dinas Kesehatan Kabupaten/Kota dan Disnaker setempat.', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi dengan seluruh DPK tentang Struktur skala upah untuk perawat ', 'satuan' => 'kali'],
+                        ['program' => 'Melakukan advokasi jika ada perawat masih mendapatkan upah di bawah UMP/UMK.', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Reposisi Status Perawat sebagai Profesional dalam Sistem Ketenagakerjaan',
+                    'subs' => [
+                        ['program' => 'Melakukan audiensi dengan DRD KAB/KOTA, DINAS TENAGA KERJA , Bupati / Walikota, DPRD Kabupaten/Kota dan Dinas kesehatan.', 'satuan' => 'kali'],
+                        ['program' => 'Mendorong DPK melakukan advokasi jika masih ada tenaga perawat kontrak dan memastikan data perawat honorer sudah dikirim oleh instansi masing-masing ke dalam SIDMK.', 'satuan' => 'kali'],
+                    ],
+                ],
+            ];
+        }
+        if (Auth::user()->dpk->bidang == 'KESEKRETARIATAN') {
+            $details = [
+                [
+                    'kode_akun' => 'Pengembangan dan pengadaan sarana dan prasana',
+                    'subs' => [
+                        ['program' => 'Sosialisasi ke DPD dalam penataan kesekretariatan yang handal berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
+                        ['program' => 'Pembangunan sarana dan prasarana', 'satuan' => 'kali'],
+                        ['program' => 'Pengadaaan sarana dan prasarana', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penataan Kearsipan',
+                    'subs' => [
+                        ['program' => 'Sosialisasi ke DPD dalam penataan kearsipan yang handal berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
+                        ['program' => 'Penataan kearsipan dengan merujuk PO, juklak dan juknis', 'satuan' => 'kali'],
+                        ['program' => 'Menyelenggarakan Pelatihan dan workshop kearsipan serta', 'satuan' => 'kali'],
+                        ['program' => 'Pengembangan sistem	 kearsipan manual ke berbasis elektronik', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penataan Sistem Surat Menyurat',
+                    'subs' => [
+                        ['program' => 'Sosialisasi ke DPD dalam penataan sistem surat menyurat yang handal berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
+                        ['program' => 'Penetapan PO, juklak dan juknis sistem surat menyurat', 'satuan' => 'kali'],
+                        ['program' => 'Pengembangan SDM (pelatihan, workshop, TOT, dll) surat menyurat', 'satuan' => 'kali'],
+                        ['program' => 'Pengembangan sistem surat-menyurat (manual & elektronik)', 'satuan' => 'kali'],
+                        ['program' => 'Audit mutu persuratan (ISO 9001:2021)', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penataan Jalur Komunikasi intra organisasi',
+                    'subs' => [
+                        ['program' => 'Sosialisasi ke DPW tentang penataan jalur komunikasi intra organisasi berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
+                        ['program' => 'Penetapan PO, juklak dan juknis jalur komunikasi intra organisasi (protokoler, tatalaksana organisasi, kesekretariatan)', 'satuan' => 'kali'],
+                        ['program' => 'Pengembangan SDM (pelatihan, workshop, TOT, dll) komunikasi intra organisasi', 'satuan' => 'kali'],
+                        ['program' => 'Pengembangan sistem jalur komunikasi intra organisasi (manual & elektronik)', 'satuan' => 'kali'],
+                        ['program' => 'Audit mutu persuratan (ISO 9001:2021)', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penataan dan pengawalan berbagai jenis rapat (rapat-rapat rutin)',
+                    'subs' => [
+                        ['program' => 'Sosialisasi ke DPW tentang penataan dan pengawalan jenis rapat (rapat -rapat rutin) berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
+                        ['program' => 'Penetapan PO, juklak dan juknis rapat-rapat', 'satuan' => 'kali'],
+                        ['program' => 'Pengaturan dan penjadwalan rapat', 'satuan' => 'kali'],
+                        ['program' => 'Pemantauan tindak lanjut rapat-rapat', 'satuan' => 'kali'],
+                    ],
+                ],
+            ];
+        }
         if (Auth::user()->dpk->bidang == 'KEBENDAHARAAN / KEUANGAN') {
             $details = [
                 [

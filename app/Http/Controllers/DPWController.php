@@ -121,7 +121,6 @@ class DPWController extends Controller
                 ],
             ];
         }
-
         if (Auth::user()->dpw->bidang == 'BIDANG PEMBERDAYAAN POLITIK') {
             $details = [
                 [
@@ -177,7 +176,7 @@ class DPWController extends Controller
                 [
                     'kode_akun' => 'Penataan dan Pengkawalan Pendidikan Berkualitas Program Vokasi, Profesi dan Spesialis Keperawatan',
                     'subs' => [
-                        ['program' => 'Sosialisasi ke dpw tentang Koordinasi, pembinaan, dan pendampingan serta monitoring evaluasi institusi pendidikan untuk pembukaan dan penyelenggaraan program profesi dan spesialis keperawatan', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi ke DPK tentang Koordinasi, pembinaan, dan pendampingan serta monitoring evaluasi institusi pendidikan untuk pembukaan dan penyelenggaraan program profesi dan spesialis keperawatan', 'satuan' => 'kali'],
                         ['program' => 'Berperan serta aktif dalam pelaksanaan pembinaan dan pendampingan institusi sesuai dengan PO', 'satuan' => 'kali'],
                         ['program' => 'Berperan serta dalam pelaksakan sistem pelayanan dalam memberikan rekomendasi pembukaan prodi baru untuk pendidikan profesi dan spesialis', 'satuan' => 'kali'],
                         ['program' => 'Berperan serta aktif dalam pelaksanakan hasil Advokasi Lembaga Pemerintah dan Non pemerintah serta berkaitan verifikasi ijazah perawat bekerja di luar negeri', 'satuan' => 'kali'],
@@ -186,7 +185,7 @@ class DPWController extends Controller
                 [
                     'kode_akun' => 'Rekognisi Sistem Sertifikasi Nasional dan Internasional',
                     'subs' => [
-                        ['program' => 'Sosialisasi ke dpw tentang Rekognisi Sistem Sertifikasi Nasional dan Internasional', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi ke DPK tentang Rekognisi Sistem Sertifikasi Nasional dan Internasional', 'satuan' => 'kali'],
                         ['program' => 'Berperan serta aktif dalam pelaksanaan  hasil Advokasi Pendidikan berkualitas pada lembaga organisasi dan pemerintah daerah (KLOP)', 'satuan' => 'kali'],
                         ['program' => 'Berperan serta aktif dalam pelaksanaan Pengembangan system Sertifikasi CPD ditingkat ASEAN', 'satuan' => 'kali'],
                         ['program' => 'Berperan serta aktif Peningkatan Kemitraan dengan Pemerintah dalam memberikan pengakuan kelembagaan pelatihan di tingkat nasional dan internasional', 'satuan' => 'kali'],
@@ -196,14 +195,253 @@ class DPWController extends Controller
                 [
                     'kode_akun' => 'Penataan dan Pembinaan Lembaga Penyelenggaraan Pelatihan',
                     'subs' => [
-                        ['program' => 'Koordinasi  dan sinergi dengan lembaga pemerintah provinsi dan entitas politik untuk kapitalisasi dukungan dan jabatan pemerintah bagi penguatan perawat di daerah', 'satuan' => 'kali'],
-                        ['program' => 'Identifikasi, pendampingan dan edukasi potensi perawat baik di bidang politik dan birokrasi di daerah', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi ke DPK tentang Penataan dan Pembinaan Lembaga Penyelenggaraan Pelatihan', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi dan memfasilitasi terkait kegiatan koordinasi, monitoring dan evaluasi lembaga diklat dalam pelaksanaan PKB', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi dan memfasilitasi penerapan  PKB edisi 3 melalui pelatihan, TOT', 'satuan' => 'kali'],
+                        ['program' => 'Berperan serta aktif dalam pelaksanaan  hasil Advokasi lembaga Akreditasi penyelenggara pelatihan Nilai PPNI yang terintegrasi (Permenpan RB)', 'satuan' => 'kali'],
+                        ['program' => 'Berperan serta aktif dalam memberikan masukan untuk pelaksanaan kurikulum Ikatan / Himpunan yang sudah ditetapkan  dan disahkan.', 'satuan' => 'kali'],
+                        ['program' => 'Berperan serta aktif dalam pelaksanaan Monev terkait Penyelenggaraan Pelatihan yang diselenggarakan oleh lembaga pelatihan di luar PPNI', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penyelenggaraan Uji Kompetensi Perawat',
+                    'subs' => [
+                        ['program' => 'Mendukung keterlibatan  PPNI dalam Pelaksanaan Uji Kompetensi Perawat', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penataan Kurikulum Pendidikan Tinggi Keperawatan',
+                    'subs' => [
+                        ['program' => 'Sosialisasi ke DPK tentang Kurikulum Pendidikan Tinggi Keperawatan', 'satuan' => 'kali'],
+                        ['program' => 'Mendukung dalam Pengkawalan SNPTK di Kementerian DIKBUD', 'satuan' => 'kali'],
                     ],
                 ],
             ];
         }
+        if (Auth::user()->dpw->bidang == 'PENELITIAN') {
+            $details = [
+                [
 
-
+                    'kode_akun' => 'Revisi grand design, roadmap, dan pedoman penelitian',
+                    'subs' => [
+                        ['program' => 'Melaksanakan penelitian sesuai grand design, roadmap dan pedoman penelitian', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi ke DPK dalam melaksanakan penelitian sesuai grand design, roadmap dan pedoman penelitian', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Revisi panduan penelitian perawat Indonesia',
+                    'subs' => [
+                        ['program' => 'Melaksanakan penelitian sesuai panduan penelitian perawat Indonesia', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi ke DPK dalam melaksanakan penelitian sesuai panduan penelitian perawat Indonesia', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Advokasi kepada Pemerintah untuk percepatan Pengangkatan Personal Konsil Keperawatan  ',
+                    'subs' => [
+                        ['program' => 'Melaksanakan penelitian sesuai pedoman tehnologi dan inovasi, standar penelitian', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi ke DPK dalam melaksanakan penelitian sesuai pedoman tehnologi dan inovasi, standar penelitian', 'satuan' => 'kali'],
+                        ['program' => 'Memfasilitasi hasil produk penelitian DPP dan DPW PPNI untuk dapat dimanfaatkan anggota', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penguatan SDM tentang penelitian',
+                    'subs' => [
+                        ['program' => 'Melaksanakan penguatan SDM tentang penelitian sesuai hasil sosialisasi, TOT, pelatihan, workshop dari DPP/DPW PPNI', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi ke DPK untuk penguatan SDM tentang penelitian sesuai hasil sosialisasi, TOT, pelatihan, workshop dari DPP/DPW PPNI', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Kajian Hasil Penelitian Perawat',
+                    'subs' => [
+                        ['program' => 'Menyusun kajian penelitian terkait kebijakan di tingkat kabupaten', 'satuan' => 'kali'],
+                        ['program' => 'Melaksanakan kajian penelitian terkait kebijakan di tingkat kabupaten', 'satuan' => 'kali'],
+                        ['program' => 'Menyusun proposal kebutuhan kebijakan di tingkat kabupaten', 'satuan' => 'kali'],
+                        ['program' => 'Melaksanakan penelitian sesuai area', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Peningkakatan kapasitas jumlah publikasi',
+                    'subs' => [
+                        ['program' => 'Ikut serta dalam kerjasama pada bidang penelitian di tingkat nasional dan atau internasional', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi kegiatan publikasi hasil penelitian perawat dalam seminar internasional pada DPK', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi ke DPK untuk dapat ikut serta dalam kerjasama pada bidang penelitian di tingkat nasional dan atau internasional sesuai ruang Iingkupnya', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Pengembangan sistem publikasi PPNI',
+                    'subs' => [
+                        ['program' => 'Sosialisasi media publikasi yang diterbitkan oleh DPP PPNI : JPPNI, IJINNA, ICINNA, kepada DPK', 'satuan' => 'kali'],
+                        ['program' => 'Melakukan pendataan naskah publikasi yang telah dijaring dari masing¬masing DPK untuk dapat diajukan pada publikasi yang dikelola oleh DPP PPNI : JPPNI, IJINNA, ICINNA', 'satuan' => 'kali'],
+                    ],
+                ],
+            ];
+        }
+        if (Auth::user()->dpw->bidang == 'SISINFOKOM') {
+            $details = [
+                [
+                    'kode_akun' => 'Bidang Sistem Informasi dan Komunikasi',
+                    'subs' => [
+                        ['program' => 'Sosialisasi manajemen keanggotaan, fungsi keanggotaan dan PKB onlien ke DPK', 'satuan' => 'kali'],
+                        ['program' => 'Mengaplikasikan PKB Online sesuai kewenangan di DPD dan mengerjakan verifikasi di DPD', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi hasil pemutakhiran portal berita ke DPK', 'satuan' => 'kali'],
+                        ['program' => 'Membuat dan melaporkan tentang berita yang didapat di DPD ke DPW', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi sistem pemberhentian anggota secara online terintegrasi ke DPK', 'satuan' => 'kali'],
+                        ['program' => 'Mengaplikasikan proses integrasi sistem pemberhentian secara online sesuai kewenangan di DPD', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi interoperabilitas system informasi dengan pihak terkait (SISDMK, PDDIKTI, DUKCAPIL) ke DPK', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi aplikasi integrated E-Event tentang akreditasi lembaga, pengajuan SKP dan Rekomendasi CGS dalam sistem e-event Ke seluruh DPK', 'satuan' => 'kali'],
+                        ['program' => 'Mengaplikasikan E-Event sesuai kewenangan di DPD dan melakukannya monitoring evaluasi', 'satuan' => 'kali'],
+                        ['program' => 'Sosoalisasi integrasi PKB online dengan sistem KTKI tentng E-STR Keseluruh DPK ', 'satuan' => 'kali'],
+                        ['program' => 'Mengaplikasikan PKB online sesuai kewenangan di DPD', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penguatan kapasitas kelembagaan sistem informasi-komunikasi dan pangkalan data terintegrasi',
+                    'subs' => [
+                        ['program' => 'Sosialisasi sistem SIM Kesekretariatan ke seluruh DPK', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi Buku SIM-K dan PKB Online ke seluruh DPK', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi dan pelatihan tentang pangkalan data (database) ke seluruh DPK', 'satuan' => 'kali'],
+                        ['program' => 'Mendorong DPK untuk pengadaan sarana-prasarana penunjang informasi-komunikasi ', 'satuan' => 'kali'],
+                        ['program' => 'Mendorong DPK untuk meningkatkan pengembangan SDM melalui TOT, pelatihan, dan lainnya serta melakukan monitoring dan evaluasi hasil kegiatan', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penguatan citra profesi perawat melalui berbagai media',
+                    'subs' => [
+                        ['program' => 'Membangun hubungan kerjasama dengan berbagai media pada tingkat kabupaten/kota baik media massa : online, cetak, elektronik (Radio, surat khabar cetak dan online, majalah)', 'satuan' => 'kali'],
+                        ['program' => 'Membuat content berita /informasi positif tentang kegiatan PPNI di tingkat Provinsi  yang siap dipublikasikan pada media', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Optimalisasi fungsi hubungan masyarakat (HUMAS)',
+                    'subs' => [
+                        ['program' => 'Membuat content berita edukatif untuk mendidik masyarakat terkait issue masalah kesehatan terkini serta peran perawat dan mempublikasikan pada media di kabupaten/kota  yang dapat diakses masyarakat luas', 'satuan' => 'kali'],
+                        ['program' => 'Mencari production house yang bersedia bekerjasama dalam memproduksi content berita DPW PPNI untuk dipublikasikan di tingkat Provinsi ataupun nasional', 'satuan' => 'kali'],
+                    ],
+                ],
+            ];
+        }
+        if (Auth::user()->dpw->bidang == 'PELAYANAN') {
+            $details = [
+                [
+                    'kode_akun' => 'Optimalisasi kualitas pelayanan keperawatan',
+                    'subs' => [
+                        ['program' => 'Sosialisasi PAK pada tingkat  DPK', 'satuan' => 'kali'],
+                        ['program' => 'Monev pelaksanaan PAK pada tingkat DPK', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Mengembangkan Pelayanan Perawat Desa (One Village One Nurse)',
+                    'subs' => [
+                        ['program' => 'Sosialisasi Juknis Program OVON pada tingkat  DPK', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi kepada Pemeritah Daerah tentang Program Perawat Desa (OVON)', 'satuan' => 'kali'],
+                        ['program' => 'Advokasi implementasi MoU Kemdagri-PPNI tentang Perawat Desa kepada Pemda', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Mengembangkan Praktik Keperawatan Mandiri (PKM)',
+                    'subs' => [
+                        ['program' => 'Sosialisasi dan Simulasi Permohonan SIPP PKM pada tingkat DPD', 'satuan' => 'kali'],
+                        ['program' => 'Melakukan visitasi PMK', 'satuan' => 'kali'],
+                        ['program' => 'Menerbitkan rekomendasi SIPP PMK atas nama DPP PPNI', 'satuan' => 'kali'],
+                        ['program' => 'Advokasi pendirian PMK pada pihak terkait di tingkat provinsi ', 'satuan' => 'kali'],
+                        ['program' => 'Monev PMK pada PMK di kab/kota', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Pengembangan jabatan dan jenjang karier perawat',
+                    'subs' => [
+                        ['program' => 'Sosialisasi jabatan fungsional dan  tunjangan jabatan fungsional perawat di tingkat DPK', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penanganan Bencana',
+                    'subs' => [
+                        ['program' => 'Menangani bencana di tingkat daerah', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Sertifkasi Tim Penanganan Bencana',
+                    'subs' => [
+                        ['program' => 'Mengikuti sertifikasi Tim Penanganan Bencana', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penguatan organisasi pelayanan keperawatan',
+                    'subs' => [
+                        ['program' => 'Berkontribusi dan melakukan advokasi pada kebijakan-kebijakan di tingkat daerah yang dapat menguatkan organisasi pelayanan keperawatan', 'satuan' => 'kali'],
+                    ],
+                ],
+            ];
+        }
+        if (Auth::user()->dpw->bidang == 'KESEJAHTERAAN') {
+            $details = [
+                [
+                    'kode_akun' => 'Optimalisasi kualitas pelayanan keperawatan',
+                    'subs' => [
+                        ['program' => 'Melakukan audiensi dengan Bupati/Walikota setempat, DPRD Propinsi, Dinas Kesehatan Kabupaten/Kota dan Disnaker setempat.', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi dengan seluruh DPK tentang Struktur skala upah untuk perawat ', 'satuan' => 'kali'],
+                        ['program' => 'Melakukan advokasi jika ada perawat masih mendapatkan upah di bawah UMP/UMK.', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Reposisi Status Perawat sebagai Profesional dalam Sistem Ketenagakerjaan',
+                    'subs' => [
+                        ['program' => 'Melakukan audiensi dengan DRD KAB/KOTA, DINAS TENAGA KERJA , Bupati / Walikota, DPRD Kabupaten/Kota dan Dinas kesehatan.', 'satuan' => 'kali'],
+                        ['program' => 'Mendorong DPK melakukan advokasi jika masih ada tenaga perawat kontrak dan memastikan data perawat honorer sudah dikirim oleh instansi masing-masing ke dalam SIDMK.', 'satuan' => 'kali'],
+                    ],
+                ],
+            ];
+        }
+        if (Auth::user()->dpw->bidang == 'KESEKRETARIATAN') {
+            $details = [
+                [
+                    'kode_akun' => 'Pengembangan dan pengadaan sarana dan prasana',
+                    'subs' => [
+                        ['program' => 'Sosialisasi ke DPD dalam penataan kesekretariatan yang handal berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
+                        ['program' => 'Pembangunan sarana dan prasarana', 'satuan' => 'kali'],
+                        ['program' => 'Pengadaaan sarana dan prasarana', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penataan Kearsipan',
+                    'subs' => [
+                        ['program' => 'Sosialisasi ke DPD dalam penataan kearsipan yang handal berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
+                        ['program' => 'Penataan kearsipan dengan merujuk PO, juklak dan juknis', 'satuan' => 'kali'],
+                        ['program' => 'Menyelenggarakan Pelatihan dan workshop kearsipan serta', 'satuan' => 'kali'],
+                        ['program' => 'Pengembangan sistem	 kearsipan manual ke berbasis elektronik', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penataan Sistem Surat Menyurat',
+                    'subs' => [
+                        ['program' => 'Sosialisasi ke DPD dalam penataan sistem surat menyurat yang handal berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
+                        ['program' => 'Penetapan PO, juklak dan juknis sistem surat menyurat', 'satuan' => 'kali'],
+                        ['program' => 'Pengembangan SDM (pelatihan, workshop, TOT, dll) surat menyurat', 'satuan' => 'kali'],
+                        ['program' => 'Pengembangan sistem surat-menyurat (manual & elektronik)', 'satuan' => 'kali'],
+                        ['program' => 'Audit mutu persuratan (ISO 9001:2021)', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penataan Jalur Komunikasi intra organisasi',
+                    'subs' => [
+                        ['program' => 'Sosialisasi ke DPW tentang penataan jalur komunikasi intra organisasi berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
+                        ['program' => 'Penetapan PO, juklak dan juknis jalur komunikasi intra organisasi (protokoler, tatalaksana organisasi, kesekretariatan)', 'satuan' => 'kali'],
+                        ['program' => 'Pengembangan SDM (pelatihan, workshop, TOT, dll) komunikasi intra organisasi', 'satuan' => 'kali'],
+                        ['program' => 'Pengembangan sistem jalur komunikasi intra organisasi (manual & elektronik)', 'satuan' => 'kali'],
+                        ['program' => 'Audit mutu persuratan (ISO 9001:2021)', 'satuan' => 'kali'],
+                    ],
+                ],
+                [
+                    'kode_akun' => 'Penataan dan pengawalan berbagai jenis rapat (rapat-rapat rutin)',
+                    'subs' => [
+                        ['program' => 'Sosialisasi ke DPW tentang penataan dan pengawalan jenis rapat (rapat -rapat rutin) berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
+                        ['program' => 'Penetapan PO, juklak dan juknis rapat-rapat', 'satuan' => 'kali'],
+                        ['program' => 'Pengaturan dan penjadwalan rapat', 'satuan' => 'kali'],
+                        ['program' => 'Pemantauan tindak lanjut rapat-rapat', 'satuan' => 'kali'],
+                    ],
+                ],
+            ];
+        }
         if (Auth::user()->dpw->bidang == 'KEBENDAHARAAN / KEUANGAN') {
             $details = [
                 [
