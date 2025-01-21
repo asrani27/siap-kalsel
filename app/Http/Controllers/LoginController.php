@@ -49,10 +49,14 @@ class LoginController extends Controller
     }
     public function login(Request $req)
     {
-        if ($req->dpd == 'DPD') {
-            $username = Dpd::where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
+        if ($req->dpw == null) {
+            if ($req->dpd == 'DPD') {
+                $username = Dpd::where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
+            } else {
+                $username = Dpk::where('nama', $req->dpd)->where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
+            }
         } else {
-            $username = Dpk::where('nama', $req->dpd)->where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
+            $username = Dpw::where('bidang', $req->bidang)->first()->user->username;
         }
 
         $param['username'] = $username;
