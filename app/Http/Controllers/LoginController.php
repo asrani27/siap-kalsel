@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dpd;
 use App\Models\Dpk;
 use App\Models\Dpw;
 use App\Models\Kota;

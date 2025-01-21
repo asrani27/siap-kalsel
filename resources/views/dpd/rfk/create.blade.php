@@ -27,7 +27,7 @@
                     <form method="post" action="/dpd/rfk/create">
                         @csrf
                         <div class="form-group">
-                            <label>Nama</label>
+                            <label>Nama Kab/Kota</label>
                             <input type="text" class="form-control" value="{{Auth::user()->name}}" name="nama">
                         </div>
                         <div class="form-group">

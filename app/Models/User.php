@@ -51,4 +51,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Dpw::class, 'user_id');
     }
+    public function dpd()
+    {
+        return $this->hasOne(Dpd::class, 'user_id');
+    }
 }

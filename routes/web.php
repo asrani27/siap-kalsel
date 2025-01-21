@@ -84,7 +84,20 @@ Route::middleware(['auth', 'dpd'])->group(function () {
     Route::get('/dpd/rfk/detail/{id}/pelayanan', [RFKController::class, 'pelayanan']);
     Route::get('/dpd/rfk/detail/{id}/kesejahteraan', [RFKController::class, 'kesejahteraan']);
 });
-
+Route::middleware(['auth', 'dpd'])->group(function () {
+    Route::get('/dpd', [DPDController::class, 'index']);
+    Route::get('/dpd/rfk', [DPDController::class, 'rfk']);
+    Route::get('/dpd/rfk/create', [DPDController::class, 'rfk_create']);
+    Route::post('/dpd/rfk/create', [DPDController::class, 'rfk_store']);
+    Route::get('/dpd/rfk/edit/{id}', [DPDController::class, 'rfk_edit']);
+    Route::post('/dpd/rfk/edit/{id}', [DPDController::class, 'rfk_update']);
+    Route::get('/dpd/rfk/delete/{id}', [DPDController::class, 'rfk_delete']);
+    Route::get('/dpd/rfk/detail/{id}', [DPDController::class, 'rfk_detail']);
+    Route::get('/dpd/rfk/detail/{id}/edit/{detail_id}', [DPDController::class, 'rfk_detail_edit']);
+    Route::post('/dpd/rfk/detail/{id}/edit/{detail_id}', [DPDController::class, 'rfk_detail_update']);
+    Route::get('/dpd/rfk/detail/{id}/editsub/{detail_sub_id}', [DPDController::class, 'rfk_detail_editsub']);
+    Route::post('/dpd/rfk/detail/{id}/editsub/{detail_sub_id}', [DPDController::class, 'rfk_detail_updatesub']);
+});
 Route::middleware(['auth', 'dpk'])->group(function () {
     Route::get('/dpk', [DPKController::class, 'index']);
     Route::get('/dpk/rfk', [DPKController::class, 'rfk']);
