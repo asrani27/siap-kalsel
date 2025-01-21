@@ -52,7 +52,7 @@ class LoginController extends Controller
         if ($req->dpd == 'DPD') {
             $username = Dpd::where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
         } else {
-            $username = Dpk::where('nama', $req->dpk)->where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
+            $username = Dpk::where('nama', $req->dpd)->where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
         }
 
         $param['username'] = $username;
