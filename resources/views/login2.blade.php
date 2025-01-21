@@ -109,7 +109,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <select id="dpk" name="dpk" class="form-control" required>
+                                            <select id="dpk" name="dpd" class="form-control" required>
                                                 <option value="">Pilih</option>
                                             </select>
                                         </div>
