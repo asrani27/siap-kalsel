@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Dpd;
 use App\Models\Dpk;
 use App\Models\User;
 use Illuminate\Console\Command;
@@ -28,7 +29,7 @@ class UserDpk extends Command
      */
     public function handle()
     {
-        $dpkList = Dpk::where('bidang', '!=', null)->get();
+        $dpkList = Dpd::where('bidang', '!=', null)->get();
 
         foreach ($dpkList as $item) {
             $check = User::where('username', $item->id)->first();
@@ -36,8 +37,8 @@ class UserDpk extends Command
                 $n = new User();
                 $n->username = '63' . $item->id;
                 $n->name = $item->nama;
-                $n->password = Hash::make('admindpk');
-                $n->roles = 'dpk';
+                $n->password = Hash::make('admindpd');
+                $n->roles = 'dpd';
                 $n->save();
 
                 $item->update(['user_id' => $n->id]);

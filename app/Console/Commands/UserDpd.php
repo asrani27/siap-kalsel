@@ -2,22 +2,21 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Dpw;
+use App\Models\Dpd;
 use App\Models\Kota;
 use App\Models\User;
 use App\Models\Bidang;
-use App\Models\Dpd;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 
-class UserDpw extends Command
+class UserDpd extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:user-dpw';
+    protected $signature = 'app:user-dpd';
 
     /**
      * The console command description.
@@ -50,7 +49,7 @@ class UserDpw extends Command
                         $n->username = '6271' . $new->id;
                         $n->name = $new->nama . ' ' . $new->kota;
                         $n->password = Hash::make('admindpd');
-                        $n->roles = 'dpw';
+                        $n->roles = 'dpd';
                         $n->save();
 
                         $new->update(['user_id' => $n->id]);
@@ -60,7 +59,7 @@ class UserDpw extends Command
                         ]);
                     }
                 } else {
-                    $check->user->update(['name' => 'DPW ' . $kota->nama]);
+                    $check->user->update(['name' => 'DPD ' . $kota->nama]);
                 }
             }
         }
