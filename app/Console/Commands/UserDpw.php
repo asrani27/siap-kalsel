@@ -32,36 +32,32 @@ class UserDpw extends Command
     public function handle()
     {
         $bidangList = Bidang::get();
-        $kotaList = Kota::get();
 
         foreach ($bidangList as $bidang) {
-            foreach ($kotaList as $kota) {
-                $check = Dpd::where('bidang', $bidang->nama)->where('kota', $kota->nama)->first();
-                if ($check == null) {
-                    $new = new Dpd();
-                    $new->nama = 'DPD';
-                    $new->bidang = $bidang->nama;
-                    $new->kota = $kota->nama;
-                    $new->save();
+            $check = Dpw::where('bidang', $bidang->nama)->first();
+            if ($check == null) {
+                $new = new Dpd();
+                $new->nama = 'DPW KALSEL';
+                $new->bidang = $bidang->nama;
+                $new->save();
 
-                    $checkUser = User::where('username', '6471' . $new->id)->first();
-                    if ($checkUser == null) {
-                        $n = new User();
-                        $n->username = '6271' . $new->id;
-                        $n->name = $new->nama . ' ' . $new->kota;
-                        $n->password = Hash::make('admindpd');
-                        $n->roles = 'dpw';
-                        $n->save();
+                $checkUser = User::where('username', '6271' . $new->id)->first();
+                if ($checkUser == null) {
+                    $n = new User();
+                    $n->username = '6271' . $new->id;
+                    $n->name = $new->nama . ' ' . $new->bidang;
+                    $n->password = Hash::make('admindpw');
+                    $n->roles = 'dpw';
+                    $n->save();
 
-                        $new->update(['user_id' => $n->id]);
-                    } else {
-                        $checkUser->update([
-                            'name' => $new->nama . ' ' . $new->kota
-                        ]);
-                    }
+                    $new->update(['user_id' => $n->id]);
                 } else {
-                    $check->user->update(['name' => 'DPW ' . $kota->nama]);
+                    $checkUser->update([
+                        'name' => $new->nama . ' ' . $new->bidang
+                    ]);
                 }
+            } else {
+                $check->user->update(['name' => 'DPW ' . $bidang->nama]);
             }
         }
     }

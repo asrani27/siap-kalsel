@@ -101,6 +101,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="card-body">
                                         <h2 class="text-center"><u>LOGIN APLIKASI RFK</u></h2><br />
                                         <div class="form-group">
+                                            <select id="dpw" name="dpw" class="form-control">
+                                                <option value="">-Pilih-</option>
+                                                <option value="DPW">DPW KALSEL</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
                                             <select id="kota" class="form-control" name="kota" onchange="getDPK()">
                                                 <option value="">Pilih Kota</option>
                                                 @foreach($kota as $ko)
@@ -170,7 +176,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script type="text/javascript">
         @include('layouts.notif')
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const dpwSelect = document.getElementById('dpw');
+        const kotaSelect = document.getElementById('kota');
+        const dpdSelect = document.getElementById('dpk');
 
+        dpwSelect.addEventListener('change', function () {
+            if (this.value === 'DPW') {
+                kotaSelect.disabled = true;
+                dpdSelect.disabled = true;
+                kotaSelect.value = '';
+                dpdSelect.value = '';
+            } else {
+                kotaSelect.disabled = false;
+                dpdSelect.disabled = false;
+            }
+        });
+    });
+    </script>
     <script>
         function getDPK() {
             var kota_id = $('#kota').val(); // Ambil nilai kota yang dipilih
@@ -182,7 +206,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     success: function(response) {
                         // Kosongkan dropdown kota
                         $('#dpk').empty();
-                        $('#dpk').append('<option value="">-Pilih-</option>');
+                        $('#dpk').append('<option value="">-Pilih-</option>'); 
+                        $('#dpk').append('<option value="DPW">DPW</option>'); // Tambahkan opsi default
                         $('#dpk').append('<option value="DPD">DPD</option>'); // Tambahkan opsi default
 
                         // Tambahkan opsi dpk berdasarkan kota
