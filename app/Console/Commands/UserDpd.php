@@ -46,7 +46,7 @@ class UserDpd extends Command
                     $checkUser = User::where('username', '6471' . $new->id)->first();
                     if ($checkUser == null) {
                         $n = new User();
-                        $n->username = '6271' . $new->id;
+                        $n->username = '6471' . $new->id;
                         $n->name = $new->nama . ' ' . $new->kota;
                         $n->password = Hash::make('admindpd');
                         $n->roles = 'dpd';
