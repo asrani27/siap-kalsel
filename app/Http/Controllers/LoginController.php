@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dpd;
 use App\Models\Dpk;
 use App\Models\Dpw;
 use App\Models\Kota;
@@ -16,7 +15,7 @@ class LoginController extends Controller
     public function getDpk($kota_id)
     {
         // Ambil daftar kota berdasarkan provinsi_id
-        $dpk = Dpd::where('kota', $kota_id)->where('bidang', null)->get();
+        $dpk = Dpk::where('kota', $kota_id)->where('bidang', null)->get();
 
         // Mengembalikan data sebagai response JSON
         return response()->json($dpk);
