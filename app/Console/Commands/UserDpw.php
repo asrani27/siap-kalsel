@@ -36,7 +36,7 @@ class UserDpw extends Command
         foreach ($bidangList as $bidang) {
             $check = Dpw::where('bidang', $bidang->nama)->first();
             if ($check == null) {
-                $new = new Dpd();
+                $new = new Dpw();
                 $new->nama = 'DPW KALSEL';
                 $new->bidang = $bidang->nama;
                 $new->save();
