@@ -102,7 +102,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <h2 class="text-center"><u>LOGIN APLIKASI RFK</u></h2><br />
                                         <div class="form-group">
                                             <select id="dpw" name="dpw" class="form-control">
-                                                <option value="">-Pilih-</option>
+                                                <option value="">DPD/DPK</option>
                                                 <option value="DPW">DPW KALSEL</option>
                                             </select>
                                         </div>
@@ -207,7 +207,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         // Kosongkan dropdown kota
                         $('#dpk').empty();
                         $('#dpk').append('<option value="">-Pilih-</option>'); 
-                        $('#dpk').append('<option value="DPW">DPW</option>'); // Tambahkan opsi default
                         $('#dpk').append('<option value="DPD">DPD</option>'); // Tambahkan opsi default
 
                         // Tambahkan opsi dpk berdasarkan kota
