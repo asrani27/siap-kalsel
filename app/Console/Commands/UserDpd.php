@@ -57,6 +57,7 @@ class UserDpd extends Command
                         $checkUser->update([
                             'name' => $new->nama . ' ' . $new->kota
                         ]);
+                        $new->update(['user_id' => $checkUser->id]);
                     }
                 } else {
                     $check->user->update(['name' => 'DPD ' . $kota->nama]);
