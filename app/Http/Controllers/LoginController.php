@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dpd;
 use App\Models\Dpk;
 use App\Models\Dpw;
 use App\Models\Kota;
@@ -15,7 +16,7 @@ class LoginController extends Controller
     public function getDpk($kota_id)
     {
         // Ambil daftar kota berdasarkan provinsi_id
-        $dpk = Dpk::where('kota', $kota_id)->where('bidang', null)->get();
+        $dpk = Dpd::where('kota', $kota_id)->where('bidang', null)->get();
 
         // Mengembalikan data sebagai response JSON
         return response()->json($dpk);
@@ -48,15 +49,15 @@ class LoginController extends Controller
     }
     public function login(Request $req)
     {
-        if($req->dpk == 'DPW'){
+        if ($req->dpk == 'DPW') {
             $username = Dpw::where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
-        }else{
+        } else {
             $username = Dpk::where('nama', $req->dpk)->where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
         }
 
         $param['username'] = $username;
         $param['password'] = $req->password;
-        
+
         $remember = $req->remember ? true : false;
         $credential = $req->only('username', 'password');
 

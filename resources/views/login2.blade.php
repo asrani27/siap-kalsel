@@ -183,7 +183,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         // Kosongkan dropdown kota
                         $('#dpk').empty();
                         $('#dpk').append('<option value="">-Pilih-</option>');
-                        $('#dpk').append('<option value="DPW">DPW</option>'); // Tambahkan opsi default
+                        $('#dpk').append('<option value="DPD">DPD</option>'); // Tambahkan opsi default
 
                         // Tambahkan opsi dpk berdasarkan kota
                         $.each(response, function(key, dpk) {
