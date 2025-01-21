@@ -39,12 +39,12 @@ class DPDController extends Controller
                 [
                     'kode_akun' => 'Penguatan Organisasi pada semua struktur',
                     'indikator' => 'Terlaksananya penguatan organisasi',
-                    'kegiatan' => 'Konsulidasi ke 13 DPD PPNI Kab/Kota se Kalsel',
+                    'kegiatan' => 'Konsulidasi ke DPK PPNI Kab/Kota se Kalsel',
                     'subs' => [
-                        ['program' => 'Sosialisasi kebijakan kepada Personel Pengurus DPW dan DPD dan melaksanakan PO, Juklak dan Juknis', 'satuan' => 'kali'],
-                        ['program' => 'Melakukan pendampingan kepada DPD, Badan Kelengkapan tingkat Provinsi', 'satuan' => 'kali'],
-                        ['program' => 'Melakukan advokasi organisasi kepada pemerintah Provinsi, Pemerintah Kabupaten/Kota dan kepada lembaga non pemerintah', 'satuan' => 'kali'],
-                        ['program' => 'Melaksanakan MONEV menganai pelaksanaan PO oleh DPW kepada DPD serta Badan kelengkapan tingkat Provinsi', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi kebijakan kepada Personel Pengurus DPD dan DPK dan melaksanakan PO, Juklak dan Juknis', 'satuan' => 'kali'],
+                        ['program' => 'Melakukan pendampingan kepada DPK, Badan Kelengkapan Tingkat Kab/kota', 'satuan' => 'kali'],
+                        ['program' => 'Melakukan advokasi organisasi kepada Pemerintah Kabupaten/Kota dan kepada lembaga non pemerintah', 'satuan' => 'kali'],
+                        ['program' => 'Melaksanakan MONEV mengenai pelaksanaan PO oleh DPD kepada DPK serta Badan kelengkapan tingkat Kab/kota', 'satuan' => 'kali'],
                     ],
                 ],
                 [
@@ -57,15 +57,15 @@ class DPDController extends Controller
                 [
                     'kode_akun' => 'Pengelolaan dan Pembinaan Anggota',
                     'subs' => [
-                        ['program' => 'Peningkatan pemberian edukasi dan pemahaman pentingnya pembinaan anggota kepada DPW dan Badan Kelengkapan', 'satuan' => 'kali'],
+                        ['program' => 'Peningkatan pemberian edukasi dan pemahaman pentingnya pembinaan anggota kepada DPD dan Badan Kelengkapan', 'satuan' => 'kali'],
                         ['program' => 'Pendampingan anggota PPNI baru', 'satuan' => 'kali'],
                     ],
                 ],
                 [
                     'kode_akun' => 'Penguatan Peran dan fungsi badan Kelengkapan',
                     'subs' => [
-                        ['program' => 'Melaksanakan sosialisasi PO Badan kelengkapan kepada DPD dan Badan Kelengkapan tingkat Provinsi didampingi perwakilan DPP', 'satuan' => 'kali'],
-                        ['program' => 'Melakukan pendampingan Badan Kelengkapan Tingkat Provinsi', 'satuan' => 'kali'],
+                        ['program' => 'Melaksanakan sosialisasi PO Badan kelengkapan kepada DPD dan Badan Kelengkapan tingkat Kab/Kota didampingi perwakilan DPW', 'satuan' => 'kali'],
+                        ['program' => 'Melakukan pendampingan Badan Kelengkapan Tingkat Kab/Kota', 'satuan' => 'kali'],
                         ['program' => 'Advokasi lembaga pemerintahan dan non pemerintah', 'satuan' => 'kali'],
                         ['program' => 'Monitoring dan evaluasi tentang pelaksanaan PO Badan Kelengkapan', 'satuan' => 'kali'],
                     ],
@@ -74,7 +74,7 @@ class DPDController extends Controller
                     'kode_akun' => 'Kaderisasi Kepemimpinan Organisasi',
                     'subs' => [
                         ['program' => 'Melaksanakan kaderisasi kader Madya', 'satuan' => 'kali'],
-                        ['program' => 'Monitoring dan Evaluasi Pelatihan Kaderisasi di DPW dan DPD', 'satuan' => 'kali'],
+                        ['program' => 'Monitoring dan Evaluasi Pelatihan Kaderisasi di DPD dan DPK', 'satuan' => 'kali'],
                     ],
                 ],
             ];
