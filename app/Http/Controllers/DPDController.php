@@ -671,6 +671,6 @@ class DPDController extends Controller
 
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
-        return redirect('/dpd/surat-keluar');
+        return redirect('/dpd/anggota');
     }
 }

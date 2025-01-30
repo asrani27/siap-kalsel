@@ -723,6 +723,6 @@ class DPKController extends Controller
 
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
-        return redirect('/dpk/surat-keluar');
+        return redirect('/dpk/anggota');
     }
 }

@@ -720,6 +720,6 @@ class DPWController extends Controller
 
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
-        return redirect('/dpw/surat-keluar');
+        return redirect('/dpw/anggota');
     }
 }
