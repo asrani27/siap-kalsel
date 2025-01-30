@@ -14,6 +14,8 @@ use App\Http\Controllers\RFKController;
 use App\Http\Controllers\SuperadminController;
 
 Route::get('/', [LoginController::class, 'home']);
+Route::get('/masuk', [LoginController::class, 'masuk']);
+Route::get('/daftar', [LoginController::class, 'daftar']);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/get-dpk/{kota_id}', [LoginController::class, 'getDpk'])->name('get.dpk');
