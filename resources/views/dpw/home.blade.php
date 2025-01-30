@@ -30,6 +30,19 @@
                         <i class="fa fa-money-bill"></i> <strong>RFK</strong>
                     </a>
 
+                    @if(Auth::user()->dpw->bidang == 'KESEKRETARIATAN')
+                    <a href="/dpw/surat-masuk" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-envelope"></i> <strong>SURAT MASUK</strong>
+                    </a>
+                    <a href="/dpw/surat-keluar" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-envelope"></i> <strong>SURAT KELUAR</strong>
+                    </a>
+                    </a><a href="/dpw/anggota" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-envelope"></i> <strong>ANGGOTA PPNI</strong>
+                    </a>
+                    @endif
+
+
                 </div>
                 <!-- /.card-body -->
             </div>

@@ -29,9 +29,18 @@
                     <a href="/dpk/rfk" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
                         <i class="fa fa-money-bill"></i> <strong>RFK</strong>
                     </a>
-                    {{-- <a class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
-                        <i class="fa fa-cube"></i> <strong>INVENTARIS</strong>
-                    </a> --}}
+
+                    @if(Auth::user()->dpk->bidang == 'KESEKRETARIATAN')
+                    <a href="/dpk/surat-masuk" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-envelope"></i> <strong>SURAT MASUK</strong>
+                    </a>
+                    <a href="/dpk/surat-keluar" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-envelope"></i> <strong>SURAT KELUAR</strong>
+                    </a>
+                    <a href="/dpk/anggota" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-envelope"></i> <strong>ANGGOTA PPNI</strong>
+                    </a>
+                    @endif
                 </div>
                 <!-- /.card-body -->
             </div>
