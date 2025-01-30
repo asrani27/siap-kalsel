@@ -106,6 +106,20 @@ Route::middleware(['auth', 'dpd'])->group(function () {
     Route::get('/dpd/surat-masuk/edit/{id}', [DPDController::class, 'surat_masuk_edit']);
     Route::post('/dpd/surat-masuk/edit/{id}', [DPDController::class, 'surat_masuk_update']);
     Route::get('/dpd/surat-masuk/delete/{id}', [DPDController::class, 'surat_masuk_delete']);
+
+    Route::get('/dpd/surat-keluar', [DPDController::class, 'surat_keluar']);
+    Route::get('/dpd/surat-keluar/create', [DPDController::class, 'surat_keluar_create']);
+    Route::post('/dpd/surat-keluar/create', [DPDController::class, 'surat_keluar_store']);
+    Route::get('/dpd/surat-keluar/edit/{id}', [DPDController::class, 'surat_keluar_edit']);
+    Route::post('/dpd/surat-keluar/edit/{id}', [DPDController::class, 'surat_keluar_update']);
+    Route::get('/dpd/surat-keluar/delete/{id}', [DPDController::class, 'surat_keluar_delete']);
+
+    Route::get('/dpd/anggota', [DPDController::class, 'anggota']);
+    Route::get('/dpd/anggota/create', [DPDController::class, 'anggota_create']);
+    Route::post('/dpd/anggota/create', [DPDController::class, 'anggota_store']);
+    Route::get('/dpd/anggota/edit/{id}', [DPDController::class, 'anggota_edit']);
+    Route::post('/dpd/anggota/edit/{id}', [DPDController::class, 'anggota_update']);
+    Route::get('/dpd/anggota/delete/{id}', [DPDController::class, 'anggota_delete']);
 });
 Route::middleware(['auth', 'dpk'])->group(function () {
     Route::get('/dpk', [DPKController::class, 'index']);
@@ -127,6 +141,20 @@ Route::middleware(['auth', 'dpk'])->group(function () {
     Route::get('/dpk/surat-masuk/edit/{id}', [DPKController::class, 'surat_masuk_edit']);
     Route::post('/dpk/surat-masuk/edit/{id}', [DPKController::class, 'surat_masuk_update']);
     Route::get('/dpk/surat-masuk/delete/{id}', [DPKController::class, 'surat_masuk_delete']);
+
+    Route::get('/dpk/surat-keluar', [DPKController::class, 'surat_keluar']);
+    Route::get('/dpk/surat-keluar/create', [DPKController::class, 'surat_keluar_create']);
+    Route::post('/dpk/surat-keluar/create', [DPKController::class, 'surat_keluar_store']);
+    Route::get('/dpk/surat-keluar/edit/{id}', [DPKController::class, 'surat_keluar_edit']);
+    Route::post('/dpk/surat-keluar/edit/{id}', [DPKController::class, 'surat_keluar_update']);
+    Route::get('/dpk/surat-keluar/delete/{id}', [DPKController::class, 'surat_keluar_delete']);
+
+    Route::get('/dpk/anggota', [DPKController::class, 'anggota']);
+    Route::get('/dpk/anggota/create', [DPKController::class, 'anggota_create']);
+    Route::post('/dpk/anggota/create', [DPKController::class, 'anggota_store']);
+    Route::get('/dpk/anggota/edit/{id}', [DPKController::class, 'anggota_edit']);
+    Route::post('/dpk/anggota/edit/{id}', [DPKController::class, 'anggota_update']);
+    Route::get('/dpk/anggota/delete/{id}', [DPKController::class, 'anggota_delete']);
 });
 Route::middleware(['auth', 'dpw'])->group(function () {
     Route::get('/dpw', [DPWController::class, 'index']);
@@ -149,6 +177,20 @@ Route::middleware(['auth', 'dpw'])->group(function () {
     Route::get('/dpw/surat-masuk/edit/{id}', [DPWController::class, 'surat_masuk_edit']);
     Route::post('/dpw/surat-masuk/edit/{id}', [DPWController::class, 'surat_masuk_update']);
     Route::get('/dpw/surat-masuk/delete/{id}', [DPWController::class, 'surat_masuk_delete']);
+
+    Route::get('/dpw/surat-keluar', [DPWController::class, 'surat_keluar']);
+    Route::get('/dpw/surat-keluar/create', [DPWController::class, 'surat_keluar_create']);
+    Route::post('/dpw/surat-keluar/create', [DPWController::class, 'surat_keluar_store']);
+    Route::get('/dpw/surat-keluar/edit/{id}', [DPWController::class, 'surat_keluar_edit']);
+    Route::post('/dpw/surat-keluar/edit/{id}', [DPWController::class, 'surat_keluar_update']);
+    Route::get('/dpw/surat-keluar/delete/{id}', [DPWController::class, 'surat_keluar_delete']);
+
+    Route::get('/dpw/anggota', [DPWController::class, 'anggota']);
+    Route::get('/dpw/anggota/create', [DPWController::class, 'anggota_create']);
+    Route::post('/dpw/anggota/create', [DPWController::class, 'anggota_store']);
+    Route::get('/dpw/anggota/edit/{id}', [DPWController::class, 'anggota_edit']);
+    Route::post('/dpw/anggota/edit/{id}', [DPWController::class, 'anggota_update']);
+    Route::get('/dpw/anggota/delete/{id}', [DPWController::class, 'anggota_delete']);
 });
 
 Route::get('/logout', function () {

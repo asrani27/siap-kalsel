@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\RFK;
+use App\Models\Anggota;
 use App\Models\RfkDetail;
 use App\Models\SuratMasuk;
 use App\Models\RfkDetailSub;
@@ -625,5 +626,51 @@ class DPDController extends Controller
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
         return redirect('/dpd/surat-masuk');
+    }
+    public function anggota()
+    {
+        $data = Anggota::where('user_id', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+        return view('dpd.anggota.index', compact('data'));
+    }
+    public function anggota_create()
+    {
+        return view('dpd.anggota.create');
+    }
+    public function anggota_store(Request $req)
+    {
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        Anggota::create($param);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpd/anggota');
+    }
+    public function anggota_edit($id)
+    {
+        $data = Anggota::where('id', $id)
+            ->where('user_id',  Auth::user()->id)
+            ->firstOrFail();
+        return view('dpd.anggota.edit', compact('data'));
+    }
+    public function anggota_update(Request $req, $id)
+    {
+        $data = Anggota::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->update($req->all());
+        Session::flash('success', 'Berhasil Diupdate');
+        return redirect('/dpd/anggota');
+    }
+    public function anggota_delete($id)
+    {
+        $data = Anggota::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->delete();
+        Session::flash('success', 'Berhasil Dihapus');
+        return redirect('/dpd/surat-keluar');
     }
 }
