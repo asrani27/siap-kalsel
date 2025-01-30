@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\RFK;
 use App\Models\RfkDetail;
 use App\Models\RfkDetailSub;
+use App\Models\SuratMasuk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -576,5 +577,53 @@ class DPWController extends Controller
         $data->update($req->all());
         Session::flash('success', 'Berhasil Diupdate');
         return redirect('/dpw/rfk/detail/' . $id);
+    }
+
+    public function surat_masuk()
+    {
+        $data = SuratMasuk::where('user_id', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+        return view('dpw.suratmasuk.index', compact('data'));
+    }
+
+    public function surat_masuk_create()
+    {
+        return view('dpw.suratmasuk.create');
+    }
+    public function surat_masuk_store(Request $req)
+    {
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        SuratMasuk::create($param);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpw/surat-masuk');
+    }
+    public function surat_masuk_edit($id)
+    {
+        $data = SuratMasuk::where('id', $id)
+            ->where('user_id',  Auth::user()->id)
+            ->firstOrFail();
+        return view('dpw.suratmasuk.edit', compact('data'));
+    }
+    public function surat_masuk_update(Request $req, $id)
+    {
+        $data = SuratMasuk::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->update($req->all());
+        Session::flash('success', 'Berhasil Diupdate');
+        return redirect('/dpw/surat-masuk');
+    }
+    public function surat_masuk_delete($id)
+    {
+        $data = SuratMasuk::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->delete();
+        Session::flash('success', 'Berhasil Dihapus');
+        return redirect('/dpw/surat-masuk');
     }
 }

@@ -99,6 +99,13 @@ Route::middleware(['auth', 'dpd'])->group(function () {
     Route::post('/dpd/rfk/detail/{id}/edit/{detail_id}', [DPDController::class, 'rfk_detail_update']);
     Route::get('/dpd/rfk/detail/{id}/editsub/{detail_sub_id}', [DPDController::class, 'rfk_detail_editsub']);
     Route::post('/dpd/rfk/detail/{id}/editsub/{detail_sub_id}', [DPDController::class, 'rfk_detail_updatesub']);
+
+    Route::get('/dpd/surat-masuk', [DPDController::class, 'surat_masuk']);
+    Route::get('/dpd/surat-masuk/create', [DPDController::class, 'surat_masuk_create']);
+    Route::post('/dpd/surat-masuk/create', [DPDController::class, 'surat_masuk_store']);
+    Route::get('/dpd/surat-masuk/edit/{id}', [DPDController::class, 'surat_masuk_edit']);
+    Route::post('/dpd/surat-masuk/edit/{id}', [DPDController::class, 'surat_masuk_update']);
+    Route::get('/dpd/surat-masuk/delete/{id}', [DPDController::class, 'surat_masuk_delete']);
 });
 Route::middleware(['auth', 'dpk'])->group(function () {
     Route::get('/dpk', [DPKController::class, 'index']);
@@ -113,6 +120,13 @@ Route::middleware(['auth', 'dpk'])->group(function () {
     Route::post('/dpk/rfk/detail/{id}/edit/{detail_id}', [DPKController::class, 'rfk_detail_update']);
     Route::get('/dpk/rfk/detail/{id}/editsub/{detail_sub_id}', [DPKController::class, 'rfk_detail_editsub']);
     Route::post('/dpk/rfk/detail/{id}/editsub/{detail_sub_id}', [DPKController::class, 'rfk_detail_updatesub']);
+
+    Route::get('/dpk/surat-masuk', [DPKController::class, 'surat_masuk']);
+    Route::get('/dpk/surat-masuk/create', [DPKController::class, 'surat_masuk_create']);
+    Route::post('/dpk/surat-masuk/create', [DPKController::class, 'surat_masuk_store']);
+    Route::get('/dpk/surat-masuk/edit/{id}', [DPKController::class, 'surat_masuk_edit']);
+    Route::post('/dpk/surat-masuk/edit/{id}', [DPKController::class, 'surat_masuk_update']);
+    Route::get('/dpk/surat-masuk/delete/{id}', [DPKController::class, 'surat_masuk_delete']);
 });
 Route::middleware(['auth', 'dpw'])->group(function () {
     Route::get('/dpw', [DPWController::class, 'index']);
@@ -127,6 +141,14 @@ Route::middleware(['auth', 'dpw'])->group(function () {
     Route::post('/dpw/rfk/detail/{id}/edit/{detail_id}', [DPWController::class, 'rfk_detail_update']);
     Route::get('/dpw/rfk/detail/{id}/editsub/{detail_sub_id}', [DPWController::class, 'rfk_detail_editsub']);
     Route::post('/dpw/rfk/detail/{id}/editsub/{detail_sub_id}', [DPWController::class, 'rfk_detail_updatesub']);
+
+
+    Route::get('/dpw/surat-masuk', [DPWController::class, 'surat_masuk']);
+    Route::get('/dpw/surat-masuk/create', [DPWController::class, 'surat_masuk_create']);
+    Route::post('/dpw/surat-masuk/create', [DPWController::class, 'surat_masuk_store']);
+    Route::get('/dpw/surat-masuk/edit/{id}', [DPWController::class, 'surat_masuk_edit']);
+    Route::post('/dpw/surat-masuk/edit/{id}', [DPWController::class, 'surat_masuk_update']);
+    Route::get('/dpw/surat-masuk/delete/{id}', [DPWController::class, 'surat_masuk_delete']);
 });
 
 Route::get('/logout', function () {
