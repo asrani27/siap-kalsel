@@ -6,6 +6,7 @@ use App\Models\RFK;
 use App\Models\Anggota;
 use App\Models\RfkDetail;
 use App\Models\SuratMasuk;
+use App\Models\SuratKeluar;
 use App\Models\RfkDetailSub;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -626,6 +627,53 @@ class DPWController extends Controller
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
         return redirect('/dpw/surat-masuk');
+    }
+
+    public function surat_keluar()
+    {
+        $data = SuratKeluar::where('user_id', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+        return view('dpw.suratkeluar.index', compact('data'));
+    }
+    public function surat_keluar_create()
+    {
+        return view('dpw.suratkeluar.create');
+    }
+    public function surat_keluar_store(Request $req)
+    {
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        Suratkeluar::create($param);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpw/surat-keluar');
+    }
+    public function surat_keluar_edit($id)
+    {
+        $data = SuratKeluar::where('id', $id)
+            ->where('user_id',  Auth::user()->id)
+            ->firstOrFail();
+        return view('dpw.suratkeluar.edit', compact('data'));
+    }
+    public function surat_keluar_update(Request $req, $id)
+    {
+        $data = SuratKeluar::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->update($req->all());
+        Session::flash('success', 'Berhasil Diupdate');
+        return redirect('/dpw/surat-keluar');
+    }
+    public function surat_keluar_delete($id)
+    {
+        $data = SuratKeluar::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->delete();
+        Session::flash('success', 'Berhasil Dihapus');
+        return redirect('/dpw/surat-keluar');
     }
 
     public function anggota()
