@@ -21,6 +21,10 @@ class LoginController extends Controller
         // Mengembalikan data sebagai response JSON
         return response()->json($dpk);
     }
+    public function home()
+    {
+        return view('home');
+    }
     public function index()
     {
         if (Auth::check()) {

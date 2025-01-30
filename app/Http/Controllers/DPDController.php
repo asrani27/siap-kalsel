@@ -85,37 +85,37 @@ class DPDController extends Controller
                     'kode_akun' => 'Optimalisasi implementasi UU No.38 tahun 2014 Tentang Keperawatan',
                     'subs' => [
                         ['program' => 'Koordinasi dan konsolidasi bidang hukum dan perundang-undangan', 'satuan' => 'kali'],
-                        ['program' => 'Kordinasi dan konsolidasi dengan bidang-bidang lain untuk menelaah berbagai peraturan perundang-undangan yang menyangkut keperawatan di tingkat Propinsi Kab/Kota', 'satuan' => 'kali'],
+                        ['program' => 'Kordinasi dan konsolidasi dengan bidang-bidang lain untuk menelaah berbagai peraturan perundang-undangan yang menyangkut keperawatan di tingkat Kab/Kota', 'satuan' => 'kali'],
                         ['program' => 'Menyelenggarakan Pelatihan Paralegal', 'satuan' => 'kali'],
                     ],
                 ],
                 [
                     'kode_akun' => 'Pengkawalan, penyelarasan dan pengembangan peraturan terkait keperawatan dan  Kesehatan',
                     'subs' => [
-                        ['program' => 'Maping regulasi tingkat Propinsi  Kab/Kota terkait  regulasi yang tidak  berpihak kepada  perawat', 'satuan' => 'kali'],
-                        ['program' => 'Telasis & uji materii  peratruran regulasi  regulasi tingkat  Propinsi Kab/Kota', 'satuan' => 'kali'],
-                        ['program' => 'Judicial  Review/Ekskutif  Reviiew terhadap  regulasi tidak  berpihak ke  keperawatan', 'satuan' => 'kali'],
+                        ['program' => 'Maping regulasi tingkat Kab/Kota terkait regulasi yang tidak  berpihak kepada  perawat', 'satuan' => 'kali'],
+                        ['program' => 'Telasis & uji materi peratruran regulasi regulasi tingkat Kab/Kota', 'satuan' => 'kali'],
+                        ['program' => 'Judicial Review/Ekskutif Review terhadap regulasi tidak berpihak ke keperawatan', 'satuan' => 'kali'],
                     ],
                 ],
                 [
                     'kode_akun' => 'Advokasi kepada Pemerintah untuk percepatan Pengangkatan Personal Konsil Keperawatan  ',
                     'subs' => [
-                        ['program' => 'Koordinasi  konsulidasi', 'satuan' => 'kali'],
+                        ['program' => 'Koordinasi Konsolidasi', 'satuan' => 'kali'],
                     ],
                 ],
                 [
                     'kode_akun' => 'Koordinasi dan Penguatan Badan Bantuan Hukum',
                     'subs' => [
-                        ['program' => 'Mengimplementasikan Pedoman  Penyelesaian  Masalah Hukum  Keperawatan', 'satuan' => 'kali'],
-                        ['program' => 'Koordinasi,  konsulidasi,  Intergrasi', 'satuan' => 'kali'],
+                        ['program' => 'Mengimplementasikan Pedoman  Penyelesaian Masalah Hukum Keperawatan', 'satuan' => 'kali'],
+                        ['program' => 'Koordinasi, Konsolidasi, Integrasi', 'satuan' => 'kali'],
                     ],
                 ],
                 [
                     'kode_akun' => 'Monitoring Dan Evaluasi',
                     'subs' => [
-                        ['program' => 'Menyusun  standart format  laporan', 'satuan' => 'kali'],
-                        ['program' => 'Menerima  laporan kejadian  perkara,  melakukan  telaah analisa (  telasis ) dari TPK  melalui DPK', 'satuan' => 'kali'],
-                        ['program' => 'Membuat RTL  dalam rangka  problem solving  tingkat DPD', 'satuan' => 'kali'],
+                        ['program' => 'Menyusun standart format laporan', 'satuan' => 'kali'],
+                        ['program' => 'Menerima laporan kejadian perkara, melakukan telaah analisa (telasis) dari TPK melalui DPK', 'satuan' => 'kali'],
+                        ['program' => 'Membuat RTL dalam rangka problem solving tingkat DPK', 'satuan' => 'kali'],
                     ],
                 ],
             ];
@@ -138,7 +138,7 @@ class DPDController extends Controller
                 [
                     'kode_akun' => 'Program Tambahan',
                     'subs' => [
-                        ['program' => 'Koordinasi  dan sinergi dengan lembaga pemerintah provinsi dan entitas politik untuk kapitalisasi dukungan dan jabatan pemerintah bagi penguatan perawat di daerah', 'satuan' => 'kali'],
+                        ['program' => 'Koordinasi  dan sinergi dengan lembaga pemerintah kab/kota dan entitas politik untuk kapitalisasi dukungan dan jabatan pemerintah bagi penguatan perawat di daerah', 'satuan' => 'kali'],
                         ['program' => 'Identifikasi, pendampingan dan edukasi potensi perawat baik di bidang politik dan birokrasi di daerah', 'satuan' => 'kali'],
                     ],
                 ],
@@ -149,17 +149,17 @@ class DPDController extends Controller
                 [
                     'kode_akun' => 'Optimalisasi Kerja Sama Luar Negeri',
                     'subs' => [
-                        ['program' => 'Melaksanakan kebijakan Kerjasama luar negeri dan pedoman Kerjasama luar negeri  ke  jajaran internal DPW dan DPD secara berjenjang dengan merujuk pada PO , Juklak dan Juknis Pedoman Kerja Sama Luar Negeri', 'satuan' => 'kali'],
-                        ['program' => 'Sosialisasi dan melaksanakan penguatan penguasaan  kebijakan Kerjasama luar negeri dan pedoman Kerjasama luar negeri  ke  jajaran internal DPW dan DPD secara berjenjang.', 'satuan' => 'kali'],
-                        ['program' => 'Ikut serta dan terlibat aktif  dalam pelaksanaan kerja sama luar negeri dengan Lembaga atau negara dalam lingkup kegiatan  ICN sebagai perwakilan / utusan DPW ', 'satuan' => 'kali'],
+                        ['program' => 'Melaksanakan kebijakan Kerjasama luar negeri dan pedoman Kerjasama luar negeri  ke  jajaran internal DPD dan DPK secara berjenjang dengan merujuk pada PO , Juklak dan Juknis Pedoman Kerja Sama Luar Negeri', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi dan melaksanakan penguatan penguasaan  kebijakan Kerjasama luar negeri dan pedoman Kerjasama luar negeri  ke  jajaran internal DPD dan DPK secara berjenjang.', 'satuan' => 'kali'],
+                        ['program' => 'Ikut serta dan terlibat aktif  dalam pelaksanaan kerja sama luar negeri dengan Lembaga atau negara dalam lingkup kegiatan  ICN sebagai perwakilan / utusan DPD ', 'satuan' => 'kali'],
                     ],
                 ],
                 [
                     'kode_akun' => 'Penguatan leadership di Kawasan ASEAN/ lainnya',
                     'subs' => [
-                        ['program' => 'Ikut serta dan terlibat aktif  dalam pelaksanaan pertemuan regional dan ASEAN sebagai perwakilan / utusan DPW', 'satuan' => 'kali'],
-                        ['program' => 'Ikut serta dan terlibat aktif  dalam pelaksanaan peningkatan kerjasama regional,  ASEAN  dan dunia sebagai perwakilan / utusan DPW ', 'satuan' => 'kali'],
-                        ['program' => 'Ikut serta dan terlibat aktif mendukung presidensi DPP PPNI dalam mengorganisir pelaksanaan  kegiatan/ event internasional', 'satuan' => 'kali'],
+                        ['program' => 'Ikut serta dan terlibat aktif  dalam pelaksanaan pertemuan regional dan ASEAN sebagai perwakilan / utusan DPD', 'satuan' => 'kali'],
+                        ['program' => 'Ikut serta dan terlibat aktif  dalam pelaksanaan peningkatan kerjasama regional,  ASEAN  dan dunia sebagai perwakilan / utusan DPD ', 'satuan' => 'kali'],
+                        ['program' => 'Ikut serta dan terlibat aktif mendukung presidensi DPW PPNI dalam mengorganisir pelaksanaan  kegiatan/ event internasional', 'satuan' => 'kali'],
                     ],
                 ],
                 [
@@ -206,7 +206,7 @@ class DPDController extends Controller
                 [
                     'kode_akun' => 'Penyelenggaraan Uji Kompetensi Perawat',
                     'subs' => [
-                        ['program' => 'Mendukung keterlibatan  PPNI dalam Pelaksanaan Uji Kompetensi Perawat', 'satuan' => 'kali'],
+                        ['program' => 'Mendukung keterlibatan PPNI dalam Pelaksanaan Uji Kompetensi Perawat', 'satuan' => 'kali'],
                     ],
                 ],
                 [
@@ -282,7 +282,7 @@ class DPDController extends Controller
                 [
                     'kode_akun' => 'Bidang Sistem Informasi dan Komunikasi',
                     'subs' => [
-                        ['program' => 'Sosialisasi manajemen keanggotaan, fungsi keanggotaan dan PKB onlien ke DPK', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi manajemen keanggotaan, fungsi keanggotaan dan PKB online ke DPK', 'satuan' => 'kali'],
                         ['program' => 'Mengaplikasikan PKB Online sesuai kewenangan di DPD dan mengerjakan verifikasi di DPD', 'satuan' => 'kali'],
                         ['program' => 'Sosialisasi hasil pemutakhiran portal berita ke DPK', 'satuan' => 'kali'],
                         ['program' => 'Membuat dan melaporkan tentang berita yang didapat di DPD ke DPW', 'satuan' => 'kali'],
@@ -291,7 +291,7 @@ class DPDController extends Controller
                         ['program' => 'Sosialisasi interoperabilitas system informasi dengan pihak terkait (SISDMK, PDDIKTI, DUKCAPIL) ke DPK', 'satuan' => 'kali'],
                         ['program' => 'Sosialisasi aplikasi integrated E-Event tentang akreditasi lembaga, pengajuan SKP dan Rekomendasi CGS dalam sistem e-event Ke seluruh DPK', 'satuan' => 'kali'],
                         ['program' => 'Mengaplikasikan E-Event sesuai kewenangan di DPD dan melakukannya monitoring evaluasi', 'satuan' => 'kali'],
-                        ['program' => 'Sosoalisasi integrasi PKB online dengan sistem KTKI tentng E-STR Keseluruh DPK ', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi integrasi PKB online dengan sistem KTKI tentng E-STR Keseluruh DPK ', 'satuan' => 'kali'],
                         ['program' => 'Mengaplikasikan PKB online sesuai kewenangan di DPD', 'satuan' => 'kali'],
                     ],
                 ],
@@ -309,14 +309,14 @@ class DPDController extends Controller
                     'kode_akun' => 'Penguatan citra profesi perawat melalui berbagai media',
                     'subs' => [
                         ['program' => 'Membangun hubungan kerjasama dengan berbagai media pada tingkat kabupaten/kota baik media massa : online, cetak, elektronik (Radio, surat khabar cetak dan online, majalah)', 'satuan' => 'kali'],
-                        ['program' => 'Membuat content berita /informasi positif tentang kegiatan PPNI di tingkat Provinsi  yang siap dipublikasikan pada media', 'satuan' => 'kali'],
+                        ['program' => 'Membuat content berita /informasi positif tentang kegiatan PPNI di tingkat Kab/kota  yang siap dipublikasikan pada media', 'satuan' => 'kali'],
                     ],
                 ],
                 [
                     'kode_akun' => 'Optimalisasi fungsi hubungan masyarakat (HUMAS)',
                     'subs' => [
-                        ['program' => 'Membuat content berita edukatif untuk mendidik masyarakat terkait issue masalah kesehatan terkini serta peran perawat dan mempublikasikan pada media di kabupaten/kota  yang dapat diakses masyarakat luas', 'satuan' => 'kali'],
-                        ['program' => 'Mencari production house yang bersedia bekerjasama dalam memproduksi content berita DPW PPNI untuk dipublikasikan di tingkat Provinsi ataupun nasional', 'satuan' => 'kali'],
+                        ['program' => 'Membuat content berita edukatif untuk mendidik masyarakat terkait issue masalah kesehatan terkini serta peran perawat dan mempublikasikan pada media di kabupaten/kota/provinsi  yang dapat diakses masyarakat luas', 'satuan' => 'kali'],
+                        ['program' => 'Mencari production house yang bersedia bekerjasama dalam memproduksi content berita DPW PPNI untuk dipublikasikan di tingkat kab/kota/Provinsi', 'satuan' => 'kali'],
                     ],
                 ],
             ];
@@ -379,7 +379,7 @@ class DPDController extends Controller
                 [
                     'kode_akun' => 'Optimalisasi kualitas pelayanan keperawatan',
                     'subs' => [
-                        ['program' => 'Melakukan audiensi dengan Bupati/Walikota setempat, DPRD Propinsi, Dinas Kesehatan Kabupaten/Kota dan Disnaker setempat.', 'satuan' => 'kali'],
+                        ['program' => 'Melakukan audiensi dengan Bupati/Walikota setempat, DPRD Kab/Kota, Dinas Kesehatan Kabupaten/Kota dan Disnaker setempat.', 'satuan' => 'kali'],
                         ['program' => 'Sosialisasi dengan seluruh DPK tentang Struktur skala upah untuk perawat ', 'satuan' => 'kali'],
                         ['program' => 'Melakukan advokasi jika ada perawat masih mendapatkan upah di bawah UMP/UMK.', 'satuan' => 'kali'],
                     ],
