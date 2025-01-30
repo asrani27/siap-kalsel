@@ -106,7 +106,7 @@
                                 Kami menyediakan layanan pengajuan online webinar, pelatihan dan workshop
                             </p>
                             <div class="text-center">
-                                <a href="#about" class="more-btn"><span>Ajukan Sekarang</span> <i
+                                <a href="/masuk" class="more-btn"><span>Ajukan Sekarang</span> <i
                                         class="bi bi-chevron-right"></i></a>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                                         <h4>Webinar</h4>
                                         <p>Belajar tanpa batas, kapan saja dan di mana saja</p>
                                         <div class="text-center">
-                                            <a href="#" class="btn btn-danger"><span>Ajukan Sekarang</span></a>
+                                            <a href="/masuk" class="btn btn-danger"><span>Ajukan Sekarang</span></a>
                                         </div>
                                     </div>
                                 </div><!-- End Icon Box -->
@@ -133,7 +133,7 @@
                                         <h4>Pelatihan</h4>
                                         <p>Meningkatkan keterampilan dan membuka peluang baru</p>
                                         <div class="text-center">
-                                            <a href="#" class="btn btn-danger"><span>Ajukan Sekarang</span></a>
+                                            <a href="/masuk" class="btn btn-danger"><span>Ajukan Sekarang</span></a>
                                         </div>
                                     </div>
                                 </div><!-- End Icon Box -->
@@ -144,7 +144,7 @@
                                         <h4>Workshop</h4>
                                         <p>Tempat terbaik untuk mengasah keterampilan</p>
                                         <div class="text-center">
-                                            <a href="#" class="btn btn-danger"><span>Ajukan Sekarang</span></a>
+                                            <a href="/masuk" class="btn btn-danger"><span>Ajukan Sekarang</span></a>
                                         </div>
                                     </div>
                                 </div><!-- End Icon Box -->
