@@ -430,7 +430,7 @@ class DPDController extends Controller
                 [
                     'kode_akun' => 'Penataan Jalur Komunikasi intra organisasi',
                     'subs' => [
-                        ['program' => 'Sosialisasi ke DPW tentang penataan jalur komunikasi intra organisasi berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi ke DPD tentang penataan jalur komunikasi intra organisasi berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
                         ['program' => 'Penetapan PO, juklak dan juknis jalur komunikasi intra organisasi (protokoler, tatalaksana organisasi, kesekretariatan)', 'satuan' => 'kali'],
                         ['program' => 'Pengembangan SDM (pelatihan, workshop, TOT, dll) komunikasi intra organisasi', 'satuan' => 'kali'],
                         ['program' => 'Pengembangan sistem jalur komunikasi intra organisasi (manual & elektronik)', 'satuan' => 'kali'],
@@ -440,7 +440,7 @@ class DPDController extends Controller
                 [
                     'kode_akun' => 'Penataan dan pengawalan berbagai jenis rapat (rapat-rapat rutin)',
                     'subs' => [
-                        ['program' => 'Sosialisasi ke DPW tentang penataan dan pengawalan jenis rapat (rapat -rapat rutin) berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi ke DPD tentang penataan dan pengawalan jenis rapat (rapat -rapat rutin) berdasarkan kebijakan mutu PPNI (ISO 9001:2015)', 'satuan' => 'kali'],
                         ['program' => 'Penetapan PO, juklak dan juknis rapat-rapat', 'satuan' => 'kali'],
                         ['program' => 'Pengaturan dan penjadwalan rapat', 'satuan' => 'kali'],
                         ['program' => 'Pemantauan tindak lanjut rapat-rapat', 'satuan' => 'kali'],
@@ -458,13 +458,7 @@ class DPDController extends Controller
                         ['program' => 'Pembinaan SDM Keuangan (TOT Workshop); mengatur sistem anggaran, penerimaan, penyimpanan, dan pengeluaran', 'satuan' => 'kali'],
                         ['program' => 'Peningkatan Kinerja; Pedoman penyusunan RABP berupa forecasting penerimaan dan pengeluaran serta realisasinya', 'satuan' => 'kali'],
                     ],
-                ],
-                [
-                    'kode_akun' => 'Penataan aset dan kepemilikan',
-                    'indikator' => 'Tertatanya aset dan kepemilikan di DPW PPNI Provinsi Kalimantan Selatan',
-                    'kegiatan' => 'Melakukan rekap data asset DPW PPNI Provinsi Kalimantan Selatan',
-                    'subs' => [],
-                ],
+                ]
             ];
         }
         // Simpan details dan subs hanya jika $details memiliki data
