@@ -248,7 +248,7 @@ class DPKController extends Controller
                     'subs' => [
                         ['program' => 'Melaksanakan penelitian sesuai pedoman tehnologi dan inovasi, standar penelitian', 'satuan' => 'kali'],
                         ['program' => 'Sosialisasi ke Anggota dalam melaksanakan penelitian sesuai pedoman tehnologi dan inovasi, standar penelitian', 'satuan' => 'kali'],
-                        ['program' => 'Memfasilitasi hasil produk penelitian DPP dan DPW PPNI untuk dapat dimanfaatkan anggota', 'satuan' => 'kali'],
+                        ['program' => 'Memfasilitasi hasil produk penelitian DPP, DPW Dan DPD PPNI untuk dapat dimanfaatkan anggota', 'satuan' => 'kali'],
                     ],
                 ],
                 [
@@ -289,16 +289,16 @@ class DPKController extends Controller
                 [
                     'kode_akun' => 'Bidang Sistem Informasi dan Komunikasi',
                     'subs' => [
-                        ['program' => 'Sosialisasi manajemen keanggotaan, fungsi keanggotaan dan PKB onlien ke DPK', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi manajemen keanggotaan, fungsi keanggotaan dan PKB online ke Anggota', 'satuan' => 'kali'],
                         ['program' => 'Mengaplikasikan PKB Online sesuai kewenangan di DPD dan mengerjakan verifikasi di DPD', 'satuan' => 'kali'],
-                        ['program' => 'Sosialisasi hasil pemutakhiran portal berita ke DPK', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi hasil pemutakhiran portal berita ke Anggota', 'satuan' => 'kali'],
                         ['program' => 'Membuat dan melaporkan tentang berita yang didapat di DPD ke DPW', 'satuan' => 'kali'],
-                        ['program' => 'Sosialisasi sistem pemberhentian anggota secara online terintegrasi ke DPK', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi sistem pemberhentian anggota secara online terintegrasi ke Anggota', 'satuan' => 'kali'],
                         ['program' => 'Mengaplikasikan proses integrasi sistem pemberhentian secara online sesuai kewenangan di DPD', 'satuan' => 'kali'],
-                        ['program' => 'Sosialisasi interoperabilitas system informasi dengan pihak terkait (SISDMK, PDDIKTI, DUKCAPIL) ke DPK', 'satuan' => 'kali'],
-                        ['program' => 'Sosialisasi aplikasi integrated E-Event tentang akreditasi lembaga, pengajuan SKP dan Rekomendasi CGS dalam sistem e-event Ke seluruh DPK', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi interoperabilitas system informasi dengan pihak terkait (SISDMK, PDDIKTI, DUKCAPIL) ke Anggota', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi aplikasi integrated E-Event tentang akreditasi lembaga, pengajuan SKP dan Rekomendasi CGS dalam sistem e-event Ke seluruh Anggota', 'satuan' => 'kali'],
                         ['program' => 'Mengaplikasikan E-Event sesuai kewenangan di DPD dan melakukannya monitoring evaluasi', 'satuan' => 'kali'],
-                        ['program' => 'Sosoalisasi integrasi PKB online dengan sistem KTKI tentng E-STR Keseluruh DPK ', 'satuan' => 'kali'],
+                        ['program' => 'Sosoalisasi integrasi PKB online dengan sistem KTKI tentng E-STR Keseluruh Anggota ', 'satuan' => 'kali'],
                         ['program' => 'Mengaplikasikan PKB online sesuai kewenangan di DPD', 'satuan' => 'kali'],
                     ],
                 ],
