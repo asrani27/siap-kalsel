@@ -350,7 +350,7 @@ class DPKController extends Controller
                     'subs' => [
                         ['program' => 'Sosialisasi dan Simulasi Permohonan SIPP PKM pada Anggota', 'satuan' => 'kali'],
                         ['program' => 'Melakukan visitasi PMK', 'satuan' => 'kali'],
-                        ['program' => 'Menerbitkan rekomendasi SIPP PMK atas nama DPP PPNI', 'satuan' => 'kali'],
+                        ['program' => 'Menerbitkan rekomendasi SIPP PMK', 'satuan' => 'kali'],
                         ['program' => 'Advokasi pendirian PMK pada pihak terkait di tingkat provinsi ', 'satuan' => 'kali'],
                         ['program' => 'Monev PMK pada PMK di kab/kota', 'satuan' => 'kali'],
                     ],
