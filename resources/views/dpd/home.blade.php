@@ -8,7 +8,7 @@
         <div class="col-12 text-center">
             <br />
             <h1 style="">Selamat Datang, {{Auth::user()->name}}</h1><br />
-            <img src="/logo/321.png" class="img-fluid" width="10%"><br /><br />
+            <img src="/logo/ppni.png" class="img-fluid" width="10%"><br /><br />
 
             <div class="card">
                 <div class="card-header" style="cursor: move;">
