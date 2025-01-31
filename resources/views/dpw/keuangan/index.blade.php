@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-12">
             <br />
-            <a href="/dpk/keuangan/create" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i>
+            <a href="/dpw/keuangan/create" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i>
                 keuangan</a><br /><br />
             <div class="card">
                 <div class="card-header" style="cursor: move;">
@@ -54,10 +54,10 @@
                                 <td style="text-align: right">{{number_format($item->saldo)}}</td>
                                 <td>
 
-                                    <a href="/dpk/keuangan/edit/{{$item->id}}" class="btn btn-xs btn-success text-bold">
+                                    <a href="/dpw/keuangan/edit/{{$item->id}}" class="btn btn-xs btn-success text-bold">
                                         EDIT
                                     </a>
-                                    <a href="/dpk/keuangan/delete/{{$item->id}}" class="btn btn-xs btn-danger text-bold"
+                                    <a href="/dpw/keuangan/delete/{{$item->id}}" class="btn btn-xs btn-danger text-bold"
                                         onclick="return confirm('Yakin ingin dihapus?');">
                                         HAPUS
                                     </a>

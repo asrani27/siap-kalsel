@@ -79,6 +79,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="/dpw/rfk" class="nav-link {{request()->is('dpw/rfk*') ? 'active':''}}"
                                 style="color: white"><i class="fa fa-money-bill"></i> RFK</a>
                         </li>
+                        @if (Auth::user()->dpw->bidang == 'KEBENDAHARAAN / KEUANGAN')
+                        <li class="nav-item">
+                            <a href="/dpw/aset" class="nav-link {{request()->is('dpw/aset*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-cubes"></i> ASET</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dpw/keuangan" class="nav-link {{request()->is('dpw/keuangan*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-money-bill"></i> KEUANGAN</a>
+                        </li>
+                        @endif
+                        @if (Auth::user()->dpw->bidang == 'KESEKRETARIATAN')
+                        <li class="nav-item">
+                            <a href="/dpw/surat-masuk"
+                                class="nav-link {{request()->is('dpw/surat-masuk*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-envelope"></i> SURAT MASUK</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dpw/surat-keluar"
+                                class="nav-link {{request()->is('dpw/surat-keluar*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-envelope"></i> SURAT KELUAR</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dpw/anggota" class="nav-link {{request()->is('dpw/anggota*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-users"></i> ANGGOTA</a>
+                        </li>
+                        @endif
                         @endif
                         @if (Auth::user()->roles == 'dpk')
                         <li class="nav-item" style="">
@@ -89,6 +115,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="/dpk/rfk" class="nav-link {{request()->is('dpk/rfk*') ? 'active':''}}"
                                 style="color: white"><i class="fa fa-money-bill"></i> RFK</a>
                         </li>
+
+                        @if (Auth::user()->dpk->bidang == 'KEBENDAHARAAN / KEUANGAN')
+                        <li class="nav-item">
+                            <a href="/dpk/aset" class="nav-link {{request()->is('dpk/aset*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-cubes"></i> ASET</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dpk/keuangan" class="nav-link {{request()->is('dpk/keuangan*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-money-bill"></i> KEUANGAN</a>
+                        </li>
+                        @endif
+                        @if (Auth::user()->dpk->bidang == 'KESEKRETARIATAN')
+                        <li class="nav-item">
+                            <a href="/dpk/surat-masuk"
+                                class="nav-link {{request()->is('dpk/surat-masuk*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-envelope"></i> SURAT MASUK</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dpk/surat-keluar"
+                                class="nav-link {{request()->is('dpk/surat-keluar*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-envelope"></i> SURAT KELUAR</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dpk/anggota" class="nav-link {{request()->is('dpk/anggota*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-users"></i> ANGGOTA</a>
+                        </li>
+                        @endif
                         @endif
 
                         @if (Auth::user()->roles == 'dpd')
@@ -100,6 +153,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="/dpd/rfk" class="nav-link {{request()->is('dpd/rfk*') ? 'active':''}}"
                                 style="color: white"><i class="fa fa-money-bill"></i> RFK</a>
                         </li>
+                        @if (Auth::user()->dpd->bidang == 'KEBENDAHARAAN / KEUANGAN')
+                        <li class="nav-item">
+                            <a href="/dpd/aset" class="nav-link {{request()->is('dpd/aset*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-cubes"></i> ASET</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dpd/keuangan" class="nav-link {{request()->is('dpd/keuangan*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-money-bill"></i> KEUANGAN</a>
+                        </li>
+                        @endif
+                        @if (Auth::user()->dpd->bidang == 'KESEKRETARIATAN')
+                        <li class="nav-item">
+                            <a href="/dpd/surat-masuk"
+                                class="nav-link {{request()->is('dpd/surat-masuk*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-envelope"></i> SURAT MASUK</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dpd/surat-keluar"
+                                class="nav-link {{request()->is('dpd/surat-keluar*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-envelope"></i> SURAT KELUAR</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/dpd/anggota" class="nav-link {{request()->is('dpd/anggota*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-users"></i> ANGGOTA</a>
+                        </li>
+                        @endif
                         @endif
                     </ul>
 

@@ -227,6 +227,13 @@ Route::middleware(['auth', 'dpw'])->group(function () {
     Route::get('/dpw/aset/edit/{id}', [DPWController::class, 'aset_edit']);
     Route::post('/dpw/aset/edit/{id}', [DPWController::class, 'aset_update']);
     Route::get('/dpw/aset/delete/{id}', [DPWController::class, 'aset_delete']);
+
+    Route::get('/dpw/keuangan', [DPWController::class, 'keuangan']);
+    Route::get('/dpw/keuangan/create', [DPWController::class, 'keuangan_create']);
+    Route::post('/dpw/keuangan/create', [DPWController::class, 'keuangan_store']);
+    Route::get('/dpw/keuangan/edit/{id}', [DPWController::class, 'keuangan_edit']);
+    Route::post('/dpw/keuangan/edit/{id}', [DPWController::class, 'keuangan_update']);
+    Route::get('/dpw/keuangan/delete/{id}', [DPWController::class, 'keuangan_delete']);
 });
 
 Route::get('/logout', function () {

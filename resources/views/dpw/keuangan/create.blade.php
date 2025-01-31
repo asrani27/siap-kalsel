@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-12">
             <br />
-            <a href="/dpk/keuangan" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
+            <a href="/dpw/keuangan" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
                 Kembali
             </a><br /><br />
             <div class="card">
@@ -24,7 +24,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form method="post" action="/dpk/keuangan/create">
+                    <form method="post" action="/dpw/keuangan/create">
                         @csrf
                         <div class="form-group">
                             <label>Tanggal</label>

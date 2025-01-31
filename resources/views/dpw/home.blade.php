@@ -37,7 +37,8 @@
                     <a href="/dpw/surat-keluar" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
                         <i class="fa fa-envelope"></i> <strong>SURAT KELUAR</strong>
                     </a>
-                    </a><a href="/dpw/anggota" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                    </a>
+                    <a href="/dpw/anggota" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
                         <i class="fa fa-users"></i> <strong>ANGGOTA PPNI</strong>
                     </a>
                     @endif
