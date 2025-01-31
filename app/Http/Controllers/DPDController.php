@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\RFK;
 use App\Models\Aset;
 use App\Models\Anggota;
+use App\Models\Keuangan;
 use App\Models\RfkDetail;
 use App\Models\SuratMasuk;
 use App\Models\RfkDetailSub;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DPDController extends Controller
 {
@@ -719,5 +721,77 @@ class DPDController extends Controller
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
         return redirect('/dpd/aset');
+    }
+
+    public function keuangan()
+    {
+        // Ambil semua transaksi agar saldo bisa dihitung dengan benar
+        $allKeuangans = Keuangan::where('user_id',  Auth::user()->id)->orderBy('created_at', 'asc')->get();
+
+        // Hitung saldo secara akurat dengan iterasi dari awal
+        $saldo = 0;
+        $allKeuangans->each(function ($keuangan) use (&$saldo) {
+            $saldo += $keuangan->masuk - $keuangan->keluar;
+            $keuangan->saldo = $saldo; // Set saldo untuk setiap transaksi
+        });
+
+        $allKeuangans = $allKeuangans->sortByDesc('created_at')->values();
+
+        // Paginasi manual
+        $perPage = 10; // Jumlah transaksi per halaman
+        $currentPage = request()->input('page', 1);
+        $offset = ($currentPage - 1) * $perPage;
+
+        // Ambil data sesuai halaman saat ini
+        $currentItems = $allKeuangans->slice($offset, $perPage)->values();
+
+        // Buat pagination dengan LengthAwarePaginator
+        $data = new LengthAwarePaginator(
+            $currentItems,
+            $allKeuangans->count(),
+            $perPage,
+            $currentPage,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
+        return view('dpd.keuangan.index', compact('data'));
+    }
+    public function keuangan_create()
+    {
+        return view('dpd.keuangan.create');
+    }
+    public function keuangan_store(Request $req)
+    {
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        Keuangan::create($param);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpd/keuangan');
+    }
+    public function keuangan_edit($id)
+    {
+        $data = Keuangan::where('id', $id)
+            ->where('user_id',  Auth::user()->id)
+            ->firstOrFail();
+        return view('dpd.keuangan.edit', compact('data'));
+    }
+    public function keuangan_update(Request $req, $id)
+    {
+        $data = Keuangan::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->update($req->all());
+        Session::flash('success', 'Berhasil Diupdate');
+        return redirect('/dpd/keuangan');
+    }
+    public function keuangan_delete($id)
+    {
+        $data = Keuangan::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->delete();
+        Session::flash('success', 'Berhasil Dihapus');
+        return redirect('/dpd/keuangan');
     }
 }

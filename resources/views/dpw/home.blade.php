@@ -45,7 +45,7 @@
                     <a href="/dpw/aset" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
                         <i class="fa fa-cubes"></i> <strong>ASET</strong>
                     </a>
-                    <a href="/dpw/jurnal" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                    <a href="/dpw/keuangan" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
                         <i class="fa fa-chart-bar"></i> <strong>JURNAL KEUANGAN</strong>
                     </a>
                     @endif

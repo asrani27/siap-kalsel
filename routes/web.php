@@ -127,6 +127,14 @@ Route::middleware(['auth', 'dpd'])->group(function () {
     Route::get('/dpd/aset/edit/{id}', [DPDController::class, 'aset_edit']);
     Route::post('/dpd/aset/edit/{id}', [DPDController::class, 'aset_update']);
     Route::get('/dpd/aset/delete/{id}', [DPDController::class, 'aset_delete']);
+
+
+    Route::get('/dpd/keuangan', [DPDController::class, 'keuangan']);
+    Route::get('/dpd/keuangan/create', [DPDController::class, 'keuangan_create']);
+    Route::post('/dpd/keuangan/create', [DPDController::class, 'keuangan_store']);
+    Route::get('/dpd/keuangan/edit/{id}', [DPDController::class, 'keuangan_edit']);
+    Route::post('/dpd/keuangan/edit/{id}', [DPDController::class, 'keuangan_update']);
+    Route::get('/dpd/keuangan/delete/{id}', [DPDController::class, 'keuangan_delete']);
 });
 Route::middleware(['auth', 'dpk'])->group(function () {
     Route::get('/dpk', [DPKController::class, 'index']);
@@ -169,6 +177,13 @@ Route::middleware(['auth', 'dpk'])->group(function () {
     Route::get('/dpk/aset/edit/{id}', [DPKController::class, 'aset_edit']);
     Route::post('/dpk/aset/edit/{id}', [DPKController::class, 'aset_update']);
     Route::get('/dpk/aset/delete/{id}', [DPKController::class, 'aset_delete']);
+
+    Route::get('/dpk/keuangan', [DPKController::class, 'keuangan']);
+    Route::get('/dpk/keuangan/create', [DPKController::class, 'keuangan_create']);
+    Route::post('/dpk/keuangan/create', [DPKController::class, 'keuangan_store']);
+    Route::get('/dpk/keuangan/edit/{id}', [DPKController::class, 'keuangan_edit']);
+    Route::post('/dpk/keuangan/edit/{id}', [DPKController::class, 'keuangan_update']);
+    Route::get('/dpk/keuangan/delete/{id}', [DPKController::class, 'keuangan_delete']);
 });
 Route::middleware(['auth', 'dpw'])->group(function () {
     Route::get('/dpw', [DPWController::class, 'index']);
