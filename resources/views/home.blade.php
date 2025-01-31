@@ -103,9 +103,9 @@
                         <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
                             <h3>APA SIH SIAP KALSEL?</h3>
                             <p>
-                                Adalah sebuah aplikasi Terpadu dari organisasi PPNI Kalsel yang menyediakan layanan
+                                Adalah Sebuah Aplikasi Terpadu dari Organisasi PPNI Kalsel Yang Menyediakan Layanan
                                 Pelaporan Kegiatan, Keuangan, Kesekretariatan dan
-                                pengajuan pembelajaran secara online.
+                                Pengajuan Kegiatan Pembelajaran Secara Online.
                             </p>
                             {{-- <div class="text-center">
                                 <a href="/masuk" class="more-btn"><span>Ajukan Sekarang</span> <i
