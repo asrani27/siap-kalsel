@@ -94,7 +94,7 @@
             <div class="container position-relative">
 
                 <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
-                    <h2>SELAMAT DATANG <br />DI SIAP KALSEL</h2>
+                    <h2>SELAMAT DATANG <br />DI SISTEM INFORMASI APLIKASI PPNI (SIAP) KALSEL</h2>
                     <p>Kami Organisasi Persatuan Perawat Nasional Indonesia (PPNI)<br /> Provinsi Kalimantan Selatan</p>
                 </div><!-- End Welcome -->
 
