@@ -292,7 +292,7 @@ class DPKController extends Controller
                         ['program' => 'Sosialisasi manajemen keanggotaan, fungsi keanggotaan dan PKB online ke Anggota', 'satuan' => 'kali'],
                         ['program' => 'Mengaplikasikan PKB Online sesuai kewenangan di DPK dan mengerjakan verifikasi di DPK', 'satuan' => 'kali'],
                         ['program' => 'Sosialisasi hasil pemutakhiran portal berita ke Anggota', 'satuan' => 'kali'],
-                        ['program' => 'Membuat dan melaporkan tentang berita yang didapat di DPK ke DPW', 'satuan' => 'kali'],
+                        ['program' => 'Membuat dan melaporkan tentang berita yang didapat di DPK ke DPD', 'satuan' => 'kali'],
                         ['program' => 'Sosialisasi sistem pemberhentian anggota secara online terintegrasi ke Anggota', 'satuan' => 'kali'],
                         ['program' => 'Mengaplikasikan proses integrasi sistem pemberhentian secara online sesuai kewenangan di DPK', 'satuan' => 'kali'],
                         ['program' => 'Sosialisasi interoperabilitas system informasi dengan pihak terkait (SISDMK, PDDIKTI, DUKCAPIL) ke Anggota', 'satuan' => 'kali'],
@@ -305,9 +305,9 @@ class DPKController extends Controller
                 [
                     'kode_akun' => 'Penguatan kapasitas kelembagaan sistem informasi-komunikasi dan pangkalan data terintegrasi',
                     'subs' => [
-                        ['program' => 'Sosialisasi sistem SIM Kesekretariatan ke seluruh DPK', 'satuan' => 'kali'],
-                        ['program' => 'Sosialisasi Buku SIM-K dan PKB Online ke seluruh DPK', 'satuan' => 'kali'],
-                        ['program' => 'Sosialisasi dan pelatihan tentang pangkalan data (database) ke seluruh DPK', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi sistem SIM Kesekretariatan ke seluruh Anggota', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi Buku SIM-K dan PKB Online ke seluruh Anggota', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi dan pelatihan tentang pangkalan data (database) ke seluruh Anggota', 'satuan' => 'kali'],
                         ['program' => 'Mendorong DPK untuk pengadaan sarana-prasarana penunjang informasi-komunikasi ', 'satuan' => 'kali'],
                         ['program' => 'Mendorong DPK untuk meningkatkan pengembangan SDM melalui TOT, pelatihan, dan lainnya serta melakukan monitoring dan evaluasi hasil kegiatan', 'satuan' => 'kali'],
                     ],
@@ -316,7 +316,7 @@ class DPKController extends Controller
                     'kode_akun' => 'Penguatan citra profesi perawat melalui berbagai media',
                     'subs' => [
                         ['program' => 'Membangun hubungan kerjasama dengan berbagai media pada tingkat kabupaten/kota baik media massa : online, cetak, elektronik (Radio, surat khabar cetak dan online, majalah)', 'satuan' => 'kali'],
-                        ['program' => 'Membuat content berita /informasi positif tentang kegiatan PPNI di tingkat Provinsi  yang siap dipublikasikan pada media', 'satuan' => 'kali'],
+                        ['program' => 'Membuat content berita /informasi positif tentang kegiatan PPNI di tingkat Kab/Kota  yang siap dipublikasikan pada media', 'satuan' => 'kali'],
                     ],
                 ],
                 [
