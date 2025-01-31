@@ -101,14 +101,15 @@
                 <div class="content row gy-4">
                     <div class="col-lg-4 d-flex align-items-stretch">
                         <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
-                            <h3>Kelebihan SIAP KALSEL?</h3>
+                            <h3>APA SIH SIAP KALSEL?</h3>
                             <p>
-                                Kami menyediakan layanan pengajuan online webinar, pelatihan dan workshop
+                                Adalah sebuah web dari organisasi PPNI Kalsel yang menyediakan layanan pengajuan online
+                                webinar, pelatihan dan workshop
                             </p>
-                            <div class="text-center">
+                            {{-- <div class="text-center">
                                 <a href="/masuk" class="more-btn"><span>Ajukan Sekarang</span> <i
                                         class="bi bi-chevron-right"></i></a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div><!-- End Why Box -->
 
