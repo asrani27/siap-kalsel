@@ -104,6 +104,7 @@
                             <h3>APA SIH SIAP KALSEL?</h3>
                             <p>
                                 Adalah sebuah aplikasi Terpadu dari organisasi PPNI Kalsel yang menyediakan layanan
+                                Pelaporan Kegiatan, Keuangan, Kesekretariatan dan
                                 pengajuan
                                 online
                                 webinar, pelatihan dan workshop
