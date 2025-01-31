@@ -103,7 +103,9 @@
                         <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
                             <h3>APA SIH SIAP KALSEL?</h3>
                             <p>
-                                Adalah sebuah web dari organisasi PPNI Kalsel yang menyediakan layanan pengajuan online
+                                Adalah sebuah aplikasi Terpadu dari organisasi PPNI Kalsel yang menyediakan layanan
+                                pengajuan
+                                online
                                 webinar, pelatihan dan workshop
                             </p>
                             {{-- <div class="text-center">
