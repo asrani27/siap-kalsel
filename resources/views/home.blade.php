@@ -105,9 +105,7 @@
                             <p>
                                 Adalah sebuah aplikasi Terpadu dari organisasi PPNI Kalsel yang menyediakan layanan
                                 Pelaporan Kegiatan, Keuangan, Kesekretariatan dan
-                                pengajuan
-                                online
-                                webinar, pelatihan dan workshop
+                                pengajuan pembelajaran secara online.
                             </p>
                             {{-- <div class="text-center">
                                 <a href="/masuk" class="more-btn"><span>Ajukan Sekarang</span> <i
