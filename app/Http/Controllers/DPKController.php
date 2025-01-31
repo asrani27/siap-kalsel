@@ -460,13 +460,7 @@ class DPKController extends Controller
                         ['program' => 'Pembinaan SDM Keuangan (TOT Workshop); mengatur sistem anggaran, penerimaan, penyimpanan, dan pengeluaran', 'satuan' => 'kali'],
                         ['program' => 'Peningkatan Kinerja; Pedoman penyusunan RABP berupa forecasting penerimaan dan pengeluaran serta realisasinya', 'satuan' => 'kali'],
                     ],
-                ],
-                [
-                    'kode_akun' => 'Penataan aset dan kepemilikan',
-                    'indikator' => 'Tertatanya aset dan kepemilikan di DPW PPNI Provinsi Kalimantan Selatan',
-                    'kegiatan' => 'Melakukan rekap data asset DPW PPNI Provinsi Kalimantan Selatan',
-                    'subs' => [],
-                ],
+                ]
             ];
         }
         // Simpan details dan subs hanya jika $details memiliki data
