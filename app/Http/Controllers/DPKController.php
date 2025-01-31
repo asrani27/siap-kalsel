@@ -323,7 +323,7 @@ class DPKController extends Controller
                     'kode_akun' => 'Optimalisasi fungsi hubungan masyarakat (HUMAS)',
                     'subs' => [
                         ['program' => 'Membuat content berita edukatif untuk mendidik masyarakat terkait issue masalah kesehatan terkini serta peran perawat dan mempublikasikan pada media di kabupaten/kota  yang dapat diakses masyarakat luas', 'satuan' => 'kali'],
-                        ['program' => 'Mencari production house yang bersedia bekerjasama dalam memproduksi content berita DPW PPNI untuk dipublikasikan di tingkat Provinsi ataupun nasional', 'satuan' => 'kali'],
+                        ['program' => 'Mencari production house yang bersedia bekerjasama dalam memproduksi content berita DPK PPNI untuk dipublikasikan di tingkat Kab/Kota, Provinsi ataupun nasional', 'satuan' => 'kali'],
                     ],
                 ],
             ];
@@ -348,7 +348,7 @@ class DPKController extends Controller
                 [
                     'kode_akun' => 'Mengembangkan Praktik Keperawatan Mandiri (PKM)',
                     'subs' => [
-                        ['program' => 'Sosialisasi dan Simulasi Permohonan SIPP PKM pada tingkat DPD', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi dan Simulasi Permohonan SIPP PKM pada Anggota', 'satuan' => 'kali'],
                         ['program' => 'Melakukan visitasi PMK', 'satuan' => 'kali'],
                         ['program' => 'Menerbitkan rekomendasi SIPP PMK atas nama DPP PPNI', 'satuan' => 'kali'],
                         ['program' => 'Advokasi pendirian PMK pada pihak terkait di tingkat provinsi ', 'satuan' => 'kali'],
