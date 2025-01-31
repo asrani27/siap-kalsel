@@ -41,6 +41,15 @@
                         <i class="fa fa-envelope"></i> <strong>ANGGOTA PPNI</strong>
                     </a>
                     @endif
+                    @if(Auth::user()->dpk->bidang == 'KEBENDAHARAAN / KEUANGAN')
+                    <a href="/dpk/aset" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-cubes"></i> <strong>ASET</strong>
+                    </a>
+                    <a href="/dpk/jurnal" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-chart-bar"></i> <strong>JURNAL KEUANGAN</strong>
+                    </a>
+                    @endif
+
                 </div>
                 <!-- /.card-body -->
             </div>

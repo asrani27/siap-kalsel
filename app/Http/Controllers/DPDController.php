@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\RFK;
+use App\Models\Aset;
 use App\Models\Anggota;
 use App\Models\RfkDetail;
 use App\Models\SuratMasuk;
@@ -672,5 +673,51 @@ class DPDController extends Controller
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
         return redirect('/dpd/anggota');
+    }
+    public function aset()
+    {
+        $data = Aset::where('user_id', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+        return view('dpd.aset.index', compact('data'));
+    }
+    public function aset_create()
+    {
+        return view('dpd.aset.create');
+    }
+    public function aset_store(Request $req)
+    {
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        Aset::create($param);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpd/aset');
+    }
+    public function aset_edit($id)
+    {
+        $data = Aset::where('id', $id)
+            ->where('user_id',  Auth::user()->id)
+            ->firstOrFail();
+        return view('dpd.aset.edit', compact('data'));
+    }
+    public function aset_update(Request $req, $id)
+    {
+        $data = Aset::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->update($req->all());
+        Session::flash('success', 'Berhasil Diupdate');
+        return redirect('/dpd/aset');
+    }
+    public function aset_delete($id)
+    {
+        $data = Aset::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->delete();
+        Session::flash('success', 'Berhasil Dihapus');
+        return redirect('/dpd/aset');
     }
 }
