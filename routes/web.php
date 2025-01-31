@@ -191,6 +191,13 @@ Route::middleware(['auth', 'dpw'])->group(function () {
     Route::get('/dpw/anggota/edit/{id}', [DPWController::class, 'anggota_edit']);
     Route::post('/dpw/anggota/edit/{id}', [DPWController::class, 'anggota_update']);
     Route::get('/dpw/anggota/delete/{id}', [DPWController::class, 'anggota_delete']);
+
+    Route::get('/dpw/aset', [DPWController::class, 'aset']);
+    Route::get('/dpw/aset/create', [DPWController::class, 'aset_create']);
+    Route::post('/dpw/aset/create', [DPWController::class, 'aset_store']);
+    Route::get('/dpw/aset/edit/{id}', [DPWController::class, 'aset_edit']);
+    Route::post('/dpw/aset/edit/{id}', [DPWController::class, 'aset_update']);
+    Route::get('/dpw/aset/delete/{id}', [DPWController::class, 'aset_delete']);
 });
 
 Route::get('/logout', function () {
