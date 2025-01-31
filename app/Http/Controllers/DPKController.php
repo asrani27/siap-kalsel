@@ -351,7 +351,7 @@ class DPKController extends Controller
                         ['program' => 'Sosialisasi dan Simulasi Permohonan SIPP PKM pada Anggota', 'satuan' => 'kali'],
                         ['program' => 'Melakukan visitasi PMK', 'satuan' => 'kali'],
                         ['program' => 'Menerbitkan rekomendasi SIPP PMK', 'satuan' => 'kali'],
-                        ['program' => 'Advokasi pendirian PMK pada pihak terkait di tingkat provinsi ', 'satuan' => 'kali'],
+                        ['program' => 'Advokasi pendirian PMK pada pihak terkait di tingkat kab/kota ', 'satuan' => 'kali'],
                         ['program' => 'Monev PMK pada PMK di kab/kota', 'satuan' => 'kali'],
                     ],
                 ],
@@ -387,15 +387,15 @@ class DPKController extends Controller
                     'kode_akun' => 'Optimalisasi kualitas pelayanan keperawatan',
                     'subs' => [
                         ['program' => 'Melakukan audiensi dengan Bupati/Walikota setempat, DPRD Propinsi, Dinas Kesehatan Kabupaten/Kota dan Disnaker setempat.', 'satuan' => 'kali'],
-                        ['program' => 'Sosialisasi dengan seluruh DPK tentang Struktur skala upah untuk perawat ', 'satuan' => 'kali'],
+                        ['program' => 'Sosialisasi dengan seluruh Anggota tentang Struktur skala upah untuk perawat ', 'satuan' => 'kali'],
                         ['program' => 'Melakukan advokasi jika ada perawat masih mendapatkan upah di bawah UMP/UMK.', 'satuan' => 'kali'],
                     ],
                 ],
                 [
                     'kode_akun' => 'Reposisi Status Perawat sebagai Profesional dalam Sistem Ketenagakerjaan',
                     'subs' => [
-                        ['program' => 'Melakukan audiensi dengan DRD KAB/KOTA, DINAS TENAGA KERJA , Bupati / Walikota, DPRD Kabupaten/Kota dan Dinas kesehatan.', 'satuan' => 'kali'],
-                        ['program' => 'Mendorong DPK melakukan advokasi jika masih ada tenaga perawat kontrak dan memastikan data perawat honorer sudah dikirim oleh instansi masing-masing ke dalam SIDMK.', 'satuan' => 'kali'],
+                        ['program' => 'Melakukan audiensi dengan Dinas Tenaga Kerja , Bupati / Walikota, DPRD Kabupaten/Kota dan Dinas kesehatan.', 'satuan' => 'kali'],
+                        ['program' => 'Mendorong Anggota melakukan advokasi jika masih ada tenaga perawat kontrak dan memastikan data perawat honorer sudah dikirim oleh instansi masing-masing ke dalam SIDMK.', 'satuan' => 'kali'],
                     ],
                 ],
             ];
