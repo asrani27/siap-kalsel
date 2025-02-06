@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\RFK;
 use App\Models\Aset;
 use App\Models\Anggota;
+use App\Models\SuratNT;
 use App\Models\Keuangan;
 use App\Models\RfkDetail;
 use App\Models\SuratMasuk;
 use App\Models\SuratKeluar;
 use App\Models\RfkDetailSub;
 use Illuminate\Http\Request;
+use App\Models\SuratKeputusan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -840,5 +842,100 @@ class DPKController extends Controller
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
         return redirect('/dpk/keuangan');
+    }
+
+
+    public function surat_keputusan()
+    {
+        $data = SuratKeputusan::where('user_id', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+        return view('dpk.suratkeputusan.index', compact('data'));
+    }
+    public function surat_keputusan_create()
+    {
+        return view('dpk.suratkeputusan.create');
+    }
+    public function surat_keputusan_store(Request $req)
+    {
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        SuratKeputusan::create($param);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpk/surat-keputusan');
+    }
+    public function surat_keputusan_edit($id)
+    {
+        $data = SuratKeputusan::where('id', $id)
+            ->where('user_id',  Auth::user()->id)
+            ->firstOrFail();
+        return view('dpk.suratkeputusan.edit', compact('data'));
+    }
+    public function surat_keputusan_update(Request $req, $id)
+    {
+        $data = SuratKeputusan::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->update($req->all());
+        Session::flash('success', 'Berhasil Diupdate');
+        return redirect('/dpk/surat-keputusan');
+    }
+    public function surat_keputusan_delete($id)
+    {
+        $data = SuratKeputusan::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->delete();
+        Session::flash('success', 'Berhasil Dihapus');
+        return redirect('/dpk/surat-keputusan');
+    }
+
+    public function surat_nt()
+    {
+        $data = SuratNT::where('user_id', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+        return view('dpk.suratnt.index', compact('data'));
+    }
+    public function surat_nt_create()
+    {
+        return view('dpk.suratnt.create');
+    }
+    public function surat_nt_store(Request $req)
+    {
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        SuratNT::create($param);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpk/surat-nt');
+    }
+    public function surat_nt_edit($id)
+    {
+        $data = SuratNT::where('id', $id)
+            ->where('user_id',  Auth::user()->id)
+            ->firstOrFail();
+        return view('dpk.suratnt.edit', compact('data'));
+    }
+    public function surat_nt_update(Request $req, $id)
+    {
+        $data = SuratNT::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->update($req->all());
+        Session::flash('success', 'Berhasil Diupdate');
+        return redirect('/dpk/surat-nt');
+    }
+    public function surat_nt_delete($id)
+    {
+        $data = SuratNT::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->delete();
+        Session::flash('success', 'Berhasil Dihapus');
+        return redirect('/dpk/surat-nt');
     }
 }

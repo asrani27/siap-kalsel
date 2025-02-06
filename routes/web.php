@@ -135,6 +135,20 @@ Route::middleware(['auth', 'dpd'])->group(function () {
     Route::get('/dpd/keuangan/edit/{id}', [DPDController::class, 'keuangan_edit']);
     Route::post('/dpd/keuangan/edit/{id}', [DPDController::class, 'keuangan_update']);
     Route::get('/dpd/keuangan/delete/{id}', [DPDController::class, 'keuangan_delete']);
+
+    Route::get('/dpd/surat-keputusan', [DPDController::class, 'surat_keputusan']);
+    Route::get('/dpd/surat-keputusan/create', [DPDController::class, 'surat_keputusan_create']);
+    Route::post('/dpd/surat-keputusan/create', [DPDController::class, 'surat_keputusan_store']);
+    Route::get('/dpd/surat-keputusan/edit/{id}', [DPDController::class, 'surat_keputusan_edit']);
+    Route::post('/dpd/surat-keputusan/edit/{id}', [DPDController::class, 'surat_keputusan_update']);
+    Route::get('/dpd/surat-keputusan/delete/{id}', [DPDController::class, 'surat_keputusan_delete']);
+
+    Route::get('/dpd/surat-nt', [DPDController::class, 'surat_nt']);
+    Route::get('/dpd/surat-nt/create', [DPDController::class, 'surat_nt_create']);
+    Route::post('/dpd/surat-nt/create', [DPDController::class, 'surat_nt_store']);
+    Route::get('/dpd/surat-nt/edit/{id}', [DPDController::class, 'surat_nt_edit']);
+    Route::post('/dpd/surat-nt/edit/{id}', [DPDController::class, 'surat_nt_update']);
+    Route::get('/dpd/surat-nt/delete/{id}', [DPDController::class, 'surat_nt_delete']);
 });
 Route::middleware(['auth', 'dpk'])->group(function () {
     Route::get('/dpk', [DPKController::class, 'index']);
@@ -184,6 +198,20 @@ Route::middleware(['auth', 'dpk'])->group(function () {
     Route::get('/dpk/keuangan/edit/{id}', [DPKController::class, 'keuangan_edit']);
     Route::post('/dpk/keuangan/edit/{id}', [DPKController::class, 'keuangan_update']);
     Route::get('/dpk/keuangan/delete/{id}', [DPKController::class, 'keuangan_delete']);
+
+    Route::get('/dpk/surat-keputusan', [DPKController::class, 'surat_keputusan']);
+    Route::get('/dpk/surat-keputusan/create', [DPKController::class, 'surat_keputusan_create']);
+    Route::post('/dpk/surat-keputusan/create', [DPKController::class, 'surat_keputusan_store']);
+    Route::get('/dpk/surat-keputusan/edit/{id}', [DPKController::class, 'surat_keputusan_edit']);
+    Route::post('/dpk/surat-keputusan/edit/{id}', [DPKController::class, 'surat_keputusan_update']);
+    Route::get('/dpk/surat-keputusan/delete/{id}', [DPKController::class, 'surat_keputusan_delete']);
+
+    Route::get('/dpk/surat-nt', [DPKController::class, 'surat_nt']);
+    Route::get('/dpk/surat-nt/create', [DPKController::class, 'surat_nt_create']);
+    Route::post('/dpk/surat-nt/create', [DPKController::class, 'surat_nt_store']);
+    Route::get('/dpk/surat-nt/edit/{id}', [DPKController::class, 'surat_nt_edit']);
+    Route::post('/dpk/surat-nt/edit/{id}', [DPKController::class, 'surat_nt_update']);
+    Route::get('/dpk/surat-nt/delete/{id}', [DPKController::class, 'surat_nt_delete']);
 });
 Route::middleware(['auth', 'dpw'])->group(function () {
     Route::get('/dpw', [DPWController::class, 'index']);
