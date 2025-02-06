@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RFK</title>
+    <title>SIAP KALSEL</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -47,7 +47,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand-md navbar-light bg-gray bg-gray-dark" style="padding:0px">
             <div class="container-fluid p-0">
-                <a href="#" class="navbar-brand p-0 d-flex align-items-center">
+                <a href="/" class="navbar-brand p-0 d-flex align-items-center">
                     <img src="/logo/rfk.png" alt="Logo">
                 </a>
 
@@ -61,7 +61,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- Left navbar links -->
                     <ul class="navbar-nav ml-md-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" style="color: silver; padding-left:1rem">Masuk</a>
+                            <a href="/" class="nav-link" style="color: silver; padding-left:1rem">Kembali</a>
                         </li>
                     </ul>
 
