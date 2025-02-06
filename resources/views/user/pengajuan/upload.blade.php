@@ -64,6 +64,7 @@
                             <td>NO</td>
                             <td>Kelengkapan</td>
                             <td style="text-align: center">Contoh Dokumen</td>
+                            <td style="text-align: center">Hasil Upload</td>
                             <td style="text-align: center">Aksi</td>
                         </tr>
                         <tr>
@@ -73,6 +74,12 @@
                                     href="https://docs.google.com/document/d/1nUKq1-T60CtfW0dCfbv2bptVN5Se2txA/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                     target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                             <td style="text-align: center">
+                                @if ($data->file1 != null)
+                                <a href="/storage/uploads/user_{{$data->id}}/{{$data->file1}}"
+                                    class="btn btn-sm btn-success" target="_blank">Preview</a>
+                                @endif
+                            </td>
+                            <td style="text-align: center;">
                                 <div class="container mt-2">
                                     <label class="btn btn-primary btn-sm" for="file-upload" class="custom-file-upload"
                                         data-id="{{$data->id}}">
@@ -88,6 +95,8 @@
                                     href="https://docs.google.com/document/d/1UympXzlF5MdLERbtKqtrDSssmasv5r7Y/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                     target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                             <td style="text-align: center">
+                            </td>
+                            <td style="text-align: center">
                                 <a href="" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> upload</a>
                             </td>
                         </tr>
@@ -97,6 +106,8 @@
                             <td style="text-align: center"><a class="btn btn-info btn-sm"
                                     href="https://docs.google.com/spreadsheets/d/1ood_8vYRDCND6CtgUvTh8v_u1SoxA1QV/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                     target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
+                            <td style="text-align: center">
+                            </td>
                             <td style="text-align: center">
                                 <a href="" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> upload</a>
                             </td>
@@ -108,6 +119,8 @@
                                     href="https://docs.google.com/document/d/19f98Iz3F2ab3o0reXx6WlFqg3KSE3z_R/edit"
                                     target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                             <td style="text-align: center">
+                            </td>
+                            <td style="text-align: center">
                                 <a href="" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> upload</a>
                             </td>
                         </tr>
@@ -117,6 +130,8 @@
                             <td style="text-align: center"><a class="btn btn-info btn-sm"
                                     href="https://docs.google.com/document/d/1nUKq1-T60CtfW0dCfbv2bptVN5Se2txA/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                     target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
+                            <td style="text-align: center">
+                            </td>
                             <td style="text-align: center">
                                 <a href="" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> upload</a>
                             </td>
@@ -128,6 +143,8 @@
                                     href="https://docs.google.com/spreadsheets/d/1pcXuGp7tsvow40Lze_7PVx3ywWW1Qsqy/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                     target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                             <td style="text-align: center">
+                            </td>
+                            <td style="text-align: center">
                                 <a href="" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> upload</a>
                             </td>
                         </tr>
@@ -137,6 +154,8 @@
                             <td style="text-align: center"><a class="btn btn-info btn-sm"
                                     href="https://docs.google.com/document/d/1Myyf-QApUXw9E3lSjOD38ARb7aRuwrW9/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                     target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
+                            <td style="text-align: center">
+                            </td>
                             <td style="text-align: center">
                                 <a href="" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> upload</a>
                             </td>
@@ -169,7 +188,10 @@
                     }
                 })
                 .then(response => response.json())
-                .then(data => alert("File berhasil diupload: " + data.file))
+                .then(data => {
+                    alert("File berhasil diupload: " + data.file);
+                    location.reload(); // 🔄 Refresh halaman setelah sukses upload
+                })
                 .catch(error => alert("Gagal mengupload file"));
             }
         });

@@ -146,7 +146,7 @@ class UserController extends Controller
         ]);
 
         $file = $req->file('file');
-        $filePath = $file->store("uploads/user_$id", 'public'); // Simpan sesuai ID pengguna
+        $filePath = $file->storeAs("uploads/user_$id", $filename, 'public'); // Simpan sesuai ID pengguna
 
         return response()->json([
             'message' => 'File uploaded successfully',
