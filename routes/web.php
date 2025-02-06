@@ -45,6 +45,14 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
 
 Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/user', [UserController::class, 'index']);
+    Route::get('/user/pengajuan', [UserController::class, 'pengajuan']);
+    Route::get('/user/pengajuan/create', [UserController::class, 'pengajuan_create']);
+    Route::post('/user/pengajuan/create', [UserController::class, 'pengajuan_store']);
+    Route::get('/user/pengajuan/edit/{id}', [UserController::class, 'pengajuan_edit']);
+    Route::get('/user/pengajuan/upload/{id}', [UserController::class, 'pengajuan_upload']);
+    Route::post('/user/pengajuan/upload/{id}', [UserController::class, 'pengajuan_upload_store']);
+    Route::post('/user/pengajuan/edit/{id}', [UserController::class, 'pengajuan_update']);
+    Route::get('/user/pengajuan/delete/{id}', [UserController::class, 'pengajuan_delete']);
 });
 
 // Route::middleware(['auth', 'dpd'])->group(function () {
