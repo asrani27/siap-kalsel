@@ -11,6 +11,7 @@ use App\Models\SuratMasuk;
 use App\Models\SuratKeluar;
 use App\Models\RfkDetailSub;
 use App\Models\SuratKeputusan;
+use App\Models\SuratNT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -725,6 +726,53 @@ class DPWController extends Controller
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
         return redirect('/dpw/surat-keputusan');
+    }
+
+    public function surat_nt()
+    {
+        $data = SuratNT::where('user_id', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+        return view('dpw.suratnt.index', compact('data'));
+    }
+    public function surat_nt_create()
+    {
+        return view('dpw.suratnt.create');
+    }
+    public function surat_nt_store(Request $req)
+    {
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        SuratNT::create($param);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpw/surat-nt');
+    }
+    public function surat_nt_edit($id)
+    {
+        $data = SuratNT::where('id', $id)
+            ->where('user_id',  Auth::user()->id)
+            ->firstOrFail();
+        return view('dpw.suratnt.edit', compact('data'));
+    }
+    public function surat_nt_update(Request $req, $id)
+    {
+        $data = SuratNT::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->update($req->all());
+        Session::flash('success', 'Berhasil Diupdate');
+        return redirect('/dpw/surat-nt');
+    }
+    public function surat_nt_delete($id)
+    {
+        $data = SuratNT::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->delete();
+        Session::flash('success', 'Berhasil Dihapus');
+        return redirect('/dpw/surat-nt');
     }
 
     public function anggota()

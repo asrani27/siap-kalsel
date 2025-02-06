@@ -221,6 +221,13 @@ Route::middleware(['auth', 'dpw'])->group(function () {
     Route::post('/dpw/surat-keputusan/edit/{id}', [DPWController::class, 'surat_keputusan_update']);
     Route::get('/dpw/surat-keputusan/delete/{id}', [DPWController::class, 'surat_keputusan_delete']);
 
+    Route::get('/dpw/surat-nt', [DPWController::class, 'surat_nt']);
+    Route::get('/dpw/surat-nt/create', [DPWController::class, 'surat_nt_create']);
+    Route::post('/dpw/surat-nt/create', [DPWController::class, 'surat_nt_store']);
+    Route::get('/dpw/surat-nt/edit/{id}', [DPWController::class, 'surat_nt_edit']);
+    Route::post('/dpw/surat-nt/edit/{id}', [DPWController::class, 'surat_nt_update']);
+    Route::get('/dpw/surat-nt/delete/{id}', [DPWController::class, 'surat_nt_delete']);
+
     Route::get('/dpw/anggota', [DPWController::class, 'anggota']);
     Route::get('/dpw/anggota/create', [DPWController::class, 'anggota_create']);
     Route::post('/dpw/anggota/create', [DPWController::class, 'anggota_store']);
