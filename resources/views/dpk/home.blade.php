@@ -37,6 +37,13 @@
                     <a href="/dpk/surat-keluar" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
                         <i class="fa fa-envelope"></i> <strong>SURAT KELUAR</strong>
                     </a>
+                    <a href="/dpk/surat-keputusan" class="btn btn-app"
+                        style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-envelope"></i> <strong>SURAT KEPUTUSAN</strong>
+                    </a>
+                    <a href="/dpk/surat-nt" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-envelope"></i> <strong>NODIN/TELAAHAN</strong>
+                    </a>
                     <a href="/dpk/anggota" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
                         <i class="fa fa-envelope"></i> <strong>ANGGOTA PPNI</strong>
                     </a>
