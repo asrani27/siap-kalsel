@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Bidang;
 use App\Models\COA;
 use Carbon\Carbon;
 use App\Models\Skpd;
@@ -17,6 +18,11 @@ function bulan()
     }
 
     return $namaBulan;
+}
+
+function bidang()
+{
+    return Bidang::get();
 }
 function skpd()
 {

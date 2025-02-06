@@ -10,6 +10,7 @@ use App\Models\RfkDetail;
 use App\Models\SuratMasuk;
 use App\Models\SuratKeluar;
 use App\Models\RfkDetailSub;
+use App\Models\SuratKeputusan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -677,6 +678,53 @@ class DPWController extends Controller
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
         return redirect('/dpw/surat-keluar');
+    }
+
+    public function surat_keputusan()
+    {
+        $data = SuratKeputusan::where('user_id', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+        return view('dpw.suratkeputusan.index', compact('data'));
+    }
+    public function surat_keputusan_create()
+    {
+        return view('dpw.suratkeputusan.create');
+    }
+    public function surat_keputusan_store(Request $req)
+    {
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        SuratKeputusan::create($param);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpw/surat-keputusan');
+    }
+    public function surat_keputusan_edit($id)
+    {
+        $data = SuratKeputusan::where('id', $id)
+            ->where('user_id',  Auth::user()->id)
+            ->firstOrFail();
+        return view('dpw.suratkeputusan.edit', compact('data'));
+    }
+    public function surat_keputusan_update(Request $req, $id)
+    {
+        $data = SuratKeputusan::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->update($req->all());
+        Session::flash('success', 'Berhasil Diupdate');
+        return redirect('/dpw/surat-keputusan');
+    }
+    public function surat_keputusan_delete($id)
+    {
+        $data = SuratKeputusan::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->delete();
+        Session::flash('success', 'Berhasil Dihapus');
+        return redirect('/dpw/surat-keputusan');
     }
 
     public function anggota()
