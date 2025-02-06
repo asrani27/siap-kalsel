@@ -11,8 +11,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = User::paginate(10);
-        return view('superadmin.user.index', compact('data'));
+        return view('user.home');
     }
     public function create()
     {

@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
+    @stack('css')
+    <link rel="stylesheet" href="/notif/dist/css/iziToast.min.css">
+    <script src="/notif/dist/js/iziToast.min.js" type="text/javascript"></script>
 </head>
 
 <body class="hold-transition login-page">
@@ -30,7 +33,8 @@
                 <form action="/masuk" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="NIK ANDA" autocomplete='new-password'>
+                        <input type="text" class="form-control" placeholder="NIK ANDA" name="username"
+                            autocomplete='new-password'>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fa fa-user"></span>
@@ -38,7 +42,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password" autocomplete='new-password'>
+                        <input type="password" class="form-control" placeholder="Password" name="password"
+                            autocomplete='new-password'>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -71,6 +76,10 @@
     <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/assets/dist/js/adminlte.min.js"></script>
+    @stack('js')
+    <script type="text/javascript">
+        @include('layouts.notif')
+    </script>
 </body>
 
 </html>

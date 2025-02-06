@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Registration Page (v2)</title>
+    <title>PPNI KALSEL</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
+    @stack('css')
+    <link rel="stylesheet" href="/notif/dist/css/iziToast.min.css">
+    <script src="/notif/dist/js/iziToast.min.js" type="text/javascript"></script>
 </head>
 
 <body class="hold-transition register-page">
@@ -26,9 +29,11 @@
             <div class="card-body">
                 <p class="login-box-msg">Register</p>
 
-                <form action="/assets/index.html" method="post">
+                <form action="/daftar" method="post">
+                    @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="NIK" autocomplete="new-password">
+                        <input type="text" class="form-control" name="nik" placeholder="NIK" autocomplete="new-password"
+                            required value={{old('nik')}}>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -36,7 +41,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="NAMA LENGKAP" autocomplete="new-password">
+                        <input type="text" class="form-control" name="name" placeholder="NAMA LENGKAP"
+                            autocomplete="new-password" required value={{old('name')}}>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -44,7 +50,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email" autocomplete="new-password">
+                        <input type="email" class="form-control" name="email" placeholder="Email"
+                            autocomplete="new-password" required value={{old('email')}}>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -52,7 +59,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password" autocomplete="new-password">
+                        <input type="password" class="form-control" name="password" placeholder="Password"
+                            autocomplete="new-password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -60,9 +68,9 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Masukkan password Lagi"
-                            autocomplete="new-password">
-                        <div class="input-group-append">
+                        <input type="password" class="form-control" name="confirm_password"
+                            placeholder="Masukkan password Lagi" autocomplete="new-password">
+                        <div class="input-group-append" required>
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
@@ -92,6 +100,10 @@
     <script src="/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/assets/dist/js/adminlte.min.js"></script>
+    @stack('js')
+    <script type="text/javascript">
+        @include('layouts.notif')
+    </script>
 </body>
 
 </html>

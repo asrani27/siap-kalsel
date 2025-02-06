@@ -30,6 +30,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'dpk' => \App\Http\Middleware\Dpk::class,
         ]);
     })
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            'user' => \App\Http\Middleware\User::class,
+        ]);
+    })
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
