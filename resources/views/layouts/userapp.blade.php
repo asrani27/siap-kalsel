@@ -178,7 +178,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="info text-center" style="text-align: center;">
                     <a href="#" class="text-bold" style="color: black">{{strtoupper(Auth::user()->name)}}</a><br />
                     <a href="#" style="color: black">{{Auth::user()->username}}</a><br />
+                    @if (Auth::user()->roles == 'user')
                     PEMOHON
+                    @endif
                 </div>
             </div>
 
@@ -187,6 +189,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
+                        @if (Auth::user()->roles == 'user')
+
                         <li class="nav-item">
                             <a href="/user" class="nav-link {{request()->is('user') ? 'active':''}}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -204,6 +208,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
+                        @endif
+                        @if (Auth::user()->roles == 'pusbangdiklat')
+
+                        <li class="nav-item">
+                            <a href="/pusbangdiklat" class="nav-link {{request()->is('pusbangdiklat') ? 'active':''}}">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Beranda
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/pusbangdiklat/pengajuan"
+                                class="nav-link {{request()->is('pusbangdiklat/pengajuan*') ? 'active':''}}">
+                                <i class="nav-icon fas fa-check"></i>
+                                <p>
+                                    List Pengajuan
+                                </p>
+                            </a>
+                        </li>
+                        @endif
                         <li class="nav-item">
                             <a href="/logout" class="nav-link" onclick="return confirm('Yakin ingin keluar?');">
                                 <i class="nav-icon fas fa-arrow-right"></i>

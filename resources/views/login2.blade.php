@@ -99,11 +99,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <form action='login' method="POST" class="form-horizontal">
                                     @csrf
                                     <div class="card-body">
-                                        <h2 class="text-center"><u>LOGIN APLIKASI RFK</u></h2><br />
+                                        <h2 class="text-center"><u>LOGIN APLIKASI</u></h2><br />
                                         <div class="form-group">
                                             <select id="dpw" name="dpw" class="form-control">
                                                 <option value="">DPD/DPK</option>
                                                 <option value="DPW">DPW KALSEL</option>
+                                                <option value="PUSBANGDIKLAT">PUSBANGDIKLAAT</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -181,16 +182,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
         const dpwSelect = document.getElementById('dpw');
         const kotaSelect = document.getElementById('kota');
         const dpdSelect = document.getElementById('dpk');
-
+        const bidangSelect = document.getElementById('bidang');
         dpwSelect.addEventListener('change', function () {
+
+            console.log(this.value)
             if (this.value === 'DPW') {
                 kotaSelect.disabled = true;
                 dpdSelect.disabled = true;
+                bidangSelect.disabled = false;
                 kotaSelect.value = '';
                 dpdSelect.value = '';
+            } else if(this.value === 'PUSBANGDIKLAT') {
+                kotaSelect.disabled = true;
+                dpdSelect.disabled = true;
+                bidangSelect.disabled = true;
+                kotaSelect.value = '';
+                dpdSelect.value = '';
+                bidangSelect.value = '';
             } else {
                 kotaSelect.disabled = false;
                 dpdSelect.disabled = false;
+                bidangSelect.disabled = '';
             }
         });
     });
@@ -198,7 +210,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script>
         function getDPK() {
             var kota_id = $('#kota').val(); // Ambil nilai kota yang dipilih
-            console.log(kota_id);
+            
             if (kota_id) {
                 $.ajax({
                     url: '/get-dpk/' + kota_id,

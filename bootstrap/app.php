@@ -34,6 +34,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'user' => \App\Http\Middleware\User::class,
         ]);
+    })->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            'pusbangdiklat' => \App\Http\Middleware\Pusbangdiklat::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

@@ -81,6 +81,7 @@ class LoginController extends Controller
                 'dpw' => '/dpw',
                 'dpd' => '/dpd',
                 'dpk' => '/dpk',
+                'pusbangdiklat' => '/pusbangdiklat',
             ];
 
             if (array_key_exists($role, $routes)) {
@@ -123,7 +124,11 @@ class LoginController extends Controller
                 $username = Dpk::where('nama', $req->dpd)->where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
             }
         } else {
-            $username = Dpw::where('bidang', $req->bidang)->first()->user->username;
+            if ($req->dpw === 'PUSBANGDIKLAT') {
+                $username = 'pusbangdiklat';
+            } else {
+                $username = Dpw::where('bidang', $req->bidang)->first()->user->username;
+            }
         }
 
         $param['username'] = $username;
@@ -139,6 +144,7 @@ class LoginController extends Controller
                 'dpw' => '/dpw',
                 'dpd' => '/dpd',
                 'dpk' => '/dpk',
+                'pusbangdiklat' => '/pusbangdiklat',
             ];
 
             if (array_key_exists($role, $routes)) {
@@ -156,7 +162,5 @@ class LoginController extends Controller
             $req->flash();
             return back();
         }
-        //         }
-        //     }
     }
 }

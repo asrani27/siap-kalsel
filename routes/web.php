@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PusbangdiklatController;
 use App\Http\Controllers\RFKController;
 use App\Http\Controllers\SuperadminController;
 
@@ -22,6 +23,12 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/get-dpk/{kota_id}', [LoginController::class, 'getDpk'])->name('get.dpk');
 
+Route::middleware(['auth', 'pusbangdiklat'])->group(function () {
+    Route::get('/pusbangdiklat', [PusbangdiklatController::class, 'index']);
+    Route::get('/pusbangdiklat/pengajuan', [PusbangdiklatController::class, 'pengajuan']);
+    Route::get('/pusbangdiklat/pengajuan/delete/{id}', [PusbangdiklatController::class, 'pengajuan_delete']);
+    Route::get('/pusbangdiklat/pengajuan/verifikasi/{id}', [PusbangdiklatController::class, 'verifikasi']);
+});
 Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/superadmin', [HomeController::class, 'superadmin']);
 
