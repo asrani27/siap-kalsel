@@ -139,15 +139,19 @@ class UserController extends Controller
 
     public function pengajuan_upload_store(Request $req, $id)
     {
-        $filename = Str::random(20) . '.' . $req->file('file')->getClientOriginalExtension();
+        // Ambil kelengkapan dari request
+        $kelengkapan = Str::slug($req->input('kelengkapan'), '_'); // Ubah menjadi format aman untuk nama file
 
+        // Tentukan nama file berdasarkan kelengkapan + id user
+        $filename = "{$kelengkapan}_{$id}." . $req->file('file')->getClientOriginalExtension();
+
+        // Simpan file ke dalam storage
+        $filePath = $req->file('file')->storeAs("uploads/user_$id", $filename, 'public');
+
+        // Update ke database (sesuaikan kolomnya jika perlu)
         Pengajuan::find($id)->update([
-            'file1' => $filename
+            'file1' => $filename // Pastikan kolom sesuai di database
         ]);
-
-        $file = $req->file('file');
-        $filePath = $file->storeAs("uploads/user_$id", $filename, 'public'); // Simpan sesuai ID pengguna
-
         return response()->json([
             'message' => 'File uploaded successfully',
             'file' => asset('storage/' . $filePath),

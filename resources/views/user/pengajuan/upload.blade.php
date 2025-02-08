@@ -80,9 +80,9 @@
                         </td>
                         <td style="text-align: center;">
                             <div class="container mt-2">
-                                <label class="btn btn-primary btn-sm" for="file-upload" class="custom-file-upload"
-                                    data-id="{{$data->id}}">
-                                    <i class="fa fa-upload"></i> Upload <input id="file-upload" type="file" hidden>
+                                <label class="btn btn-primary btn-sm" data-kelengkapan="surat_permohonan"
+                                    for="file-upload" class="custom-file-upload">
+                                    <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
                                 </label>
                             </div>
                         </td>
@@ -96,7 +96,12 @@
                         <td style="text-align: center">
                         </td>
                         <td style="text-align: center">
-                            <a href="" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> upload</a>
+                            <div class="container mt-2">
+                                <label class="btn btn-primary btn-sm" data-kelengkapan="surat_kak" for="file-upload"
+                                    class="custom-file-upload">
+                                    <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
+                                </label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -108,7 +113,12 @@
                         <td style="text-align: center">
                         </td>
                         <td style="text-align: center">
-                            <a href="" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> upload</a>
+                            <div class="container mt-2">
+                                <label class="btn btn-primary btn-sm" data-kelengkapan="peserta_seminar"
+                                    for="file-upload" class="custom-file-upload">
+                                    <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
+                                </label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -120,7 +130,12 @@
                         <td style="text-align: center">
                         </td>
                         <td style="text-align: center">
-                            <a href="" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> upload</a>
+                            <div class="container mt-2">
+                                <label class="btn btn-primary btn-sm" data-kelengkapan="curriculum_vitae"
+                                    for="file-upload" class="custom-file-upload">
+                                    <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
+                                </label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -132,7 +147,12 @@
                         <td style="text-align: center">
                         </td>
                         <td style="text-align: center">
-                            <a href="" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> upload</a>
+                            <div class="container mt-2">
+                                <label class="btn btn-primary btn-sm" data-kelengkapan="kegiatan_ilmiah"
+                                    for="file-upload" class="custom-file-upload">
+                                    <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
+                                </label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -144,7 +164,12 @@
                         <td style="text-align: center">
                         </td>
                         <td style="text-align: center">
-                            <a href="" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> upload</a>
+                            <div class="container mt-2">
+                                <label class="btn btn-primary btn-sm" data-kelengkapan="rekapan_pemateri"
+                                    for="file-upload" class="custom-file-upload">
+                                    <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
+                                </label>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -156,7 +181,12 @@
                         <td style="text-align: center">
                         </td>
                         <td style="text-align: center">
-                            <a href="" class="btn btn-primary btn-sm"><i class="fa fa-upload"></i> upload</a>
+                            <div class="container mt-2">
+                                <label class="btn btn-primary btn-sm" data-kelengkapan="jadwal_kegiatan"
+                                    for="file-upload" class="custom-file-upload">
+                                    <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
+                                </label>
+                            </div>
                         </td>
                     </tr>
                 </table>
@@ -169,16 +199,26 @@
 @push('js')
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const fileInput = document.getElementById("file-upload");
-        const userId = @json($data->id); 
-        console.log(userId);
-        fileInput.addEventListener("change", function () {
-            let file = fileInput.files[0];
+    const userId = @json($data->id);  
+
+    document.querySelectorAll(".btn[data-kelengkapan]").forEach(button => {
+        button.addEventListener("click", function () {
+            const fileInput = this.querySelector(".file-upload"); 
+            fileInput.click(); // Memicu input file
+        });
+    });
+
+    document.querySelectorAll(".file-upload").forEach(input => {
+        input.addEventListener("change", function () {
+            let file = this.files[0];
+            let kelengkapan = this.closest("label").getAttribute("data-kelengkapan");
+
             if (file) {
                 let formData = new FormData();
                 formData.append("file", file);
+                formData.append("kelengkapan", kelengkapan); // Kirim data-kelengkapan ke backend
 
-                fetch(`/user/pengajuan/upload/${userId}`, { // Gunakan ID dalam URL
+                fetch(`/user/pengajuan/upload/${userId}`, { 
                     method: "POST",
                     body: formData,
                     headers: {
@@ -187,12 +227,41 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    alert("File berhasil diupload: " + data.file);
                     location.reload(); // 🔄 Refresh halaman setelah sukses upload
                 })
                 .catch(error => alert("Gagal mengupload file"));
             }
         });
     });
+});
+
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     const fileInput = document.getElementById("file-upload");
+    //     const userId = @json($data->id);  
+    //     const kelengkapan = @json($data->kelengkapan); 
+    //     console.log([userId,kelengkapan]);
+    //     fileInput.addEventListener("change", function () {
+            
+    //         let file = fileInput.files[0];
+
+    //         if (file) {
+    //             let formData = new FormData();
+    //             formData.append("file", file);
+
+    //             fetch(`/user/pengajuan/upload/${userId}`, { // Gunakan ID dalam URL
+    //                 method: "POST",
+    //                 body: formData,
+    //                 headers: {
+    //                     "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+    //                 }
+    //             })
+    //             .then(response => response.json())
+    //             .then(data => {
+    //                  location.reload(); // 🔄 Refresh halaman setelah sukses upload
+    //             })
+    //             .catch(error => alert("Gagal mengupload file"));
+    //         }
+    //     });
+    // });
 </script>
 @endpush
