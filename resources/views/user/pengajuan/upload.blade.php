@@ -74,12 +74,15 @@
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file1 != null)
-                            @php
-                            $fileUrl = asset("storage/uploads/user_{{$data->id}}/{{$data->file1}}");
-                            @endphp
+                            @if (pathinfo($data->file1, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file1,
+                            PATHINFO_EXTENSION) == 'docx')
 
-                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{ urlencode($fileUrl) }}"
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{config('app.url')}}/storage/uploads/user_{{$data->id}}/{{$data->file1}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @else
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file1}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
@@ -99,8 +102,15 @@
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file2 != null)
+                            @if (pathinfo($data->file2, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file2,
+                            PATHINFO_EXTENSION) == 'docx')
+
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{config('app.url')}}/storage/uploads/user_{{$data->id}}/{{$data->file2}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @else
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file2}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
@@ -120,8 +130,15 @@
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file3 != null)
+                            @if (pathinfo($data->file3, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file3,
+                            PATHINFO_EXTENSION) == 'docx')
+
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{config('app.url')}}/storage/uploads/user_{{$data->id}}/{{$data->file3}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @else
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file3}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
@@ -141,8 +158,15 @@
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file4 != null)
+                            @if (pathinfo($data->file4, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file4,
+                            PATHINFO_EXTENSION) == 'docx')
+
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{config('app.url')}}/storage/uploads/user_{{$data->id}}/{{$data->file4}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @else
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file4}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
@@ -162,8 +186,15 @@
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file5 != null)
+                            @if (pathinfo($data->file5, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file5,
+                            PATHINFO_EXTENSION) == 'docx')
+
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{config('app.url')}}/storage/uploads/user_{{$data->id}}/{{$data->file5}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @else
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file5}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
@@ -183,8 +214,15 @@
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file6 != null)
+                            @if (pathinfo($data->file6, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file6,
+                            PATHINFO_EXTENSION) == 'docx')
+
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{config('app.url')}}/storage/uploads/user_{{$data->id}}/{{$data->file6}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @else
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file6}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
@@ -204,8 +242,15 @@
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file7 != null)
+                            @if (pathinfo($data->file7, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file7,
+                            PATHINFO_EXTENSION) == 'docx')
+
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{config('app.url')}}/storage/uploads/user_{{$data->id}}/{{$data->file7}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @else
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file7}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
