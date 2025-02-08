@@ -313,6 +313,7 @@
                         message: "Gagal mengupload file! Maksimal 2MB",
                         position: "topRight"
                     });
+                    setTimeout(() => location.reload(), 1000);
                 }
                 );
             }
