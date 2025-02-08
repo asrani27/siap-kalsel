@@ -20,28 +20,28 @@
 
                 <table border="1" width="70%" cellspacing="0" cellpadding="5">
                     <tr>
-                        <td style="background-color: rgb(246, 194, 194)">NAMA PEMOHON</td>
-                        <td>{{strtoupper($data->nama)}}</td>
+                        <td style="background-color: rgb(246, 194, 194); border:1px solid black">NAMA PEMOHON</td>
+                        <td style="border:1px solid black">{{strtoupper($data->nama)}}</td>
                     </tr>
                     <tr>
-                        <td style="background-color: rgb(246, 194, 194)">NIK PEMOHON</td>
-                        <td>{{strtoupper($data->nik)}}</td>
+                        <td style="background-color: rgb(246, 194, 194); border:1px solid black">NIK PEMOHON</td>
+                        <td style="border:1px solid black">{{strtoupper($data->nik)}}</td>
                     </tr>
                     <tr>
-                        <td style="background-color: rgb(246, 194, 194)">INSTANSI</td>
-                        <td>{{strtoupper($data->instansi)}}</td>
+                        <td style="background-color: rgb(246, 194, 194); border:1px solid black">INSTANSI</td>
+                        <td style="border:1px solid black">{{strtoupper($data->instansi)}}</td>
                     </tr>
                     <tr>
-                        <td style="background-color: rgb(246, 194, 194)">ALAMAT</td>
-                        <td>{{strtoupper($data->alamat)}}</td>
+                        <td style="background-color: rgb(246, 194, 194); border:1px solid black">ALAMAT</td>
+                        <td style="border:1px solid black">{{strtoupper($data->alamat)}}</td>
                     </tr>
                     <tr>
-                        <td style="background-color: rgb(246, 194, 194)">TELP</td>
-                        <td>{{strtoupper($data->telp)}}</td>
+                        <td style="background-color: rgb(246, 194, 194); border:1px solid black">TELP</td>
+                        <td style="border:1px solid black">{{strtoupper($data->telp)}}</td>
                     </tr>
                     <tr>
-                        <td style="background-color: rgb(246, 194, 194)">KATEGORI PENGAJUAN</td>
-                        <td>{{strtoupper($data->kategori)}}</td>
+                        <td style="background-color: rgb(246, 194, 194); border:1px solid black">KATEGORI PENGAJUAN</td>
+                        <td style="border:1px solid black">{{strtoupper($data->kategori)}}</td>
                     </tr>
                 </table>
             </div>
@@ -60,19 +60,19 @@
 
                 <table border="1" width="100%" cellspacing="0" cellpadding="5">
                     <tr style="background-color: rgb(172, 180, 252)">
-                        <td>NO</td>
-                        <td>Kelengkapan</td>
-                        <td style="text-align: center">Contoh Dokumen</td>
-                        <td style="text-align: center">Hasil Upload</td>
-                        <td style="text-align: center">Aksi</td>
+                        <td style="border:1px solid black">NO</td>
+                        <td style="border:1px solid black">Kelengkapan</td>
+                        <td style="text-align: center;border:1px solid black">Contoh Dokumen</td>
+                        <td style="text-align: center;border:1px solid black">Hasil Upload</td>
+                        <td style="text-align: center;border:1px solid black">Aksi</td>
                     </tr>
                     <tr>
-                        <td>1</td>
-                        <td>Surat Permohonan</td>
-                        <td style="text-align: center"><a class="btn btn-info btn-sm"
+                        <td style="border:1px solid black">1</td>
+                        <td style="border:1px solid black">Surat Permohonan</td>
+                        <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/document/d/1nUKq1-T60CtfW0dCfbv2bptVN5Se2txA/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;border:1px solid black">
                             @if ($data->file1 != null)
                             @php
                             $fileUrl = asset("storage/uploads/user_{{$data->id}}/{{$data->file1}}");
@@ -82,7 +82,7 @@
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
                             @endif
                         </td>
-                        <td style="text-align: center;">
+                        <td style="text-align: center;border:1px solid black">
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="surat_permohonan"
                                     for="file-upload" class="custom-file-upload">
@@ -92,18 +92,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>2</td>
-                        <td>Surat KAK</td>
-                        <td style="text-align: center"><a class="btn btn-info btn-sm"
+                        <td style="border:1px solid black">2</td>
+                        <td style="border:1px solid black">Surat KAK</td>
+                        <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/document/d/1UympXzlF5MdLERbtKqtrDSssmasv5r7Y/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;border:1px solid black">
                             @if ($data->file2 != null)
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file2}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
                             @endif
                         </td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;border:1px solid black">
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="surat_kak" for="file-upload"
                                     class="custom-file-upload">
@@ -113,18 +113,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>3</td>
-                        <td>Peserta Seminar</td>
-                        <td style="text-align: center"><a class="btn btn-info btn-sm"
+                        <td style="border:1px solid black">3</td>
+                        <td style="border:1px solid black">Peserta Seminar</td>
+                        <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/spreadsheets/d/1ood_8vYRDCND6CtgUvTh8v_u1SoxA1QV/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;border:1px solid black">
                             @if ($data->file3 != null)
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file3}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
                             @endif
                         </td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;border:1px solid black">
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="peserta_seminar"
                                     for="file-upload" class="custom-file-upload">
@@ -134,18 +134,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>4</td>
-                        <td>Curriculum Vitae (CV)</td>
-                        <td style="text-align: center"><a class="btn btn-info btn-sm"
+                        <td style="border:1px solid black">4</td>
+                        <td style="border:1px solid black">Curriculum Vitae (CV)</td>
+                        <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/document/d/19f98Iz3F2ab3o0reXx6WlFqg3KSE3z_R/edit"
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;border:1px solid black">
                             @if ($data->file4 != null)
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file4}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
                             @endif
                         </td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;border:1px solid black">
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="curriculum_vitae"
                                     for="file-upload" class="custom-file-upload">
@@ -155,18 +155,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>5</td>
-                        <td>Pengajuan Kegiatan Ilmiah</td>
-                        <td style="text-align: center"><a class="btn btn-info btn-sm"
+                        <td style="border:1px solid black">5</td>
+                        <td style="border:1px solid black">Pengajuan Kegiatan Ilmiah</td>
+                        <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/document/d/1nUKq1-T60CtfW0dCfbv2bptVN5Se2txA/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;border:1px solid black">
                             @if ($data->file5 != null)
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file5}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
                             @endif
                         </td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;border:1px solid black">
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="kegiatan_ilmiah"
                                     for="file-upload" class="custom-file-upload">
@@ -176,18 +176,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>6</td>
-                        <td>Rekapan Pemateri webinar/pelatihan/workshop</td>
-                        <td style="text-align: center"><a class="btn btn-info btn-sm"
+                        <td style="border:1px solid black">6</td>
+                        <td style="border:1px solid black">Rekapan Pemateri webinar/pelatihan/workshop</td>
+                        <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/spreadsheets/d/1pcXuGp7tsvow40Lze_7PVx3ywWW1Qsqy/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;border:1px solid black">
                             @if ($data->file6 != null)
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file6}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
                             @endif
                         </td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;border:1px solid black">
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="rekapan_pemateri"
                                     for="file-upload" class="custom-file-upload">
@@ -197,18 +197,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>7</td>
-                        <td>Jadwal webinar/pelatihan/workshop</td>
-                        <td style="text-align: center"><a class="btn btn-info btn-sm"
+                        <td style="border:1px solid black">7</td>
+                        <td style="border:1px solid black">Jadwal webinar/pelatihan/workshop</td>
+                        <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/document/d/1Myyf-QApUXw9E3lSjOD38ARb7aRuwrW9/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;border:1px solid black">
                             @if ($data->file7 != null)
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file7}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
                             @endif
                         </td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;border:1px solid black">
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="jadwal_kegiatan"
                                     for="file-upload" class="custom-file-upload">
