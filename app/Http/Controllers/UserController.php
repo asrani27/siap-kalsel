@@ -144,13 +144,33 @@ class UserController extends Controller
 
         // Tentukan nama file berdasarkan kelengkapan + id user
         $filename = "{$kelengkapan}_{$id}." . $req->file('file')->getClientOriginalExtension();
+        if ($kelengkapan == 'surat_permohonan') {
+            $fileno = 'file1';
+        }
+        if ($kelengkapan == 'surat_kak') {
+            $fileno = 'file2';
+        }
+        if ($kelengkapan == 'peserta_seminar') {
+            $fileno = 'file3';
+        }
+        if ($kelengkapan == 'curriculum_vitae') {
+            $fileno = 'file4';
+        }
+        if ($kelengkapan == 'kegiatan_ilmiah') {
+            $fileno = 'file5';
+        }
+        if ($kelengkapan == 'rekapan_pemateri') {
+            $fileno = 'file6';
+        }
+        if ($kelengkapan == 'jadwal_kegiatan') {
+            $fileno = 'file7';
+        }
 
-        // Simpan file ke dalam storage
         $filePath = $req->file('file')->storeAs("uploads/user_$id", $filename, 'public');
 
         // Update ke database (sesuaikan kolomnya jika perlu)
         Pengajuan::find($id)->update([
-            'file1' => $filename // Pastikan kolom sesuai di database
+            $fileno => $filename // Pastikan kolom sesuai di database
         ]);
         return response()->json([
             'message' => 'File uploaded successfully',

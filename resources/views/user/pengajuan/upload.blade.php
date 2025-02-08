@@ -74,7 +74,11 @@
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center">
                             @if ($data->file1 != null)
-                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file1}}"
+                            @php
+                            $fileUrl = asset("storage/uploads/user_{{$data->id}}/{{$data->file1}}");
+                            @endphp
+
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{ urlencode($fileUrl) }}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
                             @endif
                         </td>
@@ -94,6 +98,10 @@
                                 href="https://docs.google.com/document/d/1UympXzlF5MdLERbtKqtrDSssmasv5r7Y/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center">
+                            @if ($data->file2 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file2}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
                         </td>
                         <td style="text-align: center">
                             <div class="container mt-2">
@@ -111,6 +119,10 @@
                                 href="https://docs.google.com/spreadsheets/d/1ood_8vYRDCND6CtgUvTh8v_u1SoxA1QV/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center">
+                            @if ($data->file3 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file3}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
                         </td>
                         <td style="text-align: center">
                             <div class="container mt-2">
@@ -128,6 +140,10 @@
                                 href="https://docs.google.com/document/d/19f98Iz3F2ab3o0reXx6WlFqg3KSE3z_R/edit"
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center">
+                            @if ($data->file4 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file4}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
                         </td>
                         <td style="text-align: center">
                             <div class="container mt-2">
@@ -145,6 +161,10 @@
                                 href="https://docs.google.com/document/d/1nUKq1-T60CtfW0dCfbv2bptVN5Se2txA/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center">
+                            @if ($data->file5 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file5}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
                         </td>
                         <td style="text-align: center">
                             <div class="container mt-2">
@@ -162,6 +182,10 @@
                                 href="https://docs.google.com/spreadsheets/d/1pcXuGp7tsvow40Lze_7PVx3ywWW1Qsqy/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center">
+                            @if ($data->file6 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file6}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
                         </td>
                         <td style="text-align: center">
                             <div class="container mt-2">
@@ -179,6 +203,10 @@
                                 href="https://docs.google.com/document/d/1Myyf-QApUXw9E3lSjOD38ARb7aRuwrW9/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
                                 target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
                         <td style="text-align: center">
+                            @if ($data->file7 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file7}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
                         </td>
                         <td style="text-align: center">
                             <div class="container mt-2">
@@ -227,41 +255,24 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    location.reload(); // 🔄 Refresh halaman setelah sukses upload
+                    iziToast.success({
+                        title: "Sukses",
+                        message: "File berhasil diupload!",
+                        position: "topRight"
+                    });
+                    setTimeout(() => location.reload(), 1000);
                 })
-                .catch(error => alert("Gagal mengupload file"));
+                .catch(error =>{
+                    iziToast.error({
+                        title: "Gagal",
+                        message: "Gagal mengupload file! Maksimal 2MB",
+                        position: "topRight"
+                    });
+                }
+                );
             }
         });
     });
-});
-
-    // document.addEventListener("DOMContentLoaded", function () {
-    //     const fileInput = document.getElementById("file-upload");
-    //     const userId = @json($data->id);  
-    //     const kelengkapan = @json($data->kelengkapan); 
-    //     console.log([userId,kelengkapan]);
-    //     fileInput.addEventListener("change", function () {
-            
-    //         let file = fileInput.files[0];
-
-    //         if (file) {
-    //             let formData = new FormData();
-    //             formData.append("file", file);
-
-    //             fetch(`/user/pengajuan/upload/${userId}`, { // Gunakan ID dalam URL
-    //                 method: "POST",
-    //                 body: formData,
-    //                 headers: {
-    //                     "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
-    //                 }
-    //             })
-    //             .then(response => response.json())
-    //             .then(data => {
-    //                  location.reload(); // 🔄 Refresh halaman setelah sukses upload
-    //             })
-    //             .catch(error => alert("Gagal mengupload file"));
-    //         }
-    //     });
-    // });
+    });
 </script>
 @endpush
