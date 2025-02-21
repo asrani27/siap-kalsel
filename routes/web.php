@@ -28,6 +28,7 @@ Route::middleware(['auth', 'pusbangdiklat'])->group(function () {
     Route::get('/pusbangdiklat/pengajuan', [PusbangdiklatController::class, 'pengajuan']);
     Route::get('/pusbangdiklat/pengajuan/delete/{id}', [PusbangdiklatController::class, 'pengajuan_delete']);
     Route::get('/pusbangdiklat/pengajuan/verifikasi/{id}', [PusbangdiklatController::class, 'verifikasi']);
+    Route::get('/pusbangdiklat/pengajuan/download/{id}', [PusbangdiklatController::class, 'downloadFiles']);
 });
 Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/superadmin', [HomeController::class, 'superadmin']);

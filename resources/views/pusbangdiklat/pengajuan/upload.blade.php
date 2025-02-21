@@ -54,6 +54,15 @@
                     <i class="fa fa-file"></i>
                     Berkas Yang Di Upload Oleh Pemohon
                 </h3>
+                <div class="card-tools">
+                    <ul class="nav nav-pills ml-auto">
+                        <li class="nav-item">
+                            <a href="/pusbangdiklat/pengajuan/download/{{$data->id}}" class="btn btn-sm btn-primary"><i
+                                    class="fa fa-download"></i> Download Semua
+                                File</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
