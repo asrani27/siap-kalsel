@@ -20,7 +20,8 @@
     <script src="/notif/dist/js/iziToast.min.js" type="text/javascript"></script>
 </head>
 
-<body class="hold-transition register-page">
+<body class="hold-transition register-page"
+    style="background: rgb(188, 88, 60); background: linear-gradient(48deg, rgb(188, 60, 60) 0%, rgb(249, 197, 187) 100%);">
     <div class="register-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
@@ -32,8 +33,8 @@
                 <form action="/daftar" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="nik" placeholder="NIK" autocomplete="new-password"
-                            required value={{old('nik')}}>
+                        <input type="text" class="form-control" name="nik" placeholder="NIK" minlength="16"
+                            maxlength="16" autocomplete="new-password" required value={{old('nik')}}>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>

@@ -45,10 +45,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="wrapper">
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand-md navbar-light bg-gray bg-gray-dark" style="padding:0px">
+        {{-- <nav class="main-header navbar navbar-expand-md navbar-light" style="padding:0px">
             <div class="container-fluid p-0">
                 <a href="/" class="navbar-brand p-0 d-flex align-items-center">
-                    <img src="/logo/rfk.png" alt="Logo">
+                    <img src="/logo/ppni.png" width="5%" alt="Logo">
                 </a>
 
                 <button class="navbar-toggler order-1 ml-auto ml-md-0" type="button" data-toggle="collapse"
@@ -61,17 +61,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <!-- Left navbar links -->
                     <ul class="navbar-nav ml-md-auto">
                         <li class="nav-item">
-                            <a href="/" class="nav-link" style="color: silver; padding-left:1rem">Kembali</a>
+                            <a href="/" class="nav-link btn btn-danger" style="color: white;"><i class="fa fa-home"></i>
+                                Beranda</a>
                         </li>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
                     </ul>
 
                 </div>
             </div>
-        </nav>
+        </nav> --}}
         <!-- /.navbar -->
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper" style="background-image: url('/logo/bg.jpg'); background-size:cover">
+        <div class="content-wrapper"
+            style="background: rgb(188, 88, 60); background: linear-gradient(48deg, rgb(188, 60, 60) 0%, rgb(249, 197, 187) 100%);">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container">
@@ -85,21 +90,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <div class="card-body"
-                                    style="background-image: url('/logo/ilus.jpeg'); height:20rem; background-size:cover">
-                                </div>
-                            </div>
+                        <div class="col-md-4">
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-md-5">
 
-                            <div class="card">
-
+                            <div class="card" style="box-shadow: 0 8px 8px 0 rgba(0,0,0,.2);border-radius:10px">
                                 <form action='login' method="POST" class="form-horizontal">
                                     @csrf
                                     <div class="card-body">
-                                        <h2 class="text-center"><u>LOGIN APLIKASI</u></h2><br />
+                                        <div class="text-center">
+                                            <img src="/logo/ppni.png" width="20%">
+                                        </div><br />
+                                        <h3 class="text-center">LOGIN APLIKASI SIAP KALSEL</h3><br />
                                         <div class="form-group">
                                             <select id="dpw" name="dpw" class="form-control">
                                                 <option value="">DPD/DPK</option>
@@ -137,11 +139,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-success btn-block">MASUK</button>
+                                            <button type="submit" class="btn btn-success btn-block"><i
+                                                    class="fa fa-arrow-right"></i> MASUK</button>
+                                        </div>
+                                        <div class="text-center">
+
+                                            <a href="/" class="nav-link" style="color: red;"><i class="fa fa-home"></i>
+                                                Beranda</a>
                                         </div>
                                     </div>
                                 </form>
                             </div>
+                        </div>
+                        <div class="col-md-3">
                         </div>
 
                     </div>
@@ -159,9 +169,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
-        <footer class="main-footer bg-gray bg-gray-dark text-center">
-            <strong style="font-size:0.9rem; padding:0;">Sistem Informasi Realisasi Fisik Dan Keuangan</strong><br />
-            <strong style="font-size:0.9rem; padding:0;">Developed By 2025</strong>
+        <footer class="main-footer text-center"
+            style="box-shadow: inset 0px 1px 4px rgba(0,0,0,0.4); padding:0.2rem; font-size:12px; font-weight:bold">
+            <!-- Default to the left -->
+            Copyright &copy; 2025 <span class="text-red">PPNI Provinsi Kalimantan Selatan</span><br />
+            Developed By ERZEN DIGITAL TEKNOLOGI
         </footer>
     </div>
     <!-- ./wrapper -->

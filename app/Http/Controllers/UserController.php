@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
+    public function progress($id)
+    {
+        $data = Pengajuan::find($id);
+        return view('user.pengajuan.progress', compact('data'));
+    }
     public function index()
     {
         return view('user.home');
@@ -116,6 +121,23 @@ class UserController extends Controller
         $data->update($req->all());
         Session::flash('success', 'Berhasil Diupdate');
         return redirect('/user/pengajuan');
+    }
+
+    public function pengajuan_kirim($id)
+    {
+        $data = Pengajuan::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+        if (in_array(null, $data->only(['file1', 'file2', 'file3', 'file4', 'file5', 'file6', 'file7']), true)) {
+            Session::flash('error', 'File Upload harus di isi semua');
+            return back();
+        } else {
+            $data->update([
+                'status_kirim' => 1
+            ]);
+            Session::flash('success', 'Pengajuan berhasil dikirim');
+            return back();
+        }
     }
     public function pengajuan_delete($id)
     {

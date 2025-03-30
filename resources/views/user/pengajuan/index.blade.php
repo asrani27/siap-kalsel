@@ -40,6 +40,7 @@
                                 <th style="border:1px solid black">Nama Instansi</th>
                                 <th style="border:1px solid black">Alamat Instansi</th>
                                 <th style="border:1px solid black">Telp Instansi</th>
+                                <th style="border:1px solid black">Status Pengajuan</th>
                                 <th style="border:1px solid black">Aksi</th>
                             </tr>
                         </thead>
@@ -54,6 +55,12 @@
                                 <td>{{$item->instansi}}</td>
                                 <td>{{$item->alamat}}, </td>
                                 <td>{{$item->telp}}</td>
+                                <td>
+                                    <a href="/user/pengajuan/progress/{{$item->id}}"
+                                        class="btn btn-xs btn-success text-bold">
+                                        <i class="fa fa-paper-plane"></i> Progress Pengajuan
+                                    </a>
+                                </td>
                                 <td>
                                     <a href="/user/pengajuan/upload/{{$item->id}}"
                                         class="btn btn-xs btn-primary text-bold">

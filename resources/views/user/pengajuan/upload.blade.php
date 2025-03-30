@@ -14,13 +14,14 @@
                     <i class="fa fa-user"></i>
                     Biodata Pemohon
                 </h3>
+
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-
-                <table border="1" width="70%" cellspacing="0" cellpadding="5">
+                <table border="1" width="50%" cellspacing="0" cellpadding="5">
                     <tr>
-                        <td style="background-color: rgb(246, 194, 194); border:1px solid black">NAMA PEMOHON</td>
+                        <td style="background-color: rgb(246, 194, 194); border:1px solid black">NAMA
+                            PEMOHON</td>
                         <td style="border:1px solid black">{{strtoupper($data->nama)}}</td>
                     </tr>
                     <tr>
@@ -47,13 +48,39 @@
             </div>
             <!-- /.card-body -->
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="info-box bg-success">
+                    <span class="info-box-icon"><i class="fa fa-paper-plane"></i></span>
 
+                    <div class="info-box-content">
+                        {{-- <span class="info-box-text">Pengajuan Telah Di Kirim</span> --}}
+                        <span class="info-box-number"><a href="/user/pengajuan/progress/{{$data->id}}"
+                                target="_blank">Lihat Progress Pengajuan</a></span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+            </div>
+        </div>
         <div class="card">
             <div class="card-header" style="cursor: move;">
                 <h3 class="card-title">
                     <i class="fa fa-file"></i>
                     Berkas Yang Di Upload
                 </h3>
+                <div class="card-tools">
+                    <ul class="nav nav-pills ml-auto">
+                        <li class="nav-item">
+                            @if ($data->status_kirim != 1)
+                            <a href="/user/pengajuan/kirim/{{$data->id}}" class="btn btn-sm btn-primary"
+                                onclick="return confirm('Apakah anda yakin ingin mengirim pengajuan?');"><i
+                                    class="fa fa-paper-plane"></i>
+                                Kirim Pengajuan
+                                File</a>
+                            @endif
+                        </li>
+                    </ul>
+                </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -86,12 +113,14 @@
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
+                            @if ($data->status_kirim != 1)
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="surat_permohonan"
                                     for="file-upload" class="custom-file-upload">
                                     <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
                                 </label>
                             </div>
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -114,12 +143,14 @@
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
+                            @if ($data->status_kirim != 1)
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="surat_kak" for="file-upload"
                                     class="custom-file-upload">
                                     <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
                                 </label>
                             </div>
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -142,12 +173,14 @@
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
+                            @if ($data->status_kirim != 1)
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="peserta_seminar"
                                     for="file-upload" class="custom-file-upload">
                                     <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
                                 </label>
                             </div>
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -170,12 +203,14 @@
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
+                            @if ($data->status_kirim != 1)
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="curriculum_vitae"
                                     for="file-upload" class="custom-file-upload">
                                     <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
                                 </label>
                             </div>
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -198,12 +233,14 @@
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
+                            @if ($data->status_kirim != 1)
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="kegiatan_ilmiah"
                                     for="file-upload" class="custom-file-upload">
                                     <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
                                 </label>
                             </div>
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -226,12 +263,14 @@
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
+                            @if ($data->status_kirim != 1)
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="rekapan_pemateri"
                                     for="file-upload" class="custom-file-upload">
                                     <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
                                 </label>
                             </div>
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -254,12 +293,14 @@
                             @endif
                         </td>
                         <td style="text-align: center;border:1px solid black">
+                            @if ($data->status_kirim != 1)
                             <div class="container mt-2">
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="jadwal_kegiatan"
                                     for="file-upload" class="custom-file-upload">
                                     <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
                                 </label>
                             </div>
+                            @endif
                         </td>
                     </tr>
                 </table>

@@ -20,7 +20,8 @@
     <script src="/notif/dist/js/iziToast.min.js" type="text/javascript"></script>
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page"
+    style="background: rgb(188, 88, 60); background: linear-gradient(48deg, rgb(188, 60, 60) 0%, rgb(249, 197, 187) 100%);">
     <div class="login-box">
         <!-- /.login-logo -->
         <div class="card card-outline card-danger">
@@ -33,8 +34,8 @@
                 <form action="/masuk" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="NIK ANDA" name="username"
-                            autocomplete='new-password'>
+                        <input type="text" class="form-control" placeholder="NIK ANDA" minlength="16" maxlength="16"
+                            name="username" autocomplete='new-password' required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fa fa-user"></span>
