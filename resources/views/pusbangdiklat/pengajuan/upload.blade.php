@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <a href="/user/pengajuan" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
+        <a href="/pusbangdiklat/pengajuan" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
             Kembali
         </a><br /><br />
         <div class="card">
@@ -57,6 +57,8 @@
                 <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                         <li class="nav-item">
+                            <a href="/pusbangdiklat/pengajuan/verifikasi/{{$data->id}}"
+                                class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> VERIFIKASI</a>
                             <a href="/pusbangdiklat/pengajuan/download/{{$data->id}}" class="btn btn-sm btn-primary"><i
                                     class="fa fa-download"></i> Download Semua
                                 File</a>

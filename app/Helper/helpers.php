@@ -1,9 +1,10 @@
 <?php
 
-use App\Models\Bidang;
-use App\Models\COA;
 use Carbon\Carbon;
+use App\Models\COA;
 use App\Models\Skpd;
+use App\Models\Bidang;
+use App\Models\Pengajuan;
 
 
 function bulan()
@@ -19,7 +20,18 @@ function bulan()
 
     return $namaBulan;
 }
-
+function baru()
+{
+    return Pengajuan::where('proses1', null)->count();
+}
+function diproses()
+{
+    return Pengajuan::where('proses1', '!=', null)->where('link_lms', null)->count();
+}
+function selesai()
+{
+    return Pengajuan::where('link_lms', '!=', null)->count();
+}
 function bidang()
 {
     return Bidang::get();

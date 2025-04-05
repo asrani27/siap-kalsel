@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Pengajuan;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -123,6 +124,14 @@ class UserController extends Controller
         return redirect('/user/pengajuan');
     }
 
+    public function rating(Request $req, $id)
+    {
+        $data = Pengajuan::find($id);
+        $data->rating = $req->rating;
+        $data->save();
+        Session::flash('success', 'Berhasil di kirim');
+        return back();
+    }
     public function pengajuan_kirim($id)
     {
         $data = Pengajuan::where('id', $id)
@@ -133,7 +142,8 @@ class UserController extends Controller
             return back();
         } else {
             $data->update([
-                'status_kirim' => 1
+                'status_kirim' => 1,
+                'tanggal_kirim' => Carbon::now(),
             ]);
             Session::flash('success', 'Pengajuan berhasil dikirim');
             return back();

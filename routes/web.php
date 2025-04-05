@@ -25,9 +25,19 @@ Route::get('/get-dpk/{kota_id}', [LoginController::class, 'getDpk'])->name('get.
 
 Route::middleware(['auth', 'pusbangdiklat'])->group(function () {
     Route::get('/pusbangdiklat', [PusbangdiklatController::class, 'index']);
-    Route::get('/pusbangdiklat/pengajuan', [PusbangdiklatController::class, 'pengajuan']);
+    Route::get('/pusbangdiklat/pengajuan/baru', [PusbangdiklatController::class, 'baru']);
+    Route::get('/pusbangdiklat/pengajuan/diproses', [PusbangdiklatController::class, 'diproses']);
+    Route::get('/pusbangdiklat/pengajuan/selesai', [PusbangdiklatController::class, 'selesai']);
+    Route::get('/pusbangdiklat/pengajuan/proses1-verif/{id}', [PusbangdiklatController::class, 'proses1']);
+    Route::get('/pusbangdiklat/pengajuan/proses2-verif/{id}', [PusbangdiklatController::class, 'proses2']);
+    Route::get('/pusbangdiklat/pengajuan/proses3-verif/{id}', [PusbangdiklatController::class, 'proses3']);
+    Route::get('/pusbangdiklat/pengajuan/proses4-verif/{id}', [PusbangdiklatController::class, 'proses4']);
+    Route::get('/pusbangdiklat/pengajuan/proses5-verif/{id}', [PusbangdiklatController::class, 'proses5']);
+    Route::get('/pusbangdiklat/pengajuan/proses6-verif/{id}', [PusbangdiklatController::class, 'proses6']);
+    Route::post('/pusbangdiklat/pengajuan/link-lms/{id}', [PusbangdiklatController::class, 'link_lms']);
     Route::get('/pusbangdiklat/pengajuan/delete/{id}', [PusbangdiklatController::class, 'pengajuan_delete']);
     Route::get('/pusbangdiklat/pengajuan/verifikasi/{id}', [PusbangdiklatController::class, 'verifikasi']);
+    Route::get('/pusbangdiklat/pengajuan/berkas/{id}', [PusbangdiklatController::class, 'berkas']);
     Route::get('/pusbangdiklat/pengajuan/download/{id}', [PusbangdiklatController::class, 'downloadFiles']);
 });
 Route::middleware(['auth', 'superadmin'])->group(function () {
@@ -55,6 +65,7 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/user', [UserController::class, 'index']);
     Route::get('/user/pengajuan/progress/{id}', [UserController::class, 'progress']);
     Route::get('/user/pengajuan', [UserController::class, 'pengajuan']);
+    Route::post('/user/pengajuan/kirimrating/{id}', [UserController::class, 'rating']);
     Route::get('/user/pengajuan/create', [UserController::class, 'pengajuan_create']);
     Route::post('/user/pengajuan/create', [UserController::class, 'pengajuan_store']);
     Route::get('/user/pengajuan/edit/{id}', [UserController::class, 'pengajuan_edit']);

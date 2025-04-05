@@ -39,7 +39,7 @@
                                 <th style="border:1px solid black">Nama Instansi</th>
                                 <th style="border:1px solid black">Alamat Instansi</th>
                                 <th style="border:1px solid black">Telp Instansi</th>
-                                <th style="border:1px solid black">Status</th>
+                                <th style="border:1px solid black">File</th>
                                 <th style="border:1px solid black">Aksi</th>
                             </tr>
                         </thead>
@@ -54,11 +54,16 @@
                                 <td>{{$item->instansi}}</td>
                                 <td>{{$item->alamat}}, </td>
                                 <td>{{$item->telp}}</td>
-                                <td style="text-align: center"><span class="badge badge-success">BARU</span></td>
+                                <td style="text-align: center">
+                                    <a href="/pusbangdiklat/pengajuan/berkas/{{$item->id}}"
+                                        class="btn btn-xs btn-primary text-bold">
+                                        <i class="fa fa-file"></i> DOKUMEN
+                                    </a>
+                                </td>
                                 <td style="text-align: center">
                                     <a href="/pusbangdiklat/pengajuan/verifikasi/{{$item->id}}"
                                         class="btn btn-xs btn-primary text-bold">
-                                        PROSES VERIFIKASI
+                                        <i class="fa fa-edit"></i> VERIFIKASI
                                     </a>
 
                                     <a href="/pusbangdiklat/pengajuan/delete/{{$item->id}}"

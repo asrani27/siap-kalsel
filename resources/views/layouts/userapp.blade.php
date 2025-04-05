@@ -173,7 +173,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-light-danger elevation-4">
             <!-- Sidebar -->
-            <a href="index3.html" class="brand-link">
+            <a href="/pusbangdiklat" class="brand-link">
                 <img src="/logo/ppni.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-light">PPNI KALSEL</span>
@@ -226,11 +226,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/pusbangdiklat/pengajuan"
-                                class="nav-link {{request()->is('pusbangdiklat/pengajuan*') ? 'active':''}}">
-                                <i class="nav-icon fas fa-check"></i>
+                            <a href="/pusbangdiklat/pengajuan/baru"
+                                class="nav-link {{request()->is('pusbangdiklat/pengajuan/baru*') ? 'active':''}}">
+                                <i class="nav-icon fas fa-envelope"></i>
                                 <p>
-                                    List Pengajuan
+                                    Pengajuan Baru
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/pusbangdiklat/pengajuan/diproses"
+                                class="nav-link {{request()->is('pusbangdiklat/pengajuan/diproses*') ? 'active':''}}">
+                                <i class="nav-icon fas fa-envelope"></i>
+                                <p>
+                                    Pengajuan Di Proses
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/pusbangdiklat/pengajuan/selesai"
+                                class="nav-link {{request()->is('pusbangdiklat/pengajuan/selesai*') ? 'active':''}}">
+                                <i class="nav-icon fas fa-envelope"></i>
+                                <p>
+                                    Pengajuan Selesai
                                 </p>
                             </a>
                         </li>
