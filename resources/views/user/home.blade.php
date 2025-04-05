@@ -29,13 +29,13 @@
                 <h5 class="widget-user-desc">Pemohon</h5>
             </div>
             <div class="card-footer p-0">
-                <ul class="nav flex-column">
+                {{-- <ul class="nav flex-column">
                     <li class="nav-item">
                         <a href="#" class="nav-link btn btn-sm btn-primary">
                             <i class="fa fa-user"></i> <strong>EDIT PROFILE </strong></a>
                     </li>
 
-                </ul>
+                </ul> --}}
             </div>
 
         </div>
