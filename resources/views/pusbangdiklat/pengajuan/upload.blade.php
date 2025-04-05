@@ -5,9 +5,9 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <a href="/pusbangdiklat/pengajuan" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
+        {{-- <a href="/pusbangdiklat/pengajuan" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
             Kembali
-        </a><br /><br />
+        </a><br /><br /> --}}
         <div class="card">
             <div class="card-header" style="cursor: move;">
                 <h3 class="card-title">
