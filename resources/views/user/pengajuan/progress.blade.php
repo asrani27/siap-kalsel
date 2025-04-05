@@ -210,7 +210,10 @@
                             oleh {{$data->nama}}
                         </h3>
                         <div class="timeline-body p-2">
+                            @if ($data->rating == null)
+                            @else
                             <a href="{{$data->link_lms}}" target="_blank">{{$data->link_lms}}</a>
+                            @endif
                         </div>
                     </div>
                 </div>
