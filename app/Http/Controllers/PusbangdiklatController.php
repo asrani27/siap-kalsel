@@ -92,11 +92,16 @@ class PusbangdiklatController extends Controller
     public function proses1($id)
     {
         $data = Pengajuan::find($id);
-        $data->proses1 = 1;
-        $data->tanggal_proses1 = Carbon::now();
-        $data->save();
-        Session::flash('success', 'di verifikasi');
-        return redirect('/pusbangdiklat/pengajuan/verifikasi/' . $id);
+        if ($data->status_kirim == null) {
+            Session::flash('error', 'Pemohon belum selesai upload');
+            return redirect('/pusbangdiklat/pengajuan/verifikasi/' . $id);
+        } else {
+            $data->proses1 = 1;
+            $data->tanggal_proses1 = Carbon::now();
+            $data->save();
+            Session::flash('success', 'di verifikasi');
+            return redirect('/pusbangdiklat/pengajuan/verifikasi/' . $id);
+        }
     }
     public function proses2($id)
     {
