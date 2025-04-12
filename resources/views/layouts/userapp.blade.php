@@ -27,7 +27,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 219, 227, 1) 20%, rgba(243, 98, 155, 1) 100%);
         }
     </style>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
 
 <body class="hold-transition sidebar-mini">
