@@ -348,7 +348,7 @@
                             @if (pathinfo($data->file9, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file9,
                             PATHINFO_EXTENSION) == 'docx')
 
-                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{config('app.url')}}/storage/uploads/user_{{$data->id}}/{{$data->file7}}"
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{config('app.url')}}/storage/uploads/user_{{$data->id}}/{{$data->file9}}"
                                 class="btn btn-sm btn-success" target="_blank">Preview</a>
                             @else
 
