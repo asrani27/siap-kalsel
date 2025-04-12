@@ -359,15 +359,15 @@
 
                             @if ($data->file10 != null)
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file10}}"
-                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 1</a><br />
+                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 1</a><br /><br />
                             @endif
                             @if ($data->file11 != null)
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file11}}"
-                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 2</a><br />
+                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 2</a><br /><br />
                             @endif
                             @if ($data->file12 != null)
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file12}}"
-                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 3</a><br />
+                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 3</a><br /><br />
                             @endif
                             @if ($data->file13 != null)
                             <a href="/storage/uploads/user_{{$data->id}}/{{$data->file13}}"
