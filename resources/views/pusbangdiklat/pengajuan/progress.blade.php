@@ -199,17 +199,84 @@
                             {{\Carbon\Carbon::parse($data->tanggal_proses6)->format('d M Y H:i:s')}}
                             @endif
                         </span>
-                        <h3 class="timeline-header"><b>Membuat Invoice</b> oleh verifikator
+                        <h3 class="timeline-header"><b>Membuat Invoice</b> oleh bendahara
                         </h3>
                         <div class="timeline-body p-2">
+                            Silahkan tambahkan invoice pada form di bawah ini, untuk lampiran opsional. jika invoice
+                            sudah dibuat, Klik Selesai INVOICE
                             @if ($data->proses6 == null)
-                            <a href="/pusbangdiklat/pengajuan/proses6-verif/{{$data->id}}"
+                            {{-- <a href="/pusbangdiklat/pengajuan/proses6-verif/{{$data->id}}"
                                 class="btn btn-xs btn-success text-bold" onclick="return confirm('sudah Yakin?');">
                                 <i class="fa fa-check-circle"></i> Verifikasi
-                            </a>
+                            </a> --}}
                             @elseif($data->proses6 == 1)
 
                             @endif
+                            <form class="form-horizontal" method="post"
+                                action="/pusbangdiklat/pengajuan/verifikasi/{{$data->id}}/invoice"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group row">
+                                    <div class="col-sm-3">
+                                        <input type="text" name="keterangan" class="form-control"
+                                            placeholder="Keterangan" required>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="text" name="biaya" class="form-control" placeholder="Biaya"
+                                            required onkeypress="return hanyaAngka(event)" />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="file" name="file" class="form-control">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-primary">Simpan Tagihan</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <br />
+                            <strong>INVOICE</strong>
+                            <table width="50%" cellpadding="5px">
+                                <tr>
+                                    <td style="border:1px solid black">Keterangan</td>
+                                    <td style="border:1px solid black" class="text-center">Biaya</td>
+                                    <td style="border:1px solid black">Lampiran</td>
+                                    <td style="border:1px solid black"></td>
+                                </tr>
+                                @foreach (invoice($data->id) as $item2)
+                                <tr>
+                                    <td style="border:1px solid black">{{$item2->keterangan}}</td>
+                                    <td style="border:1px solid black" class="text-right">
+                                        {{number_format($item2->biaya)}}</td>
+                                    <td style="border:1px solid black">
+                                        @if ($item2->file == null)
+
+                                        @else
+                                        <a
+                                            href="/storage/invoice/user_{{$item2->pengajuan_id}}/{{$item2->file}}">Lampiran</a>
+                                        @endif
+                                    </td>
+                                    <td style="border:1px solid black" class="text-center">
+                                        <a href="/pusbangdiklat/pengajuan/invoice/{{$item2->id}}/hapus"
+                                            onclick="return confirm('Yakin dihapus?');"><span class="text-red"><i
+                                                    class="fa fa-times"></i></span></a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                <tr>
+                                    <td style="border:1px solid black">Total</td>
+                                    <td style="border:1px solid black" class="text-right">Rp.
+                                        {{number_format(invoice($data->id)->sum('biaya'))}}</td>
+                                    <td style="border:1px solid black"></td>
+                                    <td style="border:1px solid black"></td>
+                                </tr>
+                            </table>
+                            <br />
+                            <a href="/pusbangdiklat/pengajuan/proses6-verif/{{$data->id}}"
+                                class="btn btn-sm btn-success text-bold" onclick="return confirm('sudah Yakin?');">
+                                <i class="fa fa-check-circle"></i> Verifikasi INVOICE</a>
+                            <a href="/pusbangdiklat/pengajuan/download-invoice/{{$data->id}}"
+                                class="btn btn-sm btn-danger text-bold">
+                                <i class="fa fa-download"></i> Download INVOICE</a>
                         </div>
                     </div>
                 </div>
@@ -227,13 +294,15 @@
                             {{\Carbon\Carbon::parse($data->tanggal_link_lms)->format('d M Y H:i:s')}}
                             @endif
                         </span>
-                        <h3 class="timeline-header"><b>Membuat link LMS</b> oleh pusbangdiklat
+                        <h3 class="timeline-header"><b>Membuat Dan STR</b> oleh pusbangdiklat
                         </h3>
                         <div class="timeline-body p-2">
                             <form method="post" action="/pusbangdiklat/pengajuan/link-lms/{{$data->id}}">
                                 @csrf
-                                <input type="text" class="form-control" name="link_lms" required
+                                <input type="text" class="form-control" name="link_lms" required placeholder="Link LMS"
                                     value="{{$data->link_lms}}">
+                                <input type="text" class="form-control" name="link_str" required
+                                    placeholder="Link STR (Surat Tanda Registrasi)" value="{{$data->link_str}}">
                                 @if ($data->link_lms == null)
                                 <button type="submit" class="btn btn-xs btn-primary text-bold"><i
                                         class="fa fa-save"></i> Simpan Link
@@ -278,5 +347,13 @@
 </div>
 @endsection
 @push('js')
+<script>
+    function hanyaAngka(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+       if (charCode > 31 && (charCode < 48 || charCode > 57))
 
+        return false;
+      return true;
+    }
+</script>
 @endpush

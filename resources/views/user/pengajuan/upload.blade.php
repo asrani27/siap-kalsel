@@ -56,7 +56,7 @@
                     <div class="info-box-content">
                         {{-- <span class="info-box-text">Pengajuan Telah Di Kirim</span> --}}
                         <span class="info-box-number"><a href="/user/pengajuan/progress/{{$data->id}}"
-                                target="_blank">Lihat Progress Pengajuan</a></span>
+                                target="_blank">Lihat Contoh Progress Pengajuan</a></span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -98,7 +98,7 @@
                         <td style="border:1px solid black">Surat Permohonan</td>
                         <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/document/d/1nUKq1-T60CtfW0dCfbv2bptVN5Se2txA/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
-                                target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
+                                target="_blank"><i class="fa fa-eye"></i> Lihat Contoh</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file1 != null)
                             @if (pathinfo($data->file1, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file1,
@@ -128,7 +128,7 @@
                         <td style="border:1px solid black">Surat KAK</td>
                         <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/document/d/1UympXzlF5MdLERbtKqtrDSssmasv5r7Y/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
-                                target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
+                                target="_blank"><i class="fa fa-eye"></i> Lihat Contoh</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file2 != null)
                             @if (pathinfo($data->file2, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file2,
@@ -158,7 +158,7 @@
                         <td style="border:1px solid black">Peserta Seminar</td>
                         <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/spreadsheets/d/1ood_8vYRDCND6CtgUvTh8v_u1SoxA1QV/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
-                                target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
+                                target="_blank"><i class="fa fa-eye"></i> Lihat Contoh</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file3 != null)
                             @if (pathinfo($data->file3, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file3,
@@ -188,7 +188,7 @@
                         <td style="border:1px solid black">Curriculum Vitae (CV)</td>
                         <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/document/d/19f98Iz3F2ab3o0reXx6WlFqg3KSE3z_R/edit"
-                                target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
+                                target="_blank"><i class="fa fa-eye"></i> Lihat Contoh</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file4 != null)
                             @if (pathinfo($data->file4, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file4,
@@ -218,7 +218,7 @@
                         <td style="border:1px solid black">Pengajuan Kegiatan Ilmiah</td>
                         <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/document/d/1nUKq1-T60CtfW0dCfbv2bptVN5Se2txA/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
-                                target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
+                                target="_blank"><i class="fa fa-eye"></i> Lihat Contoh</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file5 != null)
                             @if (pathinfo($data->file5, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file5,
@@ -248,7 +248,7 @@
                         <td style="border:1px solid black">Rekapan Pemateri webinar/pelatihan/workshop</td>
                         <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/spreadsheets/d/1pcXuGp7tsvow40Lze_7PVx3ywWW1Qsqy/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
-                                target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
+                                target="_blank"><i class="fa fa-eye"></i> Lihat Contoh</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file6 != null)
                             @if (pathinfo($data->file6, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file6,
@@ -278,7 +278,7 @@
                         <td style="border:1px solid black">Jadwal webinar/pelatihan/workshop</td>
                         <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
                                 href="https://docs.google.com/document/d/1Myyf-QApUXw9E3lSjOD38ARb7aRuwrW9/edit?usp=drive_link&ouid=103864092959113160929&rtpof=true&sd=true"
-                                target="_blank"><i class="fa fa-eye"></i> Lihat</a></td>
+                                target="_blank"><i class="fa fa-eye"></i> Lihat Contoh</a></td>
                         <td style="text-align: center;border:1px solid black">
                             @if ($data->file7 != null)
                             @if (pathinfo($data->file7, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file7,
@@ -298,6 +298,120 @@
                                 <label class="btn btn-primary btn-sm" data-kelengkapan="jadwal_kegiatan"
                                     for="file-upload" class="custom-file-upload">
                                     <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
+                                </label>
+                            </div>
+                            @endif
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="border:1px solid black">8</td>
+                        <td style="border:1px solid black">Layer/Brosuk Kegiatan</td>
+                        <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
+                                href="https://drive.google.com/file/d/10zT2irYOuTw0sN51Bfurd7LUKp7lyXN0/view?usp=drive_link"
+                                target="_blank"><i class="fa fa-eye"></i> Lihat Contoh</a></td>
+                        <td style="text-align: center;border:1px solid black">
+                            @if ($data->file8 != null)
+                            @if (pathinfo($data->file8, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file8,
+                            PATHINFO_EXTENSION) == 'docx')
+
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{config('app.url')}}/storage/uploads/user_{{$data->id}}/{{$data->file8}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @else
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file8}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
+                            @endif
+                        </td>
+                        <td style="text-align: center;border:1px solid black">
+                            @if ($data->status_kirim != 1)
+                            <div class="container mt-2">
+                                <label class="btn btn-primary btn-sm" data-kelengkapan="brosur" for="file-upload"
+                                    class="custom-file-upload">
+                                    <i class="fa fa-upload"></i> Upload <input class="file-upload" type="file" hidden>
+                                </label>
+                            </div>
+                            @endif
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="border:1px solid black">9</td>
+                        <td style="border:1px solid black">Foto Narasumber Dan moderator <br /> narsum maks 4, moderator
+                            maks
+                            1</td>
+                        <td style="text-align: center;border:1px solid black"><a class="btn btn-info btn-sm"
+                                href="https://drive.google.com/file/d/1VwSYorV8m50fNBRo8LvKt5gY8gC7oVgW/view?usp=drive_link"
+                                target="_blank"><i class="fa fa-eye"></i> Lihat Contoh</a></td>
+                        <td style="text-align: center;border:1px solid black">
+                            @if ($data->file9 != null)
+                            @if (pathinfo($data->file9, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file9,
+                            PATHINFO_EXTENSION) == 'docx')
+
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{config('app.url')}}/storage/uploads/user_{{$data->id}}/{{$data->file7}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @else
+
+                            @if ($data->file9 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file9}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview Moderator</a><br /><br />
+                            @endif
+
+                            @if ($data->file10 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file10}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 1</a><br />
+                            @endif
+                            @if ($data->file11 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file11}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 2</a><br />
+                            @endif
+                            @if ($data->file12 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file12}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 3</a><br />
+                            @endif
+                            @if ($data->file13 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file13}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 4</a>
+                            @endif
+                            @endif
+                            @endif
+                        </td>
+                        <td style="text-align: center;border:1px solid black">
+                            @if ($data->status_kirim != 1)
+                            <div class="container mt-2">
+                                <label class="btn btn-primary btn-sm" data-kelengkapan="moderator" for="file-upload"
+                                    class="custom-file-upload">
+                                    <i class="fa fa-upload"></i> Upload Foto Moderator <input class="file-upload"
+                                        type="file" hidden>
+                                </label>
+                            </div>
+
+                            <div class="container mt-2">
+                                <label class="btn btn-primary btn-sm" data-kelengkapan="narsum1" for="file-upload"
+                                    class="custom-file-upload">
+                                    <i class="fa fa-upload"></i> Upload Foto Narsum 1 <input class="file-upload"
+                                        type="file" hidden>
+                                </label>
+                            </div>
+                            <div class="container mt-2">
+                                <label class="btn btn-primary btn-sm" data-kelengkapan="narsum2" for="file-upload"
+                                    class="custom-file-upload">
+                                    <i class="fa fa-upload"></i> Upload Foto Narsum 2 <input class="file-upload"
+                                        type="file" hidden>
+                                </label>
+                            </div>
+                            <div class="container mt-2">
+                                <label class="btn btn-primary btn-sm" data-kelengkapan="narsum3" for="file-upload"
+                                    class="custom-file-upload">
+                                    <i class="fa fa-upload"></i> Upload Foto Narsum 3 <input class="file-upload"
+                                        type="file" hidden>
+                                </label>
+                            </div>
+                            <div class="container mt-2">
+                                <label class="btn btn-primary btn-sm" data-kelengkapan="narsum4" for="file-upload"
+                                    class="custom-file-upload">
+                                    <i class="fa fa-upload"></i> Upload Foto Narsum 4 <input class="file-upload"
+                                        type="file" hidden>
                                 </label>
                             </div>
                             @endif

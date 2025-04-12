@@ -143,8 +143,46 @@
                             {{\Carbon\Carbon::parse($data->tanggal_proses6)->format('d M Y H:i:s')}}
                             @endif
                         </span>
-                        <h3 class="timeline-header"><b>Membuat Invoice</b> oleh verifikator
+                        <h3 class="timeline-header"><b>Membuat Invoice</b> oleh bendahara
                         </h3>
+                        @if ($data->proses6 != null)
+                        <div class="timeline-body p-2">
+                            <a href="/user/pengajuan/download-invoice/{{$data->id}}"
+                                class="btn btn-sm btn-danger text-bold">
+                                <i class="fa fa-download"></i> Download INVOICE</a>
+
+                            <table width="50%" cellpadding="3px">
+                                <tr>
+                                    <td style="border:1px solid black">Keterangan</td>
+                                    <td style="border:1px solid black" class="text-center">Biaya</td>
+                                    <td style="border:1px solid black">Lampiran</td>
+                                </tr>
+                                <br /><br />
+                                @foreach (invoice($data->id) as $item2)
+                                <tr>
+                                    <td style="border:1px solid black">{{$item2->keterangan}}</td>
+                                    <td style="border:1px solid black" class="text-right">
+                                        {{number_format($item2->biaya)}}</td>
+                                    <td style="border:1px solid black">
+                                        @if ($item2->file == null)
+
+                                        @else
+                                        <a href="/storage/invoice/user_{{$item2->pengajuan_id}}/{{$item2->file}}"><i
+                                                class="fa fa-download"></i> Lampiran</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                                <tr>
+                                    <td style="border:1px solid black">Total</td>
+                                    <td style="border:1px solid black" class="text-right">Rp.
+                                        {{number_format(invoice($data->id)->sum('biaya'))}}</td>
+                                    <td style="border:1px solid black"></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        @endif
                     </div>
                 </div>
                 <div>
@@ -212,7 +250,10 @@
                         <div class="timeline-body p-2">
                             @if ($data->rating == null)
                             @else
-                            <a href="{{$data->link_lms}}" target="_blank">{{$data->link_lms}}</a>
+                            Link LMS : <a href="{{$data->link_lms}}" target="_blank"
+                                class="text-bold">{{$data->link_lms}}</a></br>
+                            Link STR :<a href="{{$data->link_str}}" target="_blank"
+                                class="text-bold">{{$data->link_str}}</a>
                             @endif
                         </div>
                     </div>

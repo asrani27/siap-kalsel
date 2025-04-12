@@ -8,4 +8,9 @@ class Pengajuan extends Model
 {
     protected $table = 'pengajuan';
     protected $guarded = ['id'];
+
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class, 'pengajuan_id');
+    }
 }

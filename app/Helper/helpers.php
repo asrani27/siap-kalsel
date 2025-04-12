@@ -4,6 +4,7 @@ use Carbon\Carbon;
 use App\Models\COA;
 use App\Models\Skpd;
 use App\Models\Bidang;
+use App\Models\Invoice;
 use App\Models\Pengajuan;
 
 
@@ -19,6 +20,11 @@ function bulan()
     }
 
     return $namaBulan;
+}
+
+function invoice($id)
+{
+    return Invoice::where('pengajuan_id', $id)->get();
 }
 function baru()
 {

@@ -28,6 +28,7 @@ Route::middleware(['auth', 'pusbangdiklat'])->group(function () {
     Route::get('/pusbangdiklat/pengajuan/baru', [PusbangdiklatController::class, 'baru']);
     Route::get('/pusbangdiklat/pengajuan/diproses', [PusbangdiklatController::class, 'diproses']);
     Route::get('/pusbangdiklat/pengajuan/selesai', [PusbangdiklatController::class, 'selesai']);
+    Route::get('/pusbangdiklat/pengajuan/download-invoice/{id}', [PusbangdiklatController::class, 'downloadInvoice']);
     Route::get('/pusbangdiklat/pengajuan/proses1-verif/{id}', [PusbangdiklatController::class, 'proses1']);
     Route::get('/pusbangdiklat/pengajuan/proses2-verif/{id}', [PusbangdiklatController::class, 'proses2']);
     Route::get('/pusbangdiklat/pengajuan/proses3-verif/{id}', [PusbangdiklatController::class, 'proses3']);
@@ -37,6 +38,8 @@ Route::middleware(['auth', 'pusbangdiklat'])->group(function () {
     Route::post('/pusbangdiklat/pengajuan/link-lms/{id}', [PusbangdiklatController::class, 'link_lms']);
     Route::get('/pusbangdiklat/pengajuan/delete/{id}', [PusbangdiklatController::class, 'pengajuan_delete']);
     Route::get('/pusbangdiklat/pengajuan/verifikasi/{id}', [PusbangdiklatController::class, 'verifikasi']);
+    Route::post('/pusbangdiklat/pengajuan/verifikasi/{id}/invoice', [PusbangdiklatController::class, 'storeInvoice']);
+    Route::get('/pusbangdiklat/pengajuan/invoice/{id}/hapus', [PusbangdiklatController::class, 'hapusInvoice']);
     Route::get('/pusbangdiklat/pengajuan/berkas/{id}', [PusbangdiklatController::class, 'berkas']);
     Route::get('/pusbangdiklat/pengajuan/download/{id}', [PusbangdiklatController::class, 'downloadFiles']);
 });
@@ -66,6 +69,7 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/user/pengajuan/progress/{id}', [UserController::class, 'progress']);
     Route::get('/user/pengajuan', [UserController::class, 'pengajuan']);
     Route::post('/user/pengajuan/kirimrating/{id}', [UserController::class, 'rating']);
+    Route::get('/user/pengajuan/download-invoice/{id}', [UserController::class, 'downloadInvoice']);
     Route::get('/user/pengajuan/create', [UserController::class, 'pengajuan_create']);
     Route::post('/user/pengajuan/create', [UserController::class, 'pengajuan_store']);
     Route::get('/user/pengajuan/edit/{id}', [UserController::class, 'pengajuan_edit']);

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Pengajuan;
-use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -137,7 +138,7 @@ class UserController extends Controller
         $data = Pengajuan::where('id', $id)
             ->where('user_id', Auth::user()->id) // Cek kepemilikan
             ->firstOrFail();
-        if (in_array(null, $data->only(['file1', 'file2', 'file3', 'file4', 'file5', 'file6', 'file7']), true)) {
+        if (in_array(null, $data->only(['file1', 'file2', 'file3', 'file4', 'file5', 'file6', 'file7', 'file8', 'file9', 'file10']), true)) {
             Session::flash('error', 'File Upload harus di isi semua');
             return back();
         } else {
@@ -197,6 +198,24 @@ class UserController extends Controller
         if ($kelengkapan == 'jadwal_kegiatan') {
             $fileno = 'file7';
         }
+        if ($kelengkapan == 'brosur') {
+            $fileno = 'file8';
+        }
+        if ($kelengkapan == 'moderator') {
+            $fileno = 'file9';
+        }
+        if ($kelengkapan == 'narsum1') {
+            $fileno = 'file10';
+        }
+        if ($kelengkapan == 'narsum2') {
+            $fileno = 'file11';
+        }
+        if ($kelengkapan == 'narsum3') {
+            $fileno = 'file12';
+        }
+        if ($kelengkapan == 'narsum4') {
+            $fileno = 'file13';
+        }
 
         $filePath = $req->file('file')->storeAs("uploads/user_$id", $filename, 'public');
 
@@ -209,5 +228,12 @@ class UserController extends Controller
             'file' => asset('storage/' . $filePath),
             'user_id' => $id
         ]);
+    }
+    public function downloadInvoice($id)
+    {
+        $data = Pengajuan::find($id);
+
+        $pdf = Pdf::loadView('user.pengajuan.pdf_invoice', compact('data'));
+        return $pdf->stream();
     }
 }

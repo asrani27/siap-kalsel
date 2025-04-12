@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use ZipArchive;
-use App\Models\Pengajuan;
 use Carbon\Carbon;
+use App\Models\Invoice;
+use App\Models\Pengajuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PusbangdiklatController extends Controller
 {
@@ -183,10 +186,51 @@ class PusbangdiklatController extends Controller
             return redirect('/pusbangdiklat/pengajuan/verifikasi/' . $id);
         } else {
             $data->link_lms = $req->link_lms;
+            $data->link_str = $req->link_str;
             $data->tanggal_link_lms = Carbon::now();
             $data->save();
             Session::flash('success', 'di verifikasi');
             return redirect('/pusbangdiklat/pengajuan/verifikasi/' . $id);
         }
+    }
+    public function storeInvoice(Request $req, $id)
+    {
+        $file = $req->file('file');
+
+        if ($file) {
+            $ext = $file->getClientOriginalExtension();
+            if ($ext != 'pdf') {
+                Session::flash('error', 'lampiran harus PDF');
+                return back();
+            }
+
+            $filename = $file->getClientOriginalName();
+            $filePath = $file->storeAs("invoice/user_$id", $filename, 'public');
+        } else {
+            $filename = null;
+        }
+
+        $new = new Invoice();
+        $new->pengajuan_id = $id;
+        $new->keterangan = $req->keterangan;
+        $new->biaya = $req->biaya;
+        $new->file = $filename;
+        $new->save();
+
+        Session::flash('success', 'tagihan disimpan');
+        return redirect('/pusbangdiklat/pengajuan/verifikasi/' . $id);
+    }
+    public function downloadInvoice($id)
+    {
+        $data = Pengajuan::find($id);
+
+        $pdf = Pdf::loadView('pusbangdiklat.pengajuan.pdf_invoice', compact('data'));
+        return $pdf->stream();
+    }
+    public function hapusInvoice($id)
+    {
+        Invoice::find($id)->delete();
+        Session::flash('success', 'tagihan dihapus');
+        return back();
     }
 }

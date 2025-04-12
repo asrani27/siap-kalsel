@@ -194,6 +194,59 @@
                             @endif
                         </td>
                     </tr>
+                    <tr>
+                        <td style="border:1px solid black">8</td>
+                        <td style="border:1px solid black">Brosur Kegiatan</td>
+                        <td style="text-align: center;border:1px solid black">
+                            @if ($data->file8 != null)
+                            @if (pathinfo($data->file8, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file8,
+                            PATHINFO_EXTENSION) == 'docx')
+
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{config('app.url')}}/storage/uploads/user_{{$data->id}}/{{$data->file8}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @else
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file8}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @endif
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border:1px solid black">9</td>
+                        <td style="border:1px solid black">Foto Moderator dan Narasumber</td>
+                        <td style="text-align: center;border:1px solid black">
+                            @if ($data->file9 != null)
+                            @if (pathinfo($data->file9, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($data->file9,
+                            PATHINFO_EXTENSION) == 'docx')
+
+                            <a href="https://view.officeapps.live.com/op/view.aspx?src={{config('app.url')}}/storage/uploads/user_{{$data->id}}/{{$data->file9}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview</a>
+                            @else
+                            @if ($data->file9 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file9}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview Moderator</a><br /><br />
+                            @endif
+
+                            @if ($data->file10 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file10}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 1</a><br />
+                            @endif
+                            @if ($data->file11 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file11}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 2</a><br />
+                            @endif
+                            @if ($data->file12 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file12}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 3</a><br />
+                            @endif
+                            @if ($data->file13 != null)
+                            <a href="/storage/uploads/user_{{$data->id}}/{{$data->file13}}"
+                                class="btn btn-sm btn-success" target="_blank">Preview Narsum 4</a>
+                            @endif
+                            @endif
+                            @endif
+                        </td>
+                    </tr>
                 </table>
             </div>
             <!-- /.card-body -->
