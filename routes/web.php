@@ -123,6 +123,12 @@ Route::middleware(['auth', 'user'])->group(function () {
 // });
 Route::middleware(['auth', 'dpd'])->group(function () {
     Route::get('/dpd', [DPDController::class, 'index']);
+    Route::get('/dpd/monev', [DPDController::class, 'monev']);
+    Route::get('/dpd/monev/create', [DPDController::class, 'monev_create']);
+    Route::post('/dpd/monev/create', [DPDController::class, 'monev_store']);
+    Route::get('/dpd/monev/edit/{id}', [DPDController::class, 'monev_edit']);
+    Route::post('/dpd/monev/edit/{id}', [DPDController::class, 'monev_update']);
+    Route::get('/dpd/monev/delete/{id}', [DPDController::class, 'monev_delete']);
     Route::get('/dpd/rfk', [DPDController::class, 'rfk']);
     Route::get('/dpd/rfk/create', [DPDController::class, 'rfk_create']);
     Route::post('/dpd/rfk/create', [DPDController::class, 'rfk_store']);

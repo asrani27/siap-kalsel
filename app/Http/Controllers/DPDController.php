@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\RFK;
 use App\Models\Aset;
+use App\Models\Monev;
 use App\Models\Anggota;
 use App\Models\SuratNT;
 use App\Models\Keuangan;
@@ -625,6 +626,53 @@ class DPDController extends Controller
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
         return redirect('/dpd/surat-masuk');
+    }
+
+    public function monev()
+    {
+        $data = Monev::where('user_id', Auth::user()->id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+        return view('dpd.monev.index', compact('data'));
+    }
+    public function monev_create()
+    {
+        return view('dpd.monev.create');
+    }
+    public function monev_store(Request $req)
+    {
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        Monev::create($param);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpd/monev');
+    }
+    public function monev_edit($id)
+    {
+        $data = Monev::where('id', $id)
+            ->where('user_id',  Auth::user()->id)
+            ->firstOrFail();
+        return view('dpd.monev.edit', compact('data'));
+    }
+    public function monev_update(Request $req, $id)
+    {
+        $data = Monev::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->update($req->all());
+        Session::flash('success', 'Berhasil Diupdate');
+        return redirect('/dpd/monev');
+    }
+    public function monev_delete($id)
+    {
+        $data = Monev::where('id', $id)
+            ->where('user_id', Auth::user()->id) // Cek kepemilikan
+            ->firstOrFail();
+
+        $data->delete();
+        Session::flash('success', 'Berhasil Dihapus');
+        return redirect('/dpd/monev');
     }
     public function anggota()
     {
