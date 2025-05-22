@@ -37,20 +37,21 @@
                                 <th style="border:1px solid black">No</th>
                                 <th style="border:1px solid black">Judul Monev</th>
                                 <th style="border:1px solid black">Link Google Drive</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $key => $item)
                             <tr>
                                 <td>{{$data->firstItem() + $key}}</td>
-                                <td>{{\Carbon\Carbon::parse($item->tanggal)->format('d M Y')}}</td>
                                 <td>{{$item->judul}}</td>
                                 <td>{{$item->link}}</td>
                                 <td>
 
-                                    <a href="/dpd/monev/edit/{{$item->id}}" class="btn btn-xs btn-success text-bold">
+                                    {{-- <a href="/dpd/monev/edit/{{$item->id}}"
+                                        class="btn btn-xs btn-success text-bold">
                                         EDIT
-                                    </a>
+                                    </a> --}}
                                     <a href="/dpd/monev/delete/{{$item->id}}" class="btn btn-xs btn-danger text-bold"
                                         onclick="return confirm('Yakin ingin dihapus?');">
                                         HAPUS

@@ -56,9 +56,16 @@
             <td width="50%"></td>
             <td></td>
             <td>{{\Carbon\Carbon::now()->translatedFormat('d F Y')}}<br />
-                Pusbangdiklat<br />Provinsi Kalimantan Selatan<br /><br /><br /><br /><br />
+                Bendahara DPW PPNI Kalimantan Selatan<br /><br /><br /><br /><br />
 
-                <u>(..............................)</u><br />
+                <u>Heryani, S.Kep, Ns, M.Kep</u><br /><br />
+                Transfer Payment:<br />
+                Bank Transfer<br />
+                Bank BNI<br />
+                Rekening: 5551703747<br />
+                a.n. DPW PPNI PROV KALSEL<br />
+
+                Konfirmasi ke 0815-614-8686 (Heryani)<br />
             </td>
         </tr>
     </table>
