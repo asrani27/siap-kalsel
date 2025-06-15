@@ -50,7 +50,7 @@
                     </tr>
                     <tr>
                         <td colspan="3" style="text-align: right">
-                            {{$data->nama}} <br /> {{$data->alamat}} <br /> {{$data->telp}}
+                            {{$data->nama}} <br /> {{$data->instansi}} <br /> {{$data->telp}}
                         </td>
                     </tr>
                 </table>
