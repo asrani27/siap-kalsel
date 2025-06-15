@@ -218,8 +218,14 @@
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-sm-3">
-                                        <input type="text" name="keterangan" class="form-control"
-                                            placeholder="Keterangan" required>
+                                        <select class="form-control" name="keterangan" required>
+                                            <option value="">-</option>
+
+                                            <option value="Kontribusi Pusbangdiklat DPP ppni">Kontribusi Pusbangdiklat
+                                                DPP ppni</option>
+                                            <option value="Kontribusi Pusbangdiklat dpw ppni prov kalsel">Kontribusi
+                                                Pusbangdiklat dpw ppni prov kalsel</option>
+                                        </select>
                                     </div>
                                     <div class="col-sm-3">
                                         <input type="text" name="biaya" class="form-control" placeholder="Biaya"
