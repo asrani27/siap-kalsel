@@ -57,11 +57,16 @@
                 <div class="card-tools">
                     <ul class="nav nav-pills ml-auto">
                         <li class="nav-item">
+                            @if ($data->file1 == null)
+                            <i class="fa fa-times"></i> Pemohon belum mengupload file
+                            @else
+
                             <a href="/pusbangdiklat/pengajuan/verifikasi/{{$data->id}}"
-                                class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> VERIFIKASI</a>
+                                class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> LIHAT PROGRESS</a>
                             <a href="/pusbangdiklat/pengajuan/download/{{$data->id}}" class="btn btn-sm btn-primary"><i
                                     class="fa fa-download"></i> Download Semua
                                 File</a>
+                            @endif
                         </li>
                     </ul>
                 </div>
