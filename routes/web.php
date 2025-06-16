@@ -24,6 +24,8 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/get-dpk/{kota_id}', [LoginController::class, 'getDpk'])->name('get.dpk');
 
 Route::middleware(['auth', 'pusbangdiklat'])->group(function () {
+    Route::get('/gantipass', [PusbangdiklatController::class, 'gantipass']);
+    Route::post('/gantipass', [PusbangdiklatController::class, 'updatepass']);
     Route::get('/pusbangdiklat', [PusbangdiklatController::class, 'index']);
     Route::get('/pusbangdiklat/pengajuan/baru', [PusbangdiklatController::class, 'baru']);
     Route::get('/pusbangdiklat/pengajuan/diproses', [PusbangdiklatController::class, 'diproses']);

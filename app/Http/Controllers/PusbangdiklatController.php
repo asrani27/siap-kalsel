@@ -233,4 +233,23 @@ class PusbangdiklatController extends Controller
         Session::flash('success', 'tagihan dihapus');
         return back();
     }
+    public function gantipass()
+    {
+        return view('gantipass');
+    }
+
+    public function updatepass(Request $req)
+    {
+        if ($req->password != $req->confirm_password) {
+            Session::flash('error', 'Password Tidak Sama');
+            return back();
+        } else {
+            $user = Auth::user();
+            $user->update([
+                'password' => Hash::make($req->password)
+            ]);
+            Session::flash('success', 'Password berhasil di ubah menjadi :' . $req->password);
+            return back();
+        }
+    }
 }
