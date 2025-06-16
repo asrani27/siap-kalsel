@@ -58,7 +58,7 @@
                     <ul class="nav nav-pills ml-auto">
                         <li class="nav-item">
                             @if ($data->file1 == null)
-                            <i class="fa fa-times"></i> Pemohon belum mengupload file
+                            <span class="text-danger"> <i class="fa fa-times"></i> Pemohon belum mengupload file</span>
                             @else
 
                             <a href="/pusbangdiklat/pengajuan/verifikasi/{{$data->id}}"
