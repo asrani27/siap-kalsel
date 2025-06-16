@@ -24,8 +24,6 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/get-dpk/{kota_id}', [LoginController::class, 'getDpk'])->name('get.dpk');
 
 Route::middleware(['auth', 'pusbangdiklat'])->group(function () {
-    Route::get('/gantipass', [PusbangdiklatController::class, 'gantipass']);
-    Route::post('/gantipass', [PusbangdiklatController::class, 'updatepass']);
     Route::get('/pusbangdiklat', [PusbangdiklatController::class, 'index']);
     Route::get('/pusbangdiklat/pengajuan/baru', [PusbangdiklatController::class, 'baru']);
     Route::get('/pusbangdiklat/pengajuan/diproses', [PusbangdiklatController::class, 'diproses']);
@@ -64,6 +62,11 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::get('/superadmin/coa/edit/{id}', [COAController::class, 'edit']);
     Route::post('/superadmin/coa/edit/{id}', [COAController::class, 'update']);
     Route::get('/superadmin/coa/delete/{id}', [COAController::class, 'delete']);
+});
+
+Route::middleware(['auth', 'pusbangdiklat'])->group(function () {
+    Route::get('/gantipass', [UserController::class, 'gantipass']);
+    Route::post('/gantipass', [UserController::class, 'updatepass']);
 });
 
 Route::middleware(['auth', 'user'])->group(function () {
