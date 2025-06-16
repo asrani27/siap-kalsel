@@ -13,12 +13,12 @@
                     <div class="widget-user-image">
                         Masukkan Password Baru
                     </div>
-                    <input type="text" class="form-control" name="password">
+                    <input type="text" class="form-control" minlength="6" name="password">
 
                     <div class="widget-user-image">
                         Masukkan Lagi Password Baru
                     </div>
-                    <input type="text" class="form-control" name="confirm_password"><br />
+                    <input type="text" class="form-control" minlength="6" name="confirm_password"><br />
                     <button type="submit" class="btn btn-md btn-primary btn-block">Update Password</button>
                 </form>
 
