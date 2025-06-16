@@ -65,6 +65,8 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
 });
 
 Route::middleware(['auth', 'user'])->group(function () {
+    Route::get('/gantipass', [UserController::class, 'gantipass']);
+    Route::post('/gantipass', [UserController::class, 'updatepass']);
     Route::get('/user', [UserController::class, 'index']);
     Route::get('/user/pengajuan/progress/{id}', [UserController::class, 'progress']);
     Route::get('/user/pengajuan', [UserController::class, 'pengajuan']);

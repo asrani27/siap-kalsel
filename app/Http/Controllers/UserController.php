@@ -236,4 +236,24 @@ class UserController extends Controller
         $pdf = Pdf::loadView('user.pengajuan.pdf_invoice', compact('data'));
         return $pdf->stream();
     }
+
+    public function gantipass()
+    {
+        return view('gantipass');
+    }
+
+    public function updatepass(Request $req)
+    {
+        if ($req->password != $req->confirm_password) {
+            Session::flash('error', 'Password Tidak Sama');
+            return back();
+        } else {
+            $user = Auth::user();
+            $user->update([
+                'password' => Hash::make($req->password)
+            ]);
+            Session::flash('success', 'Password berhasil di ubah menjadi :' . $req->password);
+            return back();
+        }
+    }
 }

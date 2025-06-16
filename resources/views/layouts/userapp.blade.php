@@ -254,6 +254,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </li>
                         @endif
                         <li class="nav-item">
+                            <a href="/gantipass" class="nav-link {{request()->is('gantipass*') ? 'active':''}}">
+                                <i class="nav-icon fas fa-arrow-right"></i>
+                                <p>
+                                    Ganti Password
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="/logout" class="nav-link" onclick="return confirm('Yakin ingin keluar?');">
                                 <i class="nav-icon fas fa-arrow-right"></i>
                                 <p>
