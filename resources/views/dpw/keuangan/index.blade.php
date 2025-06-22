@@ -14,7 +14,7 @@
 
                     <h3 class="card-title">
                         <i class="fa fa-list"></i>
-                        Data keuangan
+                        Jurnal keuangan
                     </h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 220px;">

@@ -14,7 +14,7 @@
 
                     <h3 class="card-title">
                         <i class="fa fa-list"></i>
-                        Data keuangan
+                        Jurnal keuangan
                     </h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 220px;">
@@ -36,6 +36,7 @@
                             <tr style="border:1px solid black; font-size:14px" class="bg-primary">
                                 <th style="border:1px solid black">No</th>
                                 <th style="border:1px solid black">Tanggal</th>
+                                <th style="border:1px solid black">COA</th>
                                 <th style="border:1px solid black">Keterangan</th>
                                 <th style="border:1px solid black">Masuk</th>
                                 <th style="border:1px solid black">Keluar</th>
@@ -48,6 +49,7 @@
                             <tr>
                                 <td>{{$data->firstItem() + $key}}</td>
                                 <td>{{\Carbon\Carbon::parse($item->created_at)->format('d M Y H:i:s')}}</td>
+                                <td>{{$item->coa}}</td>
                                 <td>{{$item->keterangan}}</td>
                                 <td style="text-align: right">{{number_format($item->masuk)}}</td>
                                 <td style="text-align: right">{{number_format($item->keluar)}}</td>
