@@ -52,7 +52,7 @@
                         <i class="fa fa-envelope"></i> <strong>ASET</strong>
                     </a>
                     <a href="/dpd/keuangan" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
-                        <i class="fa fa-money-o"></i> <strong>JURNAL KEUANGAN</strong>
+                        <i class="fa fa-chart-bar"></i> <strong>JURNAL KEUANGAN</strong>
                     </a>
 
                     <a href="/dpd/monev" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
