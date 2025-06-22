@@ -37,9 +37,9 @@
                                 <th style="border:1px solid black">No</th>
                                 <th style="border:1px solid black">Tanggal</th>
                                 <th style="border:1px solid black">COA</th>
-                                <th style="border:1px solid black">Keterangan</th>
-                                <th style="border:1px solid black">Masuk</th>
-                                <th style="border:1px solid black">Keluar</th>
+                                <th style="border:1px solid black">Deksripsi</th>
+                                <th style="border:1px solid black">Penerimaan</th>
+                                <th style="border:1px solid black">Pengeluaran</th>
                                 <th style="border:1px solid black">Saldo</th>
                                 <th style="border:1px solid black">Aksi</th>
                             </tr>
