@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\RFK;
 use App\Models\Aset;
 use App\Models\Anggota;
+use App\Models\COA;
 use App\Models\Keuangan;
 use App\Models\RfkDetail;
 use App\Models\SuratMasuk;
@@ -940,5 +941,47 @@ class DPWController extends Controller
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
         return redirect('/dpw/keuangan');
+    }
+
+    public function coa()
+    {
+        $data = COA::get();
+        return view('dpw.coa.index', compact('data'));
+    }
+    public function coa_create()
+    {
+        return view('dpw.coa.create');
+    }
+    public function coa_store(Request $req)
+    {
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        COA::create($param);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpw/coa');
+    }
+    public function coa_edit($id)
+    {
+        $data = COA::where('id', $id)
+            ->firstOrFail();
+        return view('dpw.coa.edit', compact('data'));
+    }
+    public function coa_update(Request $req, $id)
+    {
+        $data = COA::where('id', $id)
+            ->firstOrFail();
+
+        $data->update($req->all());
+        Session::flash('success', 'Berhasil Diupdate');
+        return redirect('/dpw/coa');
+    }
+    public function coa_delete($id)
+    {
+        $data = COA::where('id', $id)
+            ->firstOrFail();
+
+        $data->delete();
+        Session::flash('success', 'Berhasil Dihapus');
+        return redirect('/dpw/coa');
     }
 }

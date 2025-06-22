@@ -107,6 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <option value="">DPD/DPK</option>
                                                 <option value="DPW">DPW KALSEL</option>
                                                 <option value="PUSBANGDIKLAT">PUSBANGDIKLAAT</option>
+                                                <option value="superadmin">superadmin</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -204,7 +205,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 bidangSelect.disabled = false;
                 kotaSelect.value = '';
                 dpdSelect.value = '';
-            } else if(this.value === 'PUSBANGDIKLAT') {
+            } else if(this.value === 'PUSBANGDIKLAT' || this.value === 'superadmin' ) {
                 kotaSelect.disabled = true;
                 dpdSelect.disabled = true;
                 bidangSelect.disabled = true;

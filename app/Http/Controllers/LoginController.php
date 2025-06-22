@@ -126,6 +126,8 @@ class LoginController extends Controller
         } else {
             if ($req->dpw === 'PUSBANGDIKLAT') {
                 $username = 'pusbangdiklat';
+            } elseif ($req->dpw === 'superadmin') {
+                $username = 'superadmin';
             } else {
                 $username = Dpw::where('bidang', $req->bidang)->first()->user->username;
             }

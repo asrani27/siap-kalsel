@@ -15,7 +15,7 @@
 
                     <h3 class="card-title">
                         <i class="fa fa-list"></i>
-                        Tambah Data
+                        Edit Data
                     </h3>
                     <div class="card-tools">
 
@@ -31,11 +31,21 @@
                             <input type="text" class="form-control" name="" value="{{$data->created_at}}" readonly>
                         </div>
                         <div class="form-group">
+                            <label>Kode Akun</label>
+                            <select class="form-control" name="coa">
+                                @foreach (coa() as $item)
+                                <option value="{{$item->kode}}" {{$data->coa == $item->kode ?
+                                    'selected':''}}>{{$item->kode}} - {{$item->nama}}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Uraian</label>
                             <input type="text" class="form-control" name="keterangan" value="{{$data->keterangan}}" />
                         </div>
                         <div class="form-group">
-                            <label>Pemasukan</label>
+                            <label>Penerimaan</label>
                             <input type="text" class="form-control" name="masuk" value="{{$data->masuk}}" onkeypress="
                                 return hanyaAngka(event)">
                         </div>

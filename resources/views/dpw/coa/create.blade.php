@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-12">
             <br />
-            <a href="/dpw/keuangan" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
+            <a href="/dpw/coa" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
                 Kembali
             </a><br /><br />
             <div class="card">
@@ -24,33 +24,29 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form method="post" action="/dpw/keuangan/create">
+                    <form method="post" action="/dpw/coa/create">
                         @csrf
                         <div class="form-group">
-                            <label>Tanggal</label>
-                            <input type="text" class="form-control" name="nama"
-                                value="{{\Carbon\Carbon::now()->format('d M Y H:i:s')}}" readonly>
+                            <label>Kode</label>
+                            <input type="text" class="form-control" name="kode">
                         </div>
                         <div class="form-group">
-                            <label>Kode Akun</label>
-                            <select class="form-control" name="coa">
-                                @foreach (coa() as $item)
-                                <option value="{{$item->kode}}">{{$item->kode}} - {{$item->nama}}</option>
-                                @endforeach
-                            </select>
+                            <label>Nama</label>
+                            <input type="text" class="form-control" name="nama">
                         </div>
                         <div class="form-group">
-                            <label>Uraian</label>
-                            <input type="text" class="form-control" name="keterangan" />
+                            <label>COA</label>
+                            <input type="text" class="form-control" name="coa">
                         </div>
                         <div class="form-group">
-                            <label>Penerimaan</label>
-                            <input type="text" class="form-control" name="masuk" onkeypress="return hanyaAngka(event)">
+                            <label>Penjelasan Umum</label>
+                            <input type="text" class="form-control" name="umum">
                         </div>
                         <div class="form-group">
-                            <label>Pengeluaran</label>
-                            <input type="text" class="form-control" name="keluar" onkeypress="return hanyaAngka(event)">
+                            <label>Penjelasan Khusus</label>
+                            <input type="text" class="form-control" name="khusus">
                         </div>
+
 
                         <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> SIMPAN</button>
 

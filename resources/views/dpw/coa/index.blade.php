@@ -7,14 +7,14 @@
     <div class="row">
         <div class="col-12">
             <br />
-            <a href="/dpw/keuangan/create" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i>
-                keuangan</a><br /><br />
+            <a href="/dpw/coa/create" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i>
+                coa</a><br /><br />
             <div class="card">
                 <div class="card-header" style="cursor: move;">
 
                     <h3 class="card-title">
                         <i class="fa fa-list"></i>
-                        Data keuangan
+                        Data COA
                     </h3>
                     <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 220px;">
@@ -35,31 +35,29 @@
                         <thead>
                             <tr style="border:1px solid black; font-size:14px" class="bg-primary">
                                 <th style="border:1px solid black">No</th>
-                                <th style="border:1px solid black">Tanggal</th>
+                                <th style="border:1px solid black">Kode</th>
+                                <th style="border:1px solid black">Nama</th>
                                 <th style="border:1px solid black">COA</th>
-                                <th style="border:1px solid black">Deskripsi</th>
-                                <th style="border:1px solid black">Penerimaan</th>
-                                <th style="border:1px solid black">Pengeluaran</th>
-                                <th style="border:1px solid black">Saldo</th>
+                                <th style="border:1px solid black">Penjelasan Umum</th>
+                                <th style="border:1px solid black">Penjelasan Khusus</th>
                                 <th style="border:1px solid black">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $key => $item)
                             <tr>
-                                <td>{{$data->firstItem() + $key}}</td>
-                                <td>{{\Carbon\Carbon::parse($item->created_at)->format('d M Y H:i:s')}}</td>
+                                <td>{{1 + $key}}</td>
+                                <td>{{$item->kode}}</td>
+                                <td>{{$item->nama}}</td>
                                 <td>{{$item->coa}}</td>
-                                <td>{{$item->keterangan}}</td>
-                                <td style="text-align: right">{{number_format($item->masuk)}}</td>
-                                <td style="text-align: right">{{number_format($item->keluar)}}</td>
-                                <td style="text-align: right">{{number_format($item->saldo)}}</td>
+                                <td>{{$item->umum}}</td>
+                                <td>{{$item->khusus}}</td>
                                 <td>
 
-                                    <a href="/dpw/keuangan/edit/{{$item->id}}" class="btn btn-xs btn-success text-bold">
+                                    <a href="/dpw/coa/edit/{{$item->id}}" class="btn btn-xs btn-success text-bold">
                                         EDIT
                                     </a>
-                                    <a href="/dpw/keuangan/delete/{{$item->id}}" class="btn btn-xs btn-danger text-bold"
+                                    <a href="/dpw/coa/delete/{{$item->id}}" class="btn btn-xs btn-danger text-bold"
                                         onclick="return confirm('Yakin ingin dihapus?');">
                                         HAPUS
                                     </a>
@@ -71,7 +69,6 @@
                 </div>
                 <!-- /.card-body -->
             </div>
-            {{$data->links()}}
         </div>
     </div>
 </div>

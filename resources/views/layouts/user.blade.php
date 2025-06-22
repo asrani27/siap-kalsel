@@ -88,6 +88,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <a href="/dpw/keuangan" class="nav-link {{request()->is('dpw/keuangan*') ? 'active':''}}"
                                 style="color: white"><i class="fa fa-money-bill"></i> KEUANGAN</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/dpw/coa" class="nav-link {{request()->is('dpw/coa*') ? 'active':''}}"
+                                style="color: white"><i class="fa fa-list"></i> COA</a>
+                        </li>
                         @endif
                         @if (Auth::user()->dpw->bidang == 'KESEKRETARIATAN')
                         <li class="nav-item">
