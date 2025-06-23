@@ -307,8 +307,8 @@
                                 @csrf
                                 <input type="text" class="form-control" name="link_lms" required placeholder="Link LMS"
                                     value="{{$data->link_lms}}">
-                                <input type="text" class="form-control" name="link_str" required
-                                    placeholder="Link STR (Surat Tanda Registrasi)" value="{{$data->link_str}}">
+                                {{-- <input type="text" class="form-control" name="link_str" required
+                                    placeholder="Link STR (Surat Tanda Registrasi)" value="{{$data->link_str}}"> --}}
                                 @if ($data->link_lms == null)
                                 <button type="submit" class="btn btn-xs btn-primary text-bold"><i
                                         class="fa fa-save"></i> Simpan Link

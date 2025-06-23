@@ -188,7 +188,7 @@ class PusbangdiklatController extends Controller
             return redirect('/pusbangdiklat/pengajuan/verifikasi/' . $id);
         } else {
             $data->link_lms = $req->link_lms;
-            $data->link_str = $req->link_str;
+            //$data->link_str = $req->link_str;
             $data->tanggal_link_lms = Carbon::now();
             $data->save();
             Session::flash('success', 'di verifikasi');

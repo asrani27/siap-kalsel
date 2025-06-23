@@ -252,8 +252,8 @@
                             @else
                             Link LMS : <a href="{{$data->link_lms}}" target="_blank"
                                 class="text-bold">{{$data->link_lms}}</a></br>
-                            Link STR :<a href="{{$data->link_str}}" target="_blank"
-                                class="text-bold">{{$data->link_str}}</a>
+                            {{-- Link STR :<a href="{{$data->link_str}}" target="_blank"
+                                class="text-bold">{{$data->link_str}}</a> --}}
                             @endif
                         </div>
                     </div>
