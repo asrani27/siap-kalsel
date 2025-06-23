@@ -138,7 +138,7 @@ class UserController extends Controller
         $data = Pengajuan::where('id', $id)
             ->where('user_id', Auth::user()->id) // Cek kepemilikan
             ->firstOrFail();
-        if (in_array(null, $data->only(['file1', 'file2', 'file3', 'file4', 'file5', 'file6', 'file7', 'file8', 'file9', 'file10']), true)) {
+        if (in_array(null, $data->only(['file1', 'file2', 'file3', 'file4', 'file5', 'file6', 'file7', 'file8']), true)) {
             Session::flash('error', 'File Upload harus di isi semua');
             return back();
         } else {

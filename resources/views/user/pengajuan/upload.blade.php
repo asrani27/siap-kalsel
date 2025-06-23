@@ -335,7 +335,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    {{-- <tr>
                         <td style="border:1px solid black">9</td>
                         <td style="border:1px solid black">Foto Narasumber Dan moderator <br /> narsum maks 4, moderator
                             maks
@@ -416,7 +416,7 @@
                             </div>
                             @endif
                         </td>
-                    </tr>
+                    </tr> --}}
                 </table>
             </div>
             <!-- /.card-body -->
