@@ -16,11 +16,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
+    @stack('css')
     <link rel="stylesheet" href="/assets/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="/notif/dist/css/iziToast.min.css">
     <script src="/notif/dist/js/iziToast.min.js" type="text/javascript"></script>
 
-    @stack('css')
     <style>
         .active {
             background-color: green;

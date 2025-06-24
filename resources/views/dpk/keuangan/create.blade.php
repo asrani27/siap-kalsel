@@ -1,5 +1,8 @@
 @extends('layouts.user')
 @push('css')
+<!-- Select2 -->
+<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
 @endpush
 @section('content')
@@ -33,7 +36,7 @@
                         </div>
                         <div class="form-group">
                             <label>Kode Akun</label>
-                            <select class="form-control" name="coa">
+                            <select class="form-control select2" name="coa">
                                 @foreach (coa() as $item)
                                 <option value="{{$item->kode}}">{{$item->kode}} - {{$item->nama}}</option>
                                 @endforeach
@@ -63,6 +66,8 @@
 </div>
 @endsection
 @push('js')
+
+<script src="/assets/plugins/select2/js/select2.full.min.js"></script>
 <script>
     function hanyaAngka(evt) {
       var charCode = (evt.which) ? evt.which : event.keyCode
@@ -71,5 +76,17 @@
         return false;
       return true;
     }
+</script>
+
+<script>
+    $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    });
+  });
 </script>
 @endpush
