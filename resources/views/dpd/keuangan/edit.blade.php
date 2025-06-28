@@ -58,7 +58,15 @@
                             <input type="text" class="form-control" name="keluar" value="{{$data->keluar}}" onkeypress="
                                 return hanyaAngka(event)">
                         </div>
-
+                        <div class="form-group">
+                            <label>Pajak</label>
+                            <select class="form-control select2" name="pajak">
+                                <option value="">-</option>
+                                <option value="21" {{$data->pajak == '21' ? 'selected':''}}>PPH 21</option>
+                                <option value="23" {{$data->pajak == '23' ? 'selected':''}}>PPH 23</option>
+                                <option value="25" {{$data->pajak == '25' ? 'selected':''}}>PPH 25</option>
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> SIMPAN</button>
 
                     </form>
