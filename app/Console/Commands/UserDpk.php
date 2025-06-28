@@ -38,7 +38,7 @@ class UserDpk extends Command
                 $n->username = '63' . $item->id;
                 $n->name = $item->nama;
                 $n->password = Hash::make('admindpk');
-                $n->roles = 'dpd';
+                $n->roles = 'dpk';
                 $n->save();
 
                 $item->update(['user_id' => $n->id]);
