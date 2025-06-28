@@ -123,7 +123,7 @@ class LoginController extends Controller
             } else {
                 if (Dpk::where('nama', $req->dpd)->where('kota', $req->kota)->where('bidang', $req->bidang)->first() == null) {
                     Session::flash('error', 'Akun bidang belum dibuat');
-                    return redirect('/');
+                    return redirect('/login');
                 } else {
 
                     $username = Dpk::where('nama', $req->dpd)->where('kota', $req->kota)->where('bidang', $req->bidang)->first()->user->username;
