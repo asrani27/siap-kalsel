@@ -775,8 +775,27 @@ class DPDController extends Controller
         // Hitung saldo secara akurat dengan iterasi dari awal
         $saldo = 0;
         $allKeuangans->each(function ($keuangan) use (&$saldo) {
-            $saldo += $keuangan->masuk - $keuangan->keluar;
-            $keuangan->saldo = $saldo; // Set saldo untuk setiap transaksi
+            $pajak = 0;
+
+            if (!is_null($keuangan->pajak)) {
+                $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+
+                if ($keuangan->masuk > 0) {
+                    $pajak = $keuangan->masuk * $persenPajak;
+                    $nettoMasuk = $keuangan->masuk - $pajak;
+                    $saldo += $nettoMasuk;
+                } elseif ($keuangan->keluar > 0) {
+                    $pajak = $keuangan->keluar * $persenPajak;
+                    $totalKeluar = $keuangan->keluar + $pajak;
+                    $saldo -= $totalKeluar;
+                }
+            } else {
+                // Tidak ada pajak
+                $saldo += $keuangan->masuk - $keuangan->keluar;
+            }
+
+            $keuangan->nilai_pajak = $pajak; // Pajak yang dihitung aktual
+            $keuangan->saldo = $saldo;
         });
 
         $allKeuangans = $allKeuangans->sortByDesc('created_at')->values();
@@ -805,8 +824,18 @@ class DPDController extends Controller
     }
     public function keuangan_store(Request $req)
     {
+        if ($req->pajak == '21') {
+            $nilai_pajak = 5;
+        }
+        if ($req->pajak == '23') {
+            $nilai_pajak = 2;
+        }
+        if ($req->pajak == '25') {
+            $nilai_pajak = 20;
+        }
         $param = $req->all();
         $param['user_id'] = Auth::user()->id;
+        $param['nilai_pajak'] = $nilai_pajak;
         Keuangan::create($param);
         Session::flash('success', 'Berhasil Disimpan');
         return redirect('/dpd/keuangan');
@@ -824,7 +853,20 @@ class DPDController extends Controller
             ->where('user_id', Auth::user()->id) // Cek kepemilikan
             ->firstOrFail();
 
-        $data->update($req->all());
+        if ($req->pajak == '21') {
+            $nilai_pajak = 5;
+        }
+        if ($req->pajak == '23') {
+            $nilai_pajak = 2;
+        }
+        if ($req->pajak == '25') {
+            $nilai_pajak = 20;
+        }
+        $param = $req->all();
+        $param['user_id'] = Auth::user()->id;
+        $param['nilai_pajak'] = $nilai_pajak;
+
+        $data->update($param);
         Session::flash('success', 'Berhasil Diupdate');
         return redirect('/dpd/keuangan');
     }

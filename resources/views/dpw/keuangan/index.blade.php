@@ -58,7 +58,7 @@
                                     @if ($item->pajak == null)
 
                                     @else
-                                    PPH {{$item->pajak}}
+                                    PPH {{$item->pajak}} - Rp. {{number_format($item->nilai_pajak)}}
                                     @endif
                                 </td>
                                 <td style="text-align: right">{{number_format($item->saldo)}}</td>

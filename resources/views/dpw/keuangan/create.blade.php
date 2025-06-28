@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <label>Pajak</label>
                             <select class="form-control select2" name="pajak">
-                                <option value=""></option>
+                                <option value="">-</option>
                                 <option value="21">PPH 21</option>
                                 <option value="23">PPH 23</option>
                                 <option value="25">PPH 25</option>

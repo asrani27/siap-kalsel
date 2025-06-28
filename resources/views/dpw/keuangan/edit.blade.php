@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label>Pajak</label>
                             <select class="form-control select2" name="pajak">
-                                <option value=""></option>
+                                <option value="">-</option>
                                 <option value="21" {{$data->pajak == '21' ? 'selected':''}}>PPH 21</option>
                                 <option value="23" {{$data->pajak == '23' ? 'selected':''}}>PPH 23</option>
                                 <option value="25" {{$data->pajak == '25' ? 'selected':''}}>PPH 25</option>
