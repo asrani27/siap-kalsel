@@ -40,6 +40,7 @@
                                 <th style="border:1px solid black">Deksripsi</th>
                                 <th style="border:1px solid black">Penerimaan</th>
                                 <th style="border:1px solid black">Pengeluaran</th>
+                                <th style="border:1px solid black">Pajak</th>
                                 <th style="border:1px solid black">Saldo</th>
                                 <th style="border:1px solid black">Aksi</th>
                             </tr>
@@ -53,6 +54,13 @@
                                 <td>{{$item->keterangan}}</td>
                                 <td style="text-align: right">{{number_format($item->masuk)}}</td>
                                 <td style="text-align: right">{{number_format($item->keluar)}}</td>
+                                <td style="text-align: right">
+                                    @if ($item->pajak == null)
+
+                                    @else
+                                    PPH {{$item->pajak}} - Rp. {{number_format($item->nilai_pajak)}}
+                                    @endif
+                                </td>
                                 <td style="text-align: right">{{number_format($item->saldo)}}</td>
                                 <td>
 
