@@ -18,7 +18,7 @@ class LoginController extends Controller
     public function getDpk($kota_id)
     {
         // Ambil daftar kota berdasarkan provinsi_id
-        $dpk = Dpk::where('kota', $kota_id)->where('bidang', null)->get();
+        $dpk = Dpk::where('kota', 'LIKE', '%' . $kota_id . '%')->where('bidang', null)->get();
 
         // Mengembalikan data sebagai response JSON
         return response()->json($dpk);

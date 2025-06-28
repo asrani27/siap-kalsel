@@ -37,7 +37,7 @@ class UserDpk extends Command
                 $n = new User();
                 $n->username = '63' . $item->id;
                 $n->name = $item->nama;
-                $n->password = Hash::make('admindpd');
+                $n->password = Hash::make('admindpk');
                 $n->roles = 'dpd';
                 $n->save();
 
