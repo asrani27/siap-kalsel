@@ -1051,6 +1051,7 @@ class DPWController extends Controller
                 $sampai . ' 23:59:59'
             ])
             ->groupBy('coa', 'coa_name')
+            ->havingRaw('SUM(masuk) > 0')
             ->get();
 
         $pengeluaran =  DB::table('keuangan')
@@ -1061,6 +1062,7 @@ class DPWController extends Controller
                 $sampai . ' 23:59:59'
             ])
             ->groupBy('coa', 'coa_name')
+            ->havingRaw('SUM(keluar) > 0')
             ->get();
 
         $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai'));
