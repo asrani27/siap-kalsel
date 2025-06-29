@@ -137,6 +137,7 @@ Route::middleware(['auth', 'dpd'])->group(function () {
 
 
     Route::get('/dpd/keuangan', [DPDController::class, 'keuangan']);
+    Route::get('/dpd/keuangan/laporan', [DPDController::class, 'laporan']);
     Route::get('/dpd/keuangan/create', [DPDController::class, 'keuangan_create']);
     Route::post('/dpd/keuangan/create', [DPDController::class, 'keuangan_store']);
     Route::get('/dpd/keuangan/edit/{id}', [DPDController::class, 'keuangan_edit']);
@@ -200,6 +201,7 @@ Route::middleware(['auth', 'dpk'])->group(function () {
     Route::get('/dpk/aset/delete/{id}', [DPKController::class, 'aset_delete']);
 
     Route::get('/dpk/keuangan', [DPKController::class, 'keuangan']);
+    Route::get('/dpk/keuangan/laporan', [DPKController::class, 'laporan']);
     Route::get('/dpk/keuangan/create', [DPKController::class, 'keuangan_create']);
     Route::post('/dpk/keuangan/create', [DPKController::class, 'keuangan_store']);
     Route::get('/dpk/keuangan/edit/{id}', [DPKController::class, 'keuangan_edit']);
@@ -278,6 +280,7 @@ Route::middleware(['auth', 'dpw'])->group(function () {
     Route::get('/dpw/aset/delete/{id}', [DPWController::class, 'aset_delete']);
 
     Route::get('/dpw/keuangan', [DPWController::class, 'keuangan']);
+    Route::get('/dpw/keuangan/laporan', [DPWController::class, 'laporan']);
     Route::get('/dpw/keuangan/create', [DPWController::class, 'keuangan_create']);
     Route::post('/dpw/keuangan/create', [DPWController::class, 'keuangan_store']);
     Route::get('/dpw/keuangan/edit/{id}', [DPWController::class, 'keuangan_edit']);

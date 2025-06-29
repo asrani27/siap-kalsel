@@ -14,6 +14,8 @@ use App\Models\SuratKeluar;
 use App\Models\RfkDetailSub;
 use Illuminate\Http\Request;
 use App\Models\SuratKeputusan;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -993,5 +995,34 @@ class DPKController extends Controller
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
         return redirect('/dpk/surat-nt');
+    }
+
+    public function laporan()
+    {
+        $mulai = request()->get('mulai');
+        $sampai = request()->get('sampai');
+
+        $penerimaan =  DB::table('keuangan')
+            ->select('coa', 'coa_name', DB::raw('SUM(masuk) as total_penerimaan'))
+            ->where('user_id', Auth::user()->id)
+            ->whereBetween('created_at', [
+                $mulai . ' 00:00:00',
+                $sampai . ' 23:59:59'
+            ])
+            ->groupBy('coa', 'coa_name')
+            ->get();
+
+        $pengeluaran =  DB::table('keuangan')
+            ->select('coa', 'coa_name', DB::raw('SUM(keluar) as total_pengeluaran'))
+            ->where('user_id', Auth::user()->id)
+            ->whereBetween('created_at', [
+                $mulai . ' 00:00:00',
+                $sampai . ' 23:59:59'
+            ])
+            ->groupBy('coa', 'coa_name')
+            ->get();
+
+        $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai'));
+        return $pdf->stream();
     }
 }

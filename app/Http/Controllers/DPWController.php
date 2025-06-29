@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\COA;
 use App\Models\RFK;
 use App\Models\Aset;
 use App\Models\Anggota;
-use App\Models\COA;
+use App\Models\SuratNT;
 use App\Models\Keuangan;
 use App\Models\RfkDetail;
 use App\Models\SuratMasuk;
 use App\Models\SuratKeluar;
 use App\Models\RfkDetailSub;
-use App\Models\SuratKeputusan;
-use App\Models\SuratNT;
 use Illuminate\Http\Request;
+use App\Models\SuratKeputusan;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -941,7 +943,7 @@ class DPWController extends Controller
             $nilai_pajak = null;
         }
         $param = $req->all();
-        
+
         $param['user_id'] = Auth::user()->id;
         $param['nilai_pajak'] = $nilai_pajak;
         $param['coa_name'] = COA::where('kode', $req->coa)->first()->nama ?? null;
@@ -975,7 +977,7 @@ class DPWController extends Controller
             $nilai_pajak = null;
         }
         $param = $req->all();
-        
+
         $param['user_id'] = Auth::user()->id;
         $param['nilai_pajak'] = $nilai_pajak;
         $param['coa_name'] = COA::where('kode', $req->coa)->first()->nama ?? null;
@@ -1035,5 +1037,33 @@ class DPWController extends Controller
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
         return redirect('/dpw/coa');
+    }
+    public function laporan()
+    {
+        $mulai = request()->get('mulai');
+        $sampai = request()->get('sampai');
+
+        $penerimaan =  DB::table('keuangan')
+            ->select('coa', 'coa_name', DB::raw('SUM(masuk) as total_penerimaan'))
+            ->where('user_id', Auth::user()->id)
+            ->whereBetween('created_at', [
+                $mulai . ' 00:00:00',
+                $sampai . ' 23:59:59'
+            ])
+            ->groupBy('coa', 'coa_name')
+            ->get();
+
+        $pengeluaran =  DB::table('keuangan')
+            ->select('coa', 'coa_name', DB::raw('SUM(keluar) as total_pengeluaran'))
+            ->where('user_id', Auth::user()->id)
+            ->whereBetween('created_at', [
+                $mulai . ' 00:00:00',
+                $sampai . ' 23:59:59'
+            ])
+            ->groupBy('coa', 'coa_name')
+            ->get();
+
+        $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai'));
+        return $pdf->stream();
     }
 }

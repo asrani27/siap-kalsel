@@ -7,8 +7,23 @@
     <div class="row">
         <div class="col-12">
             <br />
-            <a href="/dpw/keuangan/create" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i>
-                keuangan</a><br /><br />
+            <div class="row">
+                <div class="col-md-9 col-sm-6 col-12">
+                    <form method="get" action="/dpw/keuangan/laporan" target="_blank">
+                        @csrf
+                        <input type="date" name="mulai" value="{{\carbon\carbon::now()->format('Y-m-d')}}">
+                        <input type="date" name="sampai" value="{{\carbon\carbon::now()->format('Y-m-d')}}">
+                        <button type="submit" class="btn btn-sm btn-secondary">Laporan</button>
+                    </form>
+                </div>
+                <!-- /.col -->
+                <div class="col-md-3 col-sm-6 col-12 text-right">
+                    <a href="/dpk/keuangan/create" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i>
+                        keuangan</a>
+                </div>
+
+            </div>
+            <br />
             <div class="card">
                 <div class="card-header" style="cursor: move;">
 
