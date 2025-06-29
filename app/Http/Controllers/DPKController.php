@@ -838,16 +838,16 @@ class DPKController extends Controller
         }
         if ($req->pajak == '25') {
             $nilai_pajak = 20;
-        } 
+        }
         if ($req->pajak == null) {
             $nilai_pajak = null;
         }
         $param = $req->all();
-        
+
         $param['user_id'] = Auth::user()->id;
         $param['nilai_pajak'] = $nilai_pajak;
         $param['coa_name'] = COA::where('kode', $req->coa)->first()->nama ?? null;
-        
+
         Keuangan::create($param);
         Session::flash('success', 'Berhasil Disimpan');
         return redirect('/dpk/keuangan');
@@ -857,6 +857,8 @@ class DPKController extends Controller
         $data = Keuangan::where('id', $id)
             ->where('user_id',  Auth::user()->id)
             ->firstOrFail();
+
+
         return view('dpk.keuangan.edit', compact('data'));
     }
     public function keuangan_update(Request $req, $id)
@@ -878,10 +880,10 @@ class DPKController extends Controller
             $nilai_pajak = null;
         }
         $param = $req->all();
-        
         $param['user_id'] = Auth::user()->id;
         $param['nilai_pajak'] = $nilai_pajak;
         $param['coa_name'] = COA::where('kode', $req->coa)->first()->nama ?? null;
+
 
         $data->update($param);
         Session::flash('success', 'Berhasil Diupdate');

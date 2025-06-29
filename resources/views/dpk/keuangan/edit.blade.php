@@ -35,13 +35,12 @@
                         </div>
                         <div class="form-group">
                             <label>Kode Akun</label>
+
                             <select class="form-control select2" name="coa">
-                               
-                             @foreach (coa() as $item)
-                             
-                                <option value="{{$item->kode}}" {{$item->kode == $data->coa ?
-                                    'selected':''}}>{{$item->kode}} - {{$item->nama}}
-                                </option>
+                                @foreach (coa() as $item)
+                                <option value="{{$item->kode}}" {{$item->kode === $data->coa ?
+                                    'selected':''}}>{{$item->kode}} - {{$item->nama}}</option>
+
                                 @endforeach
                             </select>
                         </div>
