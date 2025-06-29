@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\COA;
 use App\Models\RFK;
 use App\Models\Aset;
 use App\Models\Anggota;
@@ -837,10 +838,16 @@ class DPKController extends Controller
         }
         if ($req->pajak == '25') {
             $nilai_pajak = 20;
+        } 
+        if ($req->pajak == null) {
+            $nilai_pajak = null;
         }
         $param = $req->all();
+        
         $param['user_id'] = Auth::user()->id;
         $param['nilai_pajak'] = $nilai_pajak;
+        $param['coa_name'] = COA::where('kode', $req->coa)->first()->nama ?? null;
+        
         Keuangan::create($param);
         Session::flash('success', 'Berhasil Disimpan');
         return redirect('/dpk/keuangan');
@@ -867,9 +874,14 @@ class DPKController extends Controller
         if ($req->pajak == '25') {
             $nilai_pajak = 20;
         }
+        if ($req->pajak == null) {
+            $nilai_pajak = null;
+        }
         $param = $req->all();
+        
         $param['user_id'] = Auth::user()->id;
         $param['nilai_pajak'] = $nilai_pajak;
+        $param['coa_name'] = COA::where('kode', $req->coa)->first()->nama ?? null;
 
         $data->update($param);
         Session::flash('success', 'Berhasil Diupdate');
