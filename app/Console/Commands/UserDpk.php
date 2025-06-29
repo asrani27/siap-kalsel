@@ -29,10 +29,12 @@ class UserDpk extends Command
      */
     public function handle()
     {
-        $dpkList = Dpd::where('bidang', '!=', null)->get();
+        $dpkList = Dpk::where('bidang', '!=', null)->get();
 
         foreach ($dpkList as $item) {
-            $check = User::where('username', $item->id)->first();
+            
+            $check = User::where('username', '63' . $item->id)->first();
+            
             if ($check == null) {
                 $n = new User();
                 $n->username = '63' . $item->id;

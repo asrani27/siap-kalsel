@@ -41,8 +41,8 @@ class ImportDpk extends Command
             'KEBENDAHARAAN / KEUANGAN',
         ];
 
-        // Ambil semua data DPK sekali saja
-        $dpkList = Dpk::get();
+        // Ambil semua data DPK sekali saja.
+        $dpkList = Dpk::where('bidang',null)->get();
 
         // Iterasi setiap bidang
         foreach ($bidangList as $bidang) {
