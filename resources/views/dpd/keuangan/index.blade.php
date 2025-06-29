@@ -18,7 +18,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-md-3 col-sm-6 col-12 text-right">
-                    <a href="/dpk/keuangan/create" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i>
+                    <a href="/dpd/keuangan/create" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i>
                         keuangan</a>
                 </div>
 
