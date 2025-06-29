@@ -51,3 +51,7 @@ function coa()
 {
     return COA::get();
 }
+function coa_name($coa)
+{
+    return COA::where('kode', $coa)->first();
+}
