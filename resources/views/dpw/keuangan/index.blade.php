@@ -50,7 +50,7 @@
                             <tr>
                                 <td>{{$data->firstItem() + $key}}</td>
                                 <td>{{\Carbon\Carbon::parse($item->created_at)->format('d M Y H:i:s')}}</td>
-                                <td>{{$item->coa}}</td>
+                                <td>{{$item->coa}} - {{$item->coa_name}}</td>
                                 <td>{{$item->keterangan}}</td>
                                 <td style="text-align: right">{{number_format($item->masuk)}}</td>
                                 <td style="text-align: right">{{number_format($item->keluar)}}</td>
