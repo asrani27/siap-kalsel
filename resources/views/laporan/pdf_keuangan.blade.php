@@ -66,7 +66,7 @@
         <tr style="font-size:12px">
             <td>{{$key + 1}}</td>
             <td>{{$item->coa}}</td>
-            <td>{{$item->coa_name}}</td>
+            <td>{{coa_name($item->coa) == null ? null : coa_name($item->coa)->nama}}</td>
             <td style="text-align: right">{{number_format($item->total_pengeluaran)}}</td>
         </tr>
         @endforeach
