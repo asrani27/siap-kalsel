@@ -31,8 +31,8 @@
                         @csrf
                         <div class="form-group">
                             <label>Tanggal</label>
-                            <input type="text" class="form-control" name="nama"
-                                value="{{\Carbon\Carbon::now()->format('d M Y H:i:s')}}" readonly>
+                            <input type="date" class="form-control" name="created_at"
+                                value="{{\Carbon\Carbon::now()->format('Y-m-d')}}">
                         </div>
                         <div class="form-group">
                             <label>Kode Akun</label>
