@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\COA;
 use App\Models\RFK;
 use App\Models\Aset;
@@ -844,6 +845,7 @@ class DPDController extends Controller
         $param['user_id'] = Auth::user()->id;
         $param['nilai_pajak'] = $nilai_pajak;
         $param['coa_name'] = COA::where('kode', $req->coa)->first()->nama ?? null;
+        $param['created_at'] = $req->created_at . ' ' . Carbon::now()->format('H:i:s');
         Keuangan::create($param);
         Session::flash('success', 'Berhasil Disimpan');
         return redirect('/dpd/keuangan');
@@ -1013,7 +1015,42 @@ class DPDController extends Controller
             ->groupBy('coa', 'coa_name')
             ->get();
 
-        $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai'));
+        $allKeuangans = Keuangan::where('user_id',  Auth::user()->id)->orderBy('created_at', 'asc')->get();
+
+        // Hitung saldo secara akurat dengan iterasi dari awal
+        $saldo = 0;
+        $allKeuangans->each(function ($keuangan) use (&$saldo) {
+            $pajak = 0;
+
+            if (!is_null($keuangan->pajak)) {
+                $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+
+                if ($keuangan->masuk > 0) {
+                    $pajak = $keuangan->masuk * $persenPajak;
+                    $nettoMasuk = $keuangan->masuk - $pajak;
+                    $saldo += $nettoMasuk;
+                } elseif ($keuangan->keluar > 0) {
+                    $pajak = $keuangan->keluar * $persenPajak;
+                    $totalKeluar = $keuangan->keluar + $pajak;
+                    $saldo -= $totalKeluar;
+                }
+            } else {
+                // Tidak ada pajak
+                $saldo += $keuangan->masuk - $keuangan->keluar;
+            }
+
+            $keuangan->nilai_pajak = $pajak; // Pajak yang dihitung aktual
+            $keuangan->saldo = $saldo;
+        });
+
+        $pajak = $allKeuangans->groupBy('coa')->map(function ($items) {
+            return $items->sum('nilai_pajak');
+        })->filter(function ($totalPajak) {
+            return $totalPajak > 0;
+        });
+
+
+        $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai', 'pajak'));
         return $pdf->stream();
     }
 }

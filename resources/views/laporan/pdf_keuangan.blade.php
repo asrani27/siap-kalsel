@@ -74,6 +74,22 @@
             <th colspan="3">TOTAL PENGELUARAN</th>
             <th style="text-align: right">{{number_format($pengeluaran->sum('total_pengeluaran'))}}</th>
         </tr>
+
+        <tr>
+            <td colspan="4" style="text-align: center; font-weight:bold">PAJAK</td>
+        </tr>
+        @php
+        $nopajak = 1;
+        @endphp
+        @foreach ($pajak as $key => $item)
+        <tr style="font-size:12px">
+            <td>{{$nopajak++}}</td>
+            <td>{{$key}}</td>
+            <td>{{coa_name($key) == null ? null : coa_name($key)->nama}}</td>
+            <td style="text-align: right">{{number_format($item)}}</td>
+        </tr>
+        @endforeach
+
         <tr style="background-color: rgb(193, 195, 195);font-size:14px">
             <th colspan="3">SURPLUS/DEFISIT OPERASIONAL</th>
             <th style="text-align: right">{{number_format($penerimaan->sum('total_penerimaan') -
