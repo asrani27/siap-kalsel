@@ -836,6 +836,7 @@ class DPWController extends Controller
     }
     public function keuangan_lain_get()
     {
+
         if (request()->get('button') == 'pdf') {
             $kabkota = request()->get('kota');
             if (request()->get('dpd') == 'DPD') {
@@ -849,9 +850,70 @@ class DPWController extends Controller
                 $user_id = Dpk::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->where('nama', request()->get('dpd'))->first()->user_id;
             }
 
-            $data = Keuangan::where('user_id', $user_id)->get();
 
-            $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('data', 'user_id'))->setPaper('a4', 'landscape');
+
+            $mulai = request()->get('mulai');
+            $sampai = request()->get('sampai');
+
+            $penerimaan =  DB::table('keuangan')
+                ->select('coa', 'coa_name', DB::raw('SUM(masuk) as total_penerimaan'))
+                ->where('user_id', $user_id)
+                ->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])
+                ->groupBy('coa', 'coa_name')
+                ->havingRaw('SUM(masuk) > 0')
+                ->get();
+
+            $pengeluaran =  DB::table('keuangan')
+                ->select('coa', 'coa_name', DB::raw('SUM(keluar) as total_pengeluaran'))
+                ->where('user_id', $user_id)
+                ->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])
+                ->groupBy('coa', 'coa_name')
+                ->havingRaw('SUM(keluar) > 0')
+                ->get();
+            $allKeuangans = Keuangan::where('user_id',  $user_id)->whereBetween('created_at', [
+                $mulai . ' 00:00:00',
+                $sampai . ' 23:59:59'
+            ])->orderBy('created_at', 'asc')->get();
+
+            // Hitung saldo secara akurat dengan iterasi dari awal
+            $saldo = 0;
+            $allKeuangans->each(function ($keuangan) use (&$saldo) {
+                $pajak = 0;
+
+                if (!is_null($keuangan->pajak)) {
+                    $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+
+                    if ($keuangan->masuk > 0) {
+                        $pajak = $keuangan->masuk * $persenPajak;
+                        $nettoMasuk = $keuangan->masuk - $pajak;
+                        $saldo += $nettoMasuk;
+                    } elseif ($keuangan->keluar > 0) {
+                        $pajak = $keuangan->keluar * $persenPajak;
+                        $totalKeluar = $keuangan->keluar + $pajak;
+                        $saldo -= $totalKeluar;
+                    }
+                } else {
+                    // Tidak ada pajak
+                    $saldo += $keuangan->masuk - $keuangan->keluar;
+                }
+
+                $keuangan->nilai_pajak = $pajak; // Pajak yang dihitung aktual
+                $keuangan->saldo = $saldo;
+            });
+
+            $pajak = $allKeuangans->groupBy('coa')->map(function ($items) {
+                return $items->sum('nilai_pajak');
+            })->filter(function ($totalPajak) {
+                return $totalPajak > 0;
+            });
+
+            $pdf = Pdf::loadView('laporan.pdf_keuangan_lain', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai', 'pajak', 'user_id'));
             return $pdf->stream();
         } else {
             $kabkota = request()->get('kota');
