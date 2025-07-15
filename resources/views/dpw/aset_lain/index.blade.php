@@ -61,7 +61,7 @@
                                 <td>{{ $item->tahun }}</td>
                                 <td style="text-align: right">{{ number_format($item->harga) }}</td>
                                 <td>{{ $item->kondisi }}</td>
-                                <td style="text-align: right">{{ number_format($item->penyusutan) }}</td>
+                                <td>{{$item->penyusutan }}</td>
                             </tr>
                             @endforeach
                             <tr style="background-color: rgb(194, 243, 230)">
@@ -73,7 +73,7 @@
                                 <td>TOTAL</td>
                                 <td style="text-align: right">{{ number_format($data->sum('harga')) }}</td>
                                 <td></td>
-                                <td style="text-align: right">{{ number_format($data->sum('penyusutan')) }}</td>
+                                <td></td>
                             </tr>
                             @endif
                         </tbody>
