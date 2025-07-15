@@ -3,6 +3,7 @@
 use Carbon\Carbon;
 use App\Models\COA;
 use App\Models\Skpd;
+use App\Models\User;
 use App\Models\Bidang;
 use App\Models\Invoice;
 use App\Models\Pengajuan;
@@ -46,7 +47,15 @@ function skpd()
 {
     return Skpd::get();
 }
-
+function dpd_dpk($user_id)
+{
+    if (User::find($user_id)->dpd == null) {
+        $nama = User::find($user_id)->dpk->nama;
+    } else {
+        $nama = User::find($user_id)->dpd->nama . ' ' . User::find($user_id)->dpd->kota;
+    }
+    return $nama;
+}
 function coa()
 {
     return COA::get();

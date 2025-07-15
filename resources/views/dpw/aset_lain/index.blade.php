@@ -25,7 +25,9 @@
                         {{-- Opsi ini akan diisi ulang via JavaScript --}}
                     </select>
                 </div>
-                <button type="submit" class="btn btn-sm btn-primary">Tampilkan Data</button>
+                <button type="submit" name="button" value="tampilkan" class="btn btn-sm btn-primary">Tampilkan
+                    Data</button>
+                <button type="submit" name="button" value="pdf" class="btn btn-sm btn-danger">PDF</button>
             </form>
             <br />
             <div class="card">

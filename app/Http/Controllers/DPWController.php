@@ -835,23 +835,42 @@ class DPWController extends Controller
     }
     public function aset_lain_get()
     {
-        $kabkota = request()->get('kota');
-        if (request()->get('dpd') == 'DPD') {
-            $jenis = 'DPD';
-        } else {
-            $jenis = 'DPK';
-        }
-        if ($jenis == 'DPD') {
-            $user_id = Dpd::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->first()->user_id;
-        } else {
-            $user_id = Dpk::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->where('nama', request()->get('dpd'))->first()->user_id;
-        }
+        if (request()->get('button') == 'pdf') {
+            $kabkota = request()->get('kota');
+            if (request()->get('dpd') == 'DPD') {
+                $jenis = 'DPD';
+            } else {
+                $jenis = 'DPK';
+            }
+            if ($jenis == 'DPD') {
+                $user_id = Dpd::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->first()->user_id;
+            } else {
+                $user_id = Dpk::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->where('nama', request()->get('dpd'))->first()->user_id;
+            }
 
-        $data = Aset::where('user_id', $user_id)->get();
+            $data = Aset::where('user_id', $user_id)->get();
 
-        $kota = Kota::get();
-        request()->flash();
-        return view('dpw.aset_lain.index', compact('data', 'kota'));
+            $pdf = Pdf::loadView('laporan.pdf_aset', compact('data', 'user_id'))->setPaper('a4', 'landscape');
+            return $pdf->stream();
+        } else {
+            $kabkota = request()->get('kota');
+            if (request()->get('dpd') == 'DPD') {
+                $jenis = 'DPD';
+            } else {
+                $jenis = 'DPK';
+            }
+            if ($jenis == 'DPD') {
+                $user_id = Dpd::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->first()->user_id;
+            } else {
+                $user_id = Dpk::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->where('nama', request()->get('dpd'))->first()->user_id;
+            }
+
+            $data = Aset::where('user_id', $user_id)->get();
+
+            $kota = Kota::get();
+            request()->flash();
+            return view('dpw.aset_lain.index', compact('data', 'kota'));
+        }
     }
     public function aset()
     {
