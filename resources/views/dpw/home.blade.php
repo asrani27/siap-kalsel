@@ -49,6 +49,10 @@
                     </a>
                     @endif
                     @if(Auth::user()->dpw->bidang == 'KEBENDAHARAAN / KEUANGAN')
+
+                    <a href="/dpw/aset_lain" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-cubes"></i> <strong>LIHAT ASET LAIN</strong>
+                    </a>
                     <a href="/dpw/aset" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
                         <i class="fa fa-cubes"></i> <strong>ASET</strong>
                     </a>

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dpd;
+use App\Models\Dpk;
 use App\Models\COA;
 use App\Models\RFK;
 use App\Models\Aset;
+use App\Models\Kota;
 use App\Models\Anggota;
 use App\Models\SuratNT;
 use App\Models\Keuangan;
@@ -824,7 +827,32 @@ class DPWController extends Controller
         Session::flash('success', 'Berhasil Dihapus');
         return redirect('/dpw/anggota');
     }
+    public function aset_lain()
+    {
+        $data = null;
+        $kota = Kota::get();
+        return view('dpw.aset_lain.index', compact('data', 'kota'));
+    }
+    public function aset_lain_get()
+    {
+        $kabkota = request()->get('kota');
+        if (request()->get('dpd') == 'DPD') {
+            $jenis = 'DPD';
+        } else {
+            $jenis = 'DPK';
+        }
+        if ($jenis == 'DPD') {
+            $user_id = Dpd::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->first()->user_id;
+        } else {
+            $user_id = Dpk::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->where('nama', request()->get('dpd'))->first()->user_id;
+        }
 
+        $data = Aset::where('user_id', $user_id)->get();
+
+        $kota = Kota::get();
+        request()->flash();
+        return view('dpw.aset_lain.index', compact('data', 'kota'));
+    }
     public function aset()
     {
         $data = Aset::where('user_id', Auth::user()->id)
