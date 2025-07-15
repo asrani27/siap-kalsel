@@ -281,6 +281,8 @@ Route::middleware(['auth', 'dpw'])->group(function () {
     Route::post('/dpw/aset/edit/{id}', [DPWController::class, 'aset_update']);
     Route::get('/dpw/aset/delete/{id}', [DPWController::class, 'aset_delete']);
 
+    Route::get('/dpw/keuangan_lain/get', [DPWController::class, 'keuangan_lain_get']);
+    Route::get('/dpw/keuangan_lain', [DPWController::class, 'keuangan_lain']);
     Route::get('/dpw/keuangan', [DPWController::class, 'keuangan']);
     Route::get('/dpw/keuangan/laporan', [DPWController::class, 'laporan']);
     Route::get('/dpw/keuangan/create', [DPWController::class, 'keuangan_create']);

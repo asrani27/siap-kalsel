@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\COA;
 use App\Models\Dpd;
 use App\Models\Dpk;
-use App\Models\COA;
 use App\Models\RFK;
 use App\Models\Aset;
 use App\Models\Kota;
@@ -826,6 +827,100 @@ class DPWController extends Controller
         $data->delete();
         Session::flash('success', 'Berhasil Dihapus');
         return redirect('/dpw/anggota');
+    }
+    public function keuangan_lain()
+    {
+        $data = null;
+        $kota = Kota::get();
+        return view('dpw.keuangan_lain.index', compact('data', 'kota'));
+    }
+    public function keuangan_lain_get()
+    {
+        if (request()->get('button') == 'pdf') {
+            $kabkota = request()->get('kota');
+            if (request()->get('dpd') == 'DPD') {
+                $jenis = 'DPD';
+            } else {
+                $jenis = 'DPK';
+            }
+            if ($jenis == 'DPD') {
+                $user_id = Dpd::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->first()->user_id;
+            } else {
+                $user_id = Dpk::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->where('nama', request()->get('dpd'))->first()->user_id;
+            }
+
+            $data = Keuangan::where('user_id', $user_id)->get();
+
+            $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('data', 'user_id'))->setPaper('a4', 'landscape');
+            return $pdf->stream();
+        } else {
+            $kabkota = request()->get('kota');
+            if (request()->get('dpd') == 'DPD') {
+                $jenis = 'DPD';
+            } else {
+                $jenis = 'DPK';
+            }
+            if ($jenis == 'DPD') {
+                $user_id = Dpd::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->first()->user_id;
+            } else {
+                $user_id = Dpk::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->where('nama', request()->get('dpd'))->first()->user_id;
+            }
+
+
+            // Ambil semua transaksi agar saldo bisa dihitung dengan benar
+            $allKeuangans = Keuangan::where('user_id',  $user_id)->whereBetween('created_at', [
+                Carbon::parse(request()->get('mulai')),
+                Carbon::parse(request()->get('sampai'))
+            ])->orderBy('created_at', 'asc')->get();
+
+            // Hitung saldo secara akurat dengan iterasi dari awal
+            $saldo = 0;
+            $allKeuangans->each(function ($keuangan) use (&$saldo) {
+                $pajak = 0;
+
+                if (!is_null($keuangan->pajak)) {
+                    $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+
+                    if ($keuangan->masuk > 0) {
+                        $pajak = $keuangan->masuk * $persenPajak;
+                        $nettoMasuk = $keuangan->masuk - $pajak;
+                        $saldo += $nettoMasuk;
+                    } elseif ($keuangan->keluar > 0) {
+                        $pajak = $keuangan->keluar * $persenPajak;
+                        $totalKeluar = $keuangan->keluar + $pajak;
+                        $saldo -= $totalKeluar;
+                    }
+                } else {
+                    // Tidak ada pajak
+                    $saldo += $keuangan->masuk - $keuangan->keluar;
+                }
+
+                $keuangan->nilai_pajak = $pajak; // Pajak yang dihitung aktual
+                $keuangan->saldo = $saldo;
+            });
+
+            $allKeuangans = $allKeuangans->sortByDesc('created_at')->values();
+
+            // Paginasi manual
+            $perPage = 10; // Jumlah transaksi per halaman
+            $currentPage = request()->input('page', 1);
+            $offset = ($currentPage - 1) * $perPage;
+
+            // Ambil data sesuai halaman saat ini
+            $currentItems = $allKeuangans->slice($offset, $perPage)->values();
+
+            // Buat pagination dengan LengthAwarePaginator
+            $data = new LengthAwarePaginator(
+                $currentItems,
+                $allKeuangans->count(),
+                $perPage,
+                $currentPage,
+                ['path' => request()->url(), 'query' => request()->query()]
+            );
+            $kota = Kota::get();
+            request()->flash();
+            return view('dpw.keuangan_lain.index', compact('data', 'kota'));
+        }
     }
     public function aset_lain()
     {
