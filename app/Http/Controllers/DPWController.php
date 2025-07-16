@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\COA;
 use App\Models\Dpd;
 use App\Models\Dpk;
+use App\Models\Dpw;
 use App\Models\RFK;
 use App\Models\Aset;
 use App\Models\Kota;
@@ -850,8 +851,6 @@ class DPWController extends Controller
                 $user_id = Dpk::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->where('kota', $kabkota)->where('nama', request()->get('dpd'))->first()->user_id;
             }
 
-
-
             $mulai = request()->get('mulai');
             $sampai = request()->get('sampai');
 
@@ -914,6 +913,68 @@ class DPWController extends Controller
             });
 
             $pdf = Pdf::loadView('laporan.pdf_keuangan_lain', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai', 'pajak', 'user_id'));
+            return $pdf->stream();
+        }
+        if (request()->get('button') == 'global') {
+
+            $mulai = request()->get('mulai');
+            $sampai = request()->get('sampai');
+            $dpw = Dpw::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->get()->map(function ($item) use ($mulai, $sampai) {
+                $item->penerimaan = DB::table('keuangan')
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->where('user_id', $item->user_id)
+                    ->value(DB::raw('SUM(masuk)'));
+                $item->pengeluaran = DB::table('keuangan')
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->where('user_id', $item->user_id)
+                    ->value(DB::raw('SUM(keluar)'));
+                return $item;
+            });
+
+            $dpd = Dpd::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->get()->map(function ($item) use ($mulai, $sampai) {
+                $item->penerimaan = DB::table('keuangan')
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->where('user_id', $item->user_id)
+                    ->value(DB::raw('SUM(masuk)'));
+                $item->pengeluaran = DB::table('keuangan')
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->where('user_id', $item->user_id)
+                    ->value(DB::raw('SUM(keluar)'));
+                return $item;
+            });
+            $dpk = Dpk::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->get()->map(function ($item) use ($mulai, $sampai) {
+                $item->penerimaan = DB::table('keuangan')
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->where('user_id', $item->user_id)
+                    ->value(DB::raw('SUM(masuk)'));
+                $item->pengeluaran = DB::table('keuangan')
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->where('user_id', $item->user_id)
+                    ->value(DB::raw('SUM(keluar)'));
+                return $item;
+            });
+
+            $data = $dpw->merge($dpd)->merge($dpk);
+            //dd($data->take(4));
+            $pdf = Pdf::loadView('laporan.pdf_keuangan_global', compact('mulai', 'sampai', 'data'));
             return $pdf->stream();
         } else {
             $kabkota = request()->get('kota');

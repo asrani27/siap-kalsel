@@ -20,7 +20,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <select id="dpk" name="dpd" class="form-control" required>
+                    <select id="dpk" name="dpd" class="form-control">
                         <option value="">Pilih</option>
                     </select>
                 </div>
@@ -31,6 +31,7 @@
                 <button type="submit" name="button" value="tampilkan" class="btn btn-sm btn-primary">Tampilkan
                     Data</button>
                 <button type="submit" name="button" value="pdf" class="btn btn-sm btn-danger">PDF</button>
+                <button type="submit" name="button" value="global" class="btn btn-sm btn-danger">REKAP GLOBAL</button>
             </form>
             <br />
             {{-- <div class="row">
