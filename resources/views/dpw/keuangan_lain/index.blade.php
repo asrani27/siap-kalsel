@@ -31,7 +31,8 @@
                 <button type="submit" name="button" value="tampilkan" class="btn btn-sm btn-primary">Tampilkan
                     Data</button>
                 <button type="submit" name="button" value="pdf" class="btn btn-sm btn-danger">PDF</button>
-                <button type="submit" name="button" value="global" class="btn btn-sm btn-danger">REKAP GLOBAL</button>
+                <button type="submit" name="button" value="global" class="btn btn-sm btn-secondary">REKAP
+                    GLOBAL</button>
             </form>
             <br />
             {{-- <div class="row">
