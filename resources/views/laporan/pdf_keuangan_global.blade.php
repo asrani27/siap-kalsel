@@ -37,25 +37,27 @@
             <td colspan="3" style="text-align: center; font-weight:bold">PENERIMAAN</td>
         </tr>
         @php
-        $no =1;
+        $no_penerimaan =1;
+        $no_pengeluaran =1;
+        $no_pajak =1;
         @endphp
 
         @foreach ($dpw as $key => $item)
         <tr style="font-size:12px">
-            <td>{{$key + 1}}</td>
+            <td>{{$no_penerimaan++}}</td>
             <td>{{$item->nama}} {{$item->kota}}</td>
             <td style="text-align: right">{{number_format($item->penerimaan)}}</td>
         </tr>
         @endforeach
         @foreach ($dpd as $key => $item)
         <tr style="font-size:12px">
-            <td>{{$key + 1}}</td>
+            <td>{{$no_penerimaan++}}</td>
             <td style="padding-left: 20px">{{$item->nama}} {{$item->kota}}</td>
             <td style="text-align: right">{{number_format($item->penerimaan)}}</td>
         </tr>
         @foreach ($dpk->where('kota', $item->kota) as $keydpk => $itemdpk)
         <tr style="font-size:12px">
-            <td>{{$keydpk + 1}}</td>
+            <td>{{$no_penerimaan++}}</td>
             <td style="padding-left: 40px">{{$itemdpk->nama}} {{$itemdpk->kota}}</td>
             <td style="text-align: right">{{number_format($itemdpk->penerimaan)}}</td>
         </tr>
@@ -77,21 +79,21 @@
         </tr>
         @foreach ($dpw as $key => $item)
         <tr style="font-size:12px">
-            <td>{{$key + 1}}</td>
+            <td>{{$no_pengeluaran++}}</td>
             <td>{{$item->nama}} {{$item->kota}}</td>
             <td style="text-align: right">{{number_format($item->pengeluaran)}}</td>
         </tr>
         @endforeach
         @foreach ($dpd as $key => $item)
         <tr style="font-size:12px">
-            <td>{{$key + 1}}</td>
+            <td>{{$no_pengeluaran++}}</td>
             <td style="padding-left: 20px">{{$item->nama}} {{$item->kota}}</td>
             <td style="text-align: right">{{number_format($item->pengeluaran)}}</td>
         </tr>
 
         @foreach ($dpk->where('kota', $item->kota) as $keydpk => $itemdpk)
         <tr style="font-size:12px">
-            <td>{{$keydpk + 1}}</td>
+            <td>{{$no_pengeluaran++}}</td>
             <td style="padding-left: 40px">{{$itemdpk->nama}} {{$itemdpk->kota}}</td>
             <td style="text-align: right">{{number_format($itemdpk->pengeluaran)}}</td>
         </tr>
@@ -115,32 +117,36 @@
         @endphp
         @foreach ($dpw as $key => $item)
         <tr style="font-size:12px">
-            <td>{{$nopajak++}}</td>
+            <td>{{$no_pajak++}}</td>
             <td>{{$item->nama}} {{$item->kota}}</td>
             <td style="text-align: right">{{number_format($item->pajak)}}</td>
         </tr>
         @endforeach
         @foreach ($dpd as $key => $item)
         <tr style="font-size:12px">
-            <td>{{$nopajak++}}</td>
+            <td>{{$no_pajak++}}</td>
             <td style="padding-left: 20px">{{$item->nama}} {{$item->kota}}</td>
             <td style="text-align: right">{{number_format($item->pajak)}}</td>
         </tr>
 
         @foreach ($dpk->where('kota', $item->kota) as $keydpk => $itemdpk)
         <tr style="font-size:12px">
-            <td>{{$keydpk + 1}}</td>
+            <td>{{$no_pajak++}}</td>
             <td style="padding-left: 40px">{{$itemdpk->nama}} {{$itemdpk->kota}}</td>
             <td style="text-align: right">{{number_format($itemdpk->pajak)}}</td>
         </tr>
         @endforeach
         @endforeach
-
+        <tr style="background-color: rgb(193, 195, 195);font-size:14px">
+            <th colspan="2">TOTAL PAJAK</th>
+            <th style="text-align: right">{{number_format($dpw->sum('pajak') + $dpd->sum('pajak') +
+                $dpk->sum('pajak'))}}</th>
+        </tr>
         <tr style="background-color: rgb(193, 195, 195);font-size:14px">
             <th colspan="2">SURPLUS/DEFISIT OPERASIONAL</th>
-            <th style="text-align: right">{{number_format($dpw->sum('penerimaan') + $dpd->sum('penerimaan') +
-                $dpk->sum('penerimaan') - $dpw->sum('pengeluaran') + $dpd->sum('pengeluaran') +
-                $dpk->sum('pengeluaran'))}}</th>
+            <th style="text-align: right">{{number_format(($dpw->sum('penerimaan') + $dpd->sum('penerimaan') +
+                $dpk->sum('penerimaan')) - ($dpw->sum('pengeluaran') + $dpd->sum('pengeluaran') +
+                $dpk->sum('pengeluaran')))}}</th>
         </tr>
     </table>
 
