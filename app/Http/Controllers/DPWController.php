@@ -934,6 +934,29 @@ class DPWController extends Controller
                     ])
                     ->where('user_id', $item->user_id)
                     ->value(DB::raw('SUM(keluar)'));
+
+                $pajak = Keuangan::where('user_id',   $item->user_id)->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])->orderBy('created_at', 'asc')->get();
+
+                $pajak->each(function ($keuangan) use (&$saldo) {
+                    $pajak = 0;
+                    if (!is_null($keuangan->pajak)) {
+                        $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+                        if ($keuangan->masuk > 0) {
+                            $pajak = $keuangan->masuk * $persenPajak;
+                        } elseif ($keuangan->keluar > 0) {
+                            $pajak = $keuangan->keluar * $persenPajak;
+                        }
+                    } else {
+                    }
+
+                    $keuangan->nilai_pajak = $pajak;
+                });
+
+                $item->pajak = $pajak->sum('nilai_pajak');
+
                 return $item;
             });
 
@@ -952,6 +975,28 @@ class DPWController extends Controller
                     ])
                     ->where('user_id', $item->user_id)
                     ->value(DB::raw('SUM(keluar)'));
+
+                $pajak = Keuangan::where('user_id',   $item->user_id)->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])->orderBy('created_at', 'asc')->get();
+
+                $pajak->each(function ($keuangan) use (&$saldo) {
+                    $pajak = 0;
+                    if (!is_null($keuangan->pajak)) {
+                        $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+                        if ($keuangan->masuk > 0) {
+                            $pajak = $keuangan->masuk * $persenPajak;
+                        } elseif ($keuangan->keluar > 0) {
+                            $pajak = $keuangan->keluar * $persenPajak;
+                        }
+                    } else {
+                    }
+
+                    $keuangan->nilai_pajak = $pajak;
+                });
+
+                $item->pajak = $pajak->sum('nilai_pajak');
                 return $item;
             });
             $dpk = Dpk::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->get()->map(function ($item) use ($mulai, $sampai) {
@@ -969,12 +1014,35 @@ class DPWController extends Controller
                     ])
                     ->where('user_id', $item->user_id)
                     ->value(DB::raw('SUM(keluar)'));
+
+                $pajak = Keuangan::where('user_id',   $item->user_id)->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])->orderBy('created_at', 'asc')->get();
+
+                $pajak->each(function ($keuangan) use (&$saldo) {
+                    $pajak = 0;
+                    if (!is_null($keuangan->pajak)) {
+                        $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+                        if ($keuangan->masuk > 0) {
+                            $pajak = $keuangan->masuk * $persenPajak;
+                        } elseif ($keuangan->keluar > 0) {
+                            $pajak = $keuangan->keluar * $persenPajak;
+                        }
+                    } else {
+                    }
+
+                    $keuangan->nilai_pajak = $pajak;
+                });
+
+                $item->pajak = $pajak->sum('nilai_pajak');
                 return $item;
             });
 
             $data = $dpw->merge($dpd)->merge($dpk);
+
             //dd($data->take(4));
-            $pdf = Pdf::loadView('laporan.pdf_keuangan_global', compact('mulai', 'sampai', 'data'));
+            $pdf = Pdf::loadView('laporan.pdf_keuangan_global', compact('mulai', 'sampai', 'data', 'dpw', 'dpd', 'dpk'));
             return $pdf->stream();
         } else {
             $kabkota = request()->get('kota');
