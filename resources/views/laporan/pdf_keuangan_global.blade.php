@@ -10,23 +10,32 @@
 
 <body>
 
-    <table width="100%">
+    <table width="100%" style="border-bottom:2px solid black">
         <tr>
-            <td style="text-align: center;" width="100%">
-
-                <font size="16px"><b>LAPORAN OPERASIONAL GLOBAL<br />PERSATUAN PERAWAT NASIONAL INDONESIA<BR />
-                        DEWAN PENGURUS WILAYAH DAN DAERAH<br />
-
-                    </b></font>
-                Periode : {{\Carbon\Carbon::parse($mulai)->format('d M Y')}} s/d
-                {{\Carbon\Carbon::parse($sampai)->format('d M Y')}}
+            <td width="100px">
+                <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('logo/ppni.png'))) }}"
+                    width="100%">
             </td>
-
+            <td style="text-align: center;" width="70%">
+                <div style="font-size:18px; color:rgb(0, 155, 103);font-weight:bold">DEWAN PENGURUS WILAYAH DAN
+                    DAERAH<br />PERSATUAN
+                    PERAWAT NASIONAL
+                    INDONESIA<BR />
+                    (INDONESIAN NATIONAL NURSES ASSOCIATION)<br />
+                    PROVINSI KALIMANTAN SELATAN<BR /></div>
+                <div style="font-size: 12px; color:rgb(0, 155, 103)"> Jl. A Yani KM 2 No. 43 Gedung Ulin Tower Lt.9
+                    Banjarmasin <br />
+                    Email : dpwkalsel.ppni@gmail.com<br />
+                </div>
+            </td>
+            <td width="100px">
+            </td>
         </tr>
-    </table>
-    <hr>
+    </table><br />
+    Periode : {{\Carbon\Carbon::parse($mulai)->format('d M Y')}} s/d
+    {{\Carbon\Carbon::parse($sampai)->format('d M Y')}}
     </h3>
-    <br />
+
     <table width="100%" border="1" cellpadding="5" cellspacing="0">
         <tr style="background-color: rgb(193, 195, 195)">
             <th>NO</th>
@@ -146,7 +155,8 @@
             <th colspan="2">SURPLUS/DEFISIT OPERASIONAL</th>
             <th style="text-align: right">{{number_format(($dpw->sum('penerimaan') + $dpd->sum('penerimaan') +
                 $dpk->sum('penerimaan')) - ($dpw->sum('pengeluaran') + $dpd->sum('pengeluaran') +
-                $dpk->sum('pengeluaran')))}}</th>
+                $dpk->sum('pengeluaran')) - ($dpw->sum('pajak') + $dpd->sum('pajak') +
+                $dpk->sum('pajak')))}}</th>
         </tr>
     </table>
 
