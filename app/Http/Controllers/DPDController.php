@@ -23,6 +23,23 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class DPDController extends Controller
 {
+    public function ketua()
+    {
+        $data = Auth::user();
+        return view('dpd.ketua.index', compact('data'));
+    }
+    public function ketua_store(Request $req)
+    {
+        Auth::user()->update([
+            'nama_ketua' => $req->nama_ketua,
+            'nama_bendahara' => $req->nama_bendahara,
+            'name' => $req->name,
+            'alamat' => $req->alamat,
+            'email' => $req->email,
+        ]);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpd/ketua');
+    }
     public function index()
     {
         return view('dpd.home');
@@ -1050,7 +1067,15 @@ class DPDController extends Controller
         });
 
 
-        $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai', 'pajak'));
+        $pajak21 = $allKeuangans->where('pajak', '21')->sum('nilai_pajak');
+        $pajak23 = $allKeuangans->where('pajak', '23')->sum('nilai_pajak');
+        $pajak25 = $allKeuangans->where('pajak', '25')->sum('nilai_pajak');
+
+        $kota = Auth::user()->dpd->kota;
+        $kota = str_replace(['Kabupaten', 'Kota', 'KABUPATEN', 'KOTA'], '', $kota);
+        $kota = trim($kota);
+        $kota = ucfirst(strtolower($kota));
+        $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai', 'pajak', 'kota', 'pajak21', 'pajak23', 'pajak25'));
         return $pdf->stream();
     }
 }

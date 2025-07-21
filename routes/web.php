@@ -157,8 +157,15 @@ Route::middleware(['auth', 'dpd'])->group(function () {
     Route::get('/dpd/surat-nt/edit/{id}', [DPDController::class, 'surat_nt_edit']);
     Route::post('/dpd/surat-nt/edit/{id}', [DPDController::class, 'surat_nt_update']);
     Route::get('/dpd/surat-nt/delete/{id}', [DPDController::class, 'surat_nt_delete']);
+
+    Route::get('/dpd/ketua', [DPDController::class, 'ketua']);
+    Route::post('/dpd/ketua', [DPDController::class, 'ketua_store']);
 });
 Route::middleware(['auth', 'dpk'])->group(function () {
+
+    Route::get('/dpk/ketua', [DPKController::class, 'ketua']);
+    Route::post('/dpk/ketua', [DPKController::class, 'ketua_store']);
+
     Route::get('/dpk', [DPKController::class, 'index']);
     Route::get('/dpk/rfk', [DPKController::class, 'rfk']);
     Route::get('/dpk/rfk/create', [DPKController::class, 'rfk_create']);

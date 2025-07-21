@@ -1453,6 +1453,9 @@ class DPWController extends Controller
         Auth::user()->update([
             'nama_ketua' => $req->nama_ketua,
             'nama_bendahara' => $req->nama_bendahara,
+            'name' => $req->name,
+            'alamat' => $req->alamat,
+            'email' => $req->email,
         ]);
         Session::flash('success', 'Berhasil Disimpan');
         return redirect('/dpw/ketua');
@@ -1772,13 +1775,18 @@ class DPWController extends Controller
             $keuangan->saldo = $saldo;
         });
 
+
         $pajak = $allKeuangans->groupBy('coa')->map(function ($items) {
             return $items->sum('nilai_pajak');
         })->filter(function ($totalPajak) {
             return $totalPajak > 0;
         });
+        $pajak21 = $allKeuangans->where('pajak', '21')->sum('nilai_pajak');
+        $pajak23 = $allKeuangans->where('pajak', '23')->sum('nilai_pajak');
+        $pajak25 = $allKeuangans->where('pajak', '25')->sum('nilai_pajak');
 
-        $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai', 'pajak'));
+        $kota = 'Banjarmasin';
+        $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai', 'pajak', 'kota', 'pajak21', 'pajak23', 'pajak25'));
         return $pdf->stream();
     }
 }

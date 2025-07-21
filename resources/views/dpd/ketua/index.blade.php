@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-12">
             <br />
-            <a href="/dpw" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
+            <a href="/dpd" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
                 Kembali
             </a><br /><br />
             <div class="card">
@@ -28,7 +28,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form method="post" action="/dpw/ketua">
+                    <form method="post" action="/dpd/ketua">
                         @csrf
 
                         <div class="form-group">
@@ -41,7 +41,7 @@
                                 value="{{$data->nama_bendahara}}" />
                         </div>
                         <div class="form-group">
-                            <label>Nama DPW/DPD/DPK</label>
+                            <label>Nama DPD</label>
                             <input type="text" class="form-control" name="name" value="{{$data->name}}" />
                         </div>
                         <div class="form-group">

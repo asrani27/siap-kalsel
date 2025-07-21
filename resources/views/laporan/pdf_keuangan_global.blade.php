@@ -31,7 +31,8 @@
             <td width="100px">
             </td>
         </tr>
-    </table><br />
+    </table>
+    <br />
     Periode : {{\Carbon\Carbon::parse($mulai)->format('d M Y')}} s/d
     {{\Carbon\Carbon::parse($sampai)->format('d M Y')}}
     </h3>

@@ -23,6 +23,23 @@ use PhpOffice\PhpSpreadsheet\Calculation\MathTrig\Angle;
 
 class DPKController extends Controller
 {
+    public function ketua()
+    {
+        $data = Auth::user();
+        return view('dpk.ketua.index', compact('data'));
+    }
+    public function ketua_store(Request $req)
+    {
+        Auth::user()->update([
+            'nama_ketua' => $req->nama_ketua,
+            'nama_bendahara' => $req->nama_bendahara,
+            'name' => $req->name,
+            'alamat' => $req->alamat,
+            'email' => $req->email,
+        ]);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpk/ketua');
+    }
     public function index()
     {
         return view('dpk.home');

@@ -58,6 +58,9 @@
                     <a href="/dpd/monev" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
                         <i class="fa fa-envelope"></i> <strong>MONEV</strong>
                     </a>
+                    <a href="/dpd/ketua" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-users"></i> <strong>Profil</strong>
+                    </a>
                     @endif
 
                 </div>
