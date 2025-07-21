@@ -98,6 +98,10 @@
             <td style="text-align: right">{{number_format($item)}}</td>
         </tr>
         @endforeach
+        <tr style="background-color: rgb(193, 195, 195);font-size:14px">
+            <th colspan="3">TOTAL PAJAK</th>
+            <th style="text-align: right">{{number_format($pajak21 + $pajak23 + $pajak25)}}</th>
+        </tr>
         <tr style="font-size:12px">
             <td></td>
             <td></td>
@@ -115,10 +119,6 @@
             <td></td>
             <td>Pajak 25</td>
             <td style="text-align: right">{{number_format($pajak25)}}</td>
-        </tr>
-        <tr style="background-color: rgb(193, 195, 195);font-size:14px">
-            <th colspan="3">TOTAL PAJAK</th>
-            <th style="text-align: right">{{number_format($pajak21 + $pajak23 + $pajak25)}}</th>
         </tr>
         <tr style="background-color: rgb(193, 195, 195);font-size:14px">
             <th colspan="3">SURPLUS/DEFISIT OPERASIONAL</th>
