@@ -1230,15 +1230,15 @@ class DPWController extends Controller
                     $pajakRow++;
                     $sheet->setCellValue('A' . $pajakRow, null);
                     $sheet->setCellValue('B' . $pajakRow, '               PPH 21');
-                    $sheet->setCellValue('C' . $pajakRow, $item->pajak21 ?? 0);
+                    $sheet->setCellValue('C' . $pajakRow, $itemDPK->pajak21 ?? 0);
                     $pajakRow++;
                     $sheet->setCellValue('A' . $pajakRow, null);
                     $sheet->setCellValue('B' . $pajakRow, '               PPH 23');
-                    $sheet->setCellValue('C' . $pajakRow, $item->pajak23 ?? 0);
+                    $sheet->setCellValue('C' . $pajakRow, $itemDPK->pajak23 ?? 0);
                     $pajakRow++;
                     $sheet->setCellValue('A' . $pajakRow, null);
                     $sheet->setCellValue('B' . $pajakRow, '               PPH 25');
-                    $sheet->setCellValue('C' . $pajakRow, $item->pajak25 ?? 0);
+                    $sheet->setCellValue('C' . $pajakRow, $itemDPK->pajak25 ?? 0);
                     $pajakRow++;
                 }
             }
