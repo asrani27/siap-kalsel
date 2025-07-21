@@ -297,6 +297,10 @@ Route::middleware(['auth', 'dpw'])->group(function () {
     Route::get('/dpw/coa/edit/{id}', [DPWController::class, 'coa_edit']);
     Route::post('/dpw/coa/edit/{id}', [DPWController::class, 'coa_update']);
     Route::get('/dpw/coa/delete/{id}', [DPWController::class, 'coa_delete']);
+
+
+    Route::get('/dpw/ketua', [DPWController::class, 'ketua']);
+    Route::post('/dpw/ketua', [DPWController::class, 'ketua_store']);
 });
 
 Route::get('/logout', function () {

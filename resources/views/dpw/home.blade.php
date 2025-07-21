@@ -63,6 +63,8 @@
                     </a>
                     <a href="/dpw/coa" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
                         <i class="fa fa-list"></i> <strong>COA</strong>
+                    </a> <a href="/dpw/ketua" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-users"></i> <strong>Ketua & Bendahara</strong>
                     </a>
                     @endif
 

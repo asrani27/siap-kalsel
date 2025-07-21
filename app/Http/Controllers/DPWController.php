@@ -928,7 +928,7 @@ class DPWController extends Controller
             $templatePath = public_path('ppni/template.xlsx');
             $spreadsheet = IOFactory::load($templatePath);
             $sheet = $spreadsheet->getActiveSheet();
-
+            $sheet->setCellValue('A9', 'PERIODE : ' . Carbon::parse($mulai)->translatedFormat('d F Y') . ' s/d ' . Carbon::parse($sampai)->translatedFormat('d F Y'));
             $dpw = Dpw::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->get()->map(function ($item) use ($mulai, $sampai) {
                 $item->penerimaan = DB::table('keuangan')
                     ->whereBetween('created_at', [
@@ -1330,6 +1330,41 @@ class DPWController extends Controller
                     ],
                 ],
             ]);
+            $pajakRow++;
+            $pajakRow++;
+
+            $sheet->setCellValue('C' . $pajakRow, 'Banjarmasin, ' . Carbon::now()->translatedFormat('d F Y'));
+            $sheet->getStyle('C' . $pajakRow)
+                ->getAlignment()
+                ->setHorizontal(Alignment::HORIZONTAL_LEFT);
+            $sheet->setCellValue('B' . $pajakRow, 'Mengetahui, ');
+            $sheet->getStyle('B' . $pajakRow)
+                ->getAlignment()
+                ->setHorizontal(Alignment::HORIZONTAL_LEFT);
+            $pajakRow++;
+
+            $sheet->setCellValue('C' . $pajakRow, 'Bendahara, ');
+            $sheet->getStyle('C' . $pajakRow)
+                ->getAlignment()
+                ->setHorizontal(Alignment::HORIZONTAL_LEFT);
+
+            $sheet->setCellValue('B' . $pajakRow, 'Ketua, ');
+            $sheet->getStyle('B' . $pajakRow)
+                ->getAlignment()
+                ->setHorizontal(Alignment::HORIZONTAL_LEFT);
+            $pajakRow++;
+            $pajakRow++;
+            $pajakRow++;
+            $pajakRow++;
+            $sheet->setCellValue('C' . $pajakRow, Auth::user()->nama_bendahara);
+            $sheet->getStyle('C' . $pajakRow)
+                ->getAlignment()
+                ->setHorizontal(Alignment::HORIZONTAL_LEFT);
+            $sheet->setCellValue('B' . $pajakRow, Auth::user()->nama_ketua);
+            $sheet->getStyle('B' . $pajakRow)
+                ->getAlignment()
+                ->setHorizontal(Alignment::HORIZONTAL_LEFT);
+
             //$data = $dpw->merge($dpd)->merge($dpk);
 
             $writer = new Xlsx($spreadsheet);
@@ -1407,6 +1442,20 @@ class DPWController extends Controller
             request()->flash();
             return view('dpw.keuangan_lain.index', compact('data', 'kota'));
         }
+    }
+    public function ketua()
+    {
+        $data = Auth::user();
+        return view('dpw.ketua.index', compact('data'));
+    }
+    public function ketua_store(Request $req)
+    {
+        Auth::user()->update([
+            'nama_ketua' => $req->nama_ketua,
+            'nama_bendahara' => $req->nama_bendahara,
+        ]);
+        Session::flash('success', 'Berhasil Disimpan');
+        return redirect('/dpw/ketua');
     }
     public function aset_lain()
     {
