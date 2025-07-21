@@ -1074,7 +1074,16 @@ class DPKController extends Controller
         });
 
 
-        $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai', 'pajak'));
+
+        $pajak21 = $allKeuangans->where('pajak', '21')->sum('nilai_pajak');
+        $pajak23 = $allKeuangans->where('pajak', '23')->sum('nilai_pajak');
+        $pajak25 = $allKeuangans->where('pajak', '25')->sum('nilai_pajak');
+
+        $kota = Auth::user()->dpk->kota;
+        $kota = str_replace(['Kabupaten', 'Kota', 'KABUPATEN', 'KOTA'], '', $kota);
+        $kota = trim($kota);
+        $kota = ucfirst(strtolower($kota));
+        $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai', 'pajak', 'kota', 'pajak21', 'pajak23', 'pajak25'));
         return $pdf->stream();
     }
 }

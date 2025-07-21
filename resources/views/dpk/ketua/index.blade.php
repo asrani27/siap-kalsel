@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-12">
             <br />
-            <a href="/dpd" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
+            <a href="/dpk" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i>
                 Kembali
             </a><br /><br />
             <div class="card">
@@ -28,7 +28,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form method="post" action="/dpd/ketua">
+                    <form method="post" action="/dpk/ketua">
                         @csrf
 
                         <div class="form-group">
