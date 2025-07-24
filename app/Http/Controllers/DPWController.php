@@ -1627,6 +1627,7 @@ class DPWController extends Controller
         $param['user_id'] = Auth::user()->id;
         $param['nilai_pajak'] = $nilai_pajak;
         $param['coa_name'] = COA::where('kode', $req->coa)->first()->nama ?? null;
+        $param['created_at'] = $req->created_at . ' ' . Carbon::now()->format('H:i:s');
 
         Keuangan::create($param);
         Session::flash('success', 'Berhasil Disimpan');
@@ -1661,6 +1662,7 @@ class DPWController extends Controller
         $param['user_id'] = Auth::user()->id;
         $param['nilai_pajak'] = $nilai_pajak;
         $param['coa_name'] = COA::where('kode', $req->coa)->first()->nama ?? null;
+        $param['created_at'] = $req->created_at . ' ' . Carbon::now()->format('H:i:s');
 
         $data->update($param);
         Session::flash('success', 'Berhasil Diupdate');
