@@ -790,34 +790,35 @@ class DPDController extends Controller
 
     public function keuangan()
     {
-        // Ambil semua transaksi agar saldo bisa dihitung dengan benar
-        $allKeuangans = Keuangan::where('user_id',  Auth::user()->id)->orderBy('created_at', 'asc')->get();
-
-        // Hitung saldo secara akurat dengan iterasi dari awal
+        $allKeuangans = Keuangan::where('user_id', Auth::user()->id)
+            ->orderBy('created_at', 'ASC') // penting: dari yang paling lama!
+            ->get()->values();
         $saldo = 0;
         $allKeuangans->each(function ($keuangan) use (&$saldo) {
             $pajak = 0;
+            $nilaiPajak = floatval($keuangan->nilai_pajak);
 
-            if (!is_null($keuangan->pajak)) {
-                $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+            if (!is_null($keuangan->pajak) && $nilaiPajak > 0) {
+                $persenPajak = $nilaiPajak / 100;
 
                 if ($keuangan->masuk > 0) {
                     $pajak = $keuangan->masuk * $persenPajak;
-                    $nettoMasuk = $keuangan->masuk - $pajak;
-                    $saldo += $nettoMasuk;
+                    $saldo += $keuangan->masuk - $pajak;
                 } elseif ($keuangan->keluar > 0) {
                     $pajak = $keuangan->keluar * $persenPajak;
-                    $totalKeluar = $keuangan->keluar + $pajak;
-                    $saldo -= $totalKeluar;
+                    $saldo -= $keuangan->keluar + $pajak;
                 }
             } else {
-                // Tidak ada pajak
+                // tanpa pajak
                 $saldo += $keuangan->masuk - $keuangan->keluar;
+
+                //dd($saldo);
             }
 
-            $keuangan->nilai_pajak = $pajak; // Pajak yang dihitung aktual
-            $keuangan->saldo = $saldo;
+            $keuangan->nilai_pajak = round($pajak);
+            $keuangan->saldo = round($saldo);
         });
+
 
         $allKeuangans = $allKeuangans->sortByDesc('created_at')->values();
 
@@ -892,10 +893,13 @@ class DPDController extends Controller
         if ($req->pajak == null) {
             $nilai_pajak = null;
         }
+
         $param = $req->all();
+        $param['created_at'] = $req->created_at . ' ' . Carbon::now()->format('H:i:s');
 
         $param['user_id'] = Auth::user()->id;
         $param['nilai_pajak'] = $nilai_pajak;
+
         $param['coa_name'] = COA::where('kode', $req->coa)->first()->nama ?? null;
 
         $data->update($param);
