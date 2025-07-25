@@ -14,6 +14,12 @@
             </div>
             <!-- /.card-body -->
         </div>
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h5><i class="icon fas fa-phone"></i> Silahkan Konfirmasi ke whatsapp, Jika Sudah upload berkas</h5>
+            Admin 1 : 0819 3011 6520 <br />
+            Admin 2 : 0822 5506 4084
+        </div>
         <!-- /.card -->
     </div>
     <div class="col-md-4">
