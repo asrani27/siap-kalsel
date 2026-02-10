@@ -1624,6 +1624,10 @@ class DPWController extends Controller
         }
         $param = $req->all();
 
+        // Remove dot separators from masuk and keluar before saving to database
+        $param['masuk'] = str_replace('.', '', $req->masuk ?? '0');
+        $param['keluar'] = str_replace('.', '', $req->keluar ?? '0');
+
         $param['user_id'] = Auth::user()->id;
         $param['nilai_pajak'] = $nilai_pajak;
         $param['coa_name'] = COA::where('kode', $req->coa)->first()->nama ?? null;
@@ -1658,6 +1662,10 @@ class DPWController extends Controller
             $nilai_pajak = null;
         }
         $param = $req->all();
+
+        // Remove dot separators from masuk and keluar before saving to database
+        $param['masuk'] = str_replace('.', '', $req->masuk ?? '0');
+        $param['keluar'] = str_replace('.', '', $req->keluar ?? '0');
 
         $param['user_id'] = Auth::user()->id;
         $param['nilai_pajak'] = $nilai_pajak;

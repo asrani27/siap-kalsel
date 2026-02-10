@@ -36,12 +36,12 @@
                                 value="{{\Carbon\Carbon::now()->format('Y-m-d')}}">
                         </div>
                         <div class="form-group">
-                            <label>Kode Akun</label>
-                            <select class="form-control select2" name="coa">
-                                @foreach (coa() as $item)
-                                <option value="{{$item->kode}}">{{$item->kode}} - {{$item->nama}}</option>
-                                @endforeach
-                            </select>
+                            <label>Pemasukan</label>
+                            <input type="text" class="form-control" name="masuk" onkeypress="return hanyaAngka(event)" onkeyup="formatNumber(this)" onblur="formatNumber(this)">
+                        </div>
+                        <div class="form-group">
+                            <label>Pengeluaran</label>
+                            <input type="text" class="form-control" name="keluar" onkeypress="return hanyaAngka(event)" onkeyup="formatNumber(this)" onblur="formatNumber(this)">
                         </div>
                         <div class="form-group">
                             <label>Uraian</label>
@@ -85,6 +85,16 @@
 
         return false;
       return true;
+    }
+
+    function formatNumber(input) {
+        // Remove non-numeric characters except backspace
+        let value = input.value.replace(/\D/g, '');
+        
+        // Format with thousand separator (Indonesian format uses dot)
+        let formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        
+        input.value = formattedValue;
     }
 </script>
 

@@ -52,13 +52,11 @@
                         </div>
                         <div class="form-group">
                             <label>Pemasukan</label>
-                            <input type="text" class="form-control" name="masuk" value="{{$data->masuk}}" onkeypress="
-                                return hanyaAngka(event)">
+                            <input type="text" class="form-control" name="masuk" value="{{number_format($data->masuk, 0, '', '.')}}" onkeypress="return hanyaAngka(event)" onkeyup="formatNumber(this)" onblur="formatNumber(this)">
                         </div>
                         <div class="form-group">
                             <label>Pengeluaran</label>
-                            <input type="text" class="form-control" name="keluar" value="{{$data->keluar}}" onkeypress="
-                                return hanyaAngka(event)">
+                            <input type="text" class="form-control" name="keluar" value="{{number_format($data->keluar, 0, '', '.')}}" onkeypress="return hanyaAngka(event)" onkeyup="formatNumber(this)" onblur="formatNumber(this)">
                         </div>
                         <div class="form-group">
                             <label>Pajak</label>
@@ -90,6 +88,16 @@
 
         return false;
       return true;
+    }
+
+    function formatNumber(input) {
+        // Remove non-numeric characters except backspace
+        let value = input.value.replace(/\D/g, '');
+        
+        // Format with thousand separator (Indonesian format uses dot)
+        let formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        
+        input.value = formattedValue;
     }
 </script>
 
