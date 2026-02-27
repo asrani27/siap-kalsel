@@ -1044,7 +1044,12 @@ class DPDController extends Controller
             ->groupBy('coa', 'coa_name')
             ->get();
 
-        $allKeuangans = Keuangan::where('user_id',  Auth::user()->id)->orderBy('created_at', 'asc')->get();
+        $allKeuangans = Keuangan::where('user_id',  Auth::user()->id)
+            ->whereBetween('created_at', [
+                $mulai . ' 00:00:00',
+                $sampai . ' 23:59:59'
+            ])
+            ->orderBy('created_at', 'asc')->get();
 
         // Hitung saldo secara akurat dengan iterasi dari awal
         $saldo = 0;
