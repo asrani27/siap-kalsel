@@ -144,6 +144,9 @@ Route::middleware(['auth', 'dpd'])->group(function () {
     Route::post('/dpd/keuangan/edit/{id}', [DPDController::class, 'keuangan_update']);
     Route::get('/dpd/keuangan/delete/{id}', [DPDController::class, 'keuangan_delete']);
 
+    Route::get('/dpd/keuangan_lain/get', [DPDController::class, 'keuangan_lain_get']);
+    Route::get('/dpd/keuangan_lain', [DPDController::class, 'keuangan_lain']);
+
     Route::get('/dpd/surat-keputusan', [DPDController::class, 'surat_keputusan']);
     Route::get('/dpd/surat-keputusan/create', [DPDController::class, 'surat_keputusan_create']);
     Route::post('/dpd/surat-keputusan/create', [DPDController::class, 'surat_keputusan_store']);

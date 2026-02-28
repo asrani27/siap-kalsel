@@ -55,6 +55,10 @@
                         <i class="fa fa-chart-bar"></i> <strong>JURNAL KEUANGAN</strong>
                     </a>
 
+                    <a href="/dpd/keuangan_lain" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
+                        <i class="fa fa-chart-bar"></i> <strong>JURNAL KEUANGAN LAIN</strong>
+                    </a>
+
                     <a href="/dpd/monev" class="btn btn-app" style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">
                         <i class="fa fa-envelope"></i> <strong>MONEV</strong>
                     </a>
