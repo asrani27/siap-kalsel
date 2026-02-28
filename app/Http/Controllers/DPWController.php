@@ -1531,7 +1531,7 @@ class DPWController extends Controller
             $sheet->setCellValue('E' . $currentRow, 'PPH 21');
             $sheet->setCellValue('F' . $currentRow, 'PPH 23');
             $sheet->setCellValue('G' . $currentRow, 'PPH 25');
-            $sheet->setCellValue('H' . $currentRow, 'SURPLUS/DEFISIT');
+            $sheet->setCellValue('H' . $currentRow, 'SURPLUS/DEFISIT OPERASIONAL');
 
             // Style header
             $sheet->getStyle('A' . $currentRow . ':H' . $currentRow)->applyFromArray([
