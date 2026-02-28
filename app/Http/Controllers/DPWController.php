@@ -1531,10 +1531,11 @@ class DPWController extends Controller
             $sheet->setCellValue('E' . $currentRow, 'PPH 21');
             $sheet->setCellValue('F' . $currentRow, 'PPH 23');
             $sheet->setCellValue('G' . $currentRow, 'PPH 25');
-            $sheet->setCellValue('H' . $currentRow, 'SURPLUS/DEFISIT OPERASIONAL');
+            $sheet->setCellValue('H' . $currentRow, 'TOTAL PAJAK');
+            $sheet->setCellValue('I' . $currentRow, 'SURPLUS/DEFISIT OPERASIONAL');
 
             // Style header
-            $sheet->getStyle('A' . $currentRow . ':H' . $currentRow)->applyFromArray([
+            $sheet->getStyle('A' . $currentRow . ':I' . $currentRow)->applyFromArray([
                 'font' => [
                     'bold' => true,
                 ],
@@ -1556,6 +1557,7 @@ class DPWController extends Controller
             // DPW Section
             foreach ($dpw as $item) {
                 $sisa_saldo = $item->penerimaan - $item->pengeluaran - $item->pajak;
+                $total_pajak = ($item->pajak21 ?? 0) + ($item->pajak23 ?? 0) + ($item->pajak25 ?? 0);
                 $sheet->setCellValue('A' . $currentRow, $no++);
                 $sheet->setCellValue('B' . $currentRow, $item->nama);
                 $sheet->setCellValue('C' . $currentRow, $item->penerimaan);
@@ -1563,7 +1565,8 @@ class DPWController extends Controller
                 $sheet->setCellValue('E' . $currentRow, $item->pajak21 ?? 0);
                 $sheet->setCellValue('F' . $currentRow, $item->pajak23 ?? 0);
                 $sheet->setCellValue('G' . $currentRow, $item->pajak25 ?? 0);
-                $sheet->setCellValue('H' . $currentRow, $sisa_saldo);
+                $sheet->setCellValue('H' . $currentRow, $total_pajak);
+                $sheet->setCellValue('I' . $currentRow, $sisa_saldo);
 
                 // Apply number formatting
                 $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
@@ -1571,12 +1574,14 @@ class DPWController extends Controller
                 $sheet->getStyle('F' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
                 $sheet->getStyle('G' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
                 $sheet->getStyle('H' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                $sheet->getStyle('I' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
                 $currentRow++;
             }
 
             // DPD Section
             foreach ($dpd as $item) {
                 $sisa_saldo = $item->penerimaan - $item->pengeluaran - $item->pajak;
+                $total_pajak = ($item->pajak21 ?? 0) + ($item->pajak23 ?? 0) + ($item->pajak25 ?? 0);
                 $sheet->setCellValue('A' . $currentRow, $no++);
                 $sheet->setCellValue('B' . $currentRow, '   ' . $item->nama . ' - ' . $item->kota);
                 $sheet->setCellValue('C' . $currentRow, $item->penerimaan);
@@ -1584,7 +1589,8 @@ class DPWController extends Controller
                 $sheet->setCellValue('E' . $currentRow, $item->pajak21 ?? 0);
                 $sheet->setCellValue('F' . $currentRow, $item->pajak23 ?? 0);
                 $sheet->setCellValue('G' . $currentRow, $item->pajak25 ?? 0);
-                $sheet->setCellValue('H' . $currentRow, $sisa_saldo);
+                $sheet->setCellValue('H' . $currentRow, $total_pajak);
+                $sheet->setCellValue('I' . $currentRow, $sisa_saldo);
 
                 // Apply number formatting
                 $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
@@ -1592,11 +1598,13 @@ class DPWController extends Controller
                 $sheet->getStyle('F' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
                 $sheet->getStyle('G' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
                 $sheet->getStyle('H' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                $sheet->getStyle('I' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
                 $currentRow++;
 
                 // DPK under DPD
                 foreach ($dpk->where('kota', $item->kota) as $itemDPK) {
                     $sisa_saldo_dpk = $itemDPK->penerimaan - $itemDPK->pengeluaran - $itemDPK->pajak;
+                    $total_pajak_dpk = ($itemDPK->pajak21 ?? 0) + ($itemDPK->pajak23 ?? 0) + ($itemDPK->pajak25 ?? 0);
                     $sheet->setCellValue('A' . $currentRow, $no++);
                     $sheet->setCellValue('B' . $currentRow, '      ' . $itemDPK->nama . ' - ' . $itemDPK->kota);
                     $sheet->setCellValue('C' . $currentRow, $itemDPK->penerimaan);
@@ -1604,7 +1612,8 @@ class DPWController extends Controller
                     $sheet->setCellValue('E' . $currentRow, $itemDPK->pajak21 ?? 0);
                     $sheet->setCellValue('F' . $currentRow, $itemDPK->pajak23 ?? 0);
                     $sheet->setCellValue('G' . $currentRow, $itemDPK->pajak25 ?? 0);
-                    $sheet->setCellValue('H' . $currentRow, $sisa_saldo_dpk);
+                    $sheet->setCellValue('H' . $currentRow, $total_pajak_dpk);
+                    $sheet->setCellValue('I' . $currentRow, $sisa_saldo_dpk);
 
                     // Apply number formatting
                     $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
@@ -1612,6 +1621,7 @@ class DPWController extends Controller
                     $sheet->getStyle('F' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
                     $sheet->getStyle('G' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
                     $sheet->getStyle('H' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                    $sheet->getStyle('I' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
                     $currentRow++;
                 }
             }
@@ -1624,7 +1634,8 @@ class DPWController extends Controller
             $sheet->setCellValue('E' . $currentRow, $dpw->sum('pajak21') + $dpd->sum('pajak21') + $dpk->sum('pajak21'));
             $sheet->setCellValue('F' . $currentRow, $dpw->sum('pajak23') + $dpd->sum('pajak23') + $dpk->sum('pajak23'));
             $sheet->setCellValue('G' . $currentRow, $dpw->sum('pajak25') + $dpd->sum('pajak25') + $dpk->sum('pajak25'));
-            $sheet->setCellValue('H' . $currentRow, ($dpw->sum('penerimaan') + $dpd->sum('penerimaan') + $dpk->sum('penerimaan')) - ($dpw->sum('pengeluaran') + $dpd->sum('pengeluaran') + $dpk->sum('pengeluaran')) - ($dpw->sum('pajak') + $dpd->sum('pajak') + $dpk->sum('pajak')));
+            $sheet->setCellValue('H' . $currentRow, $dpw->sum('pajak') + $dpd->sum('pajak') + $dpk->sum('pajak'));
+            $sheet->setCellValue('I' . $currentRow, ($dpw->sum('penerimaan') + $dpd->sum('penerimaan') + $dpk->sum('penerimaan')) - ($dpw->sum('pengeluaran') + $dpd->sum('pengeluaran') + $dpk->sum('pengeluaran')) - ($dpw->sum('pajak') + $dpd->sum('pajak') + $dpk->sum('pajak')));
 
             // Apply number formatting to total row
             $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
@@ -1632,9 +1643,10 @@ class DPWController extends Controller
             $sheet->getStyle('F' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
             $sheet->getStyle('G' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
             $sheet->getStyle('H' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('I' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
 
             // Style total row
-            $sheet->getStyle('A' . $currentRow . ':H' . $currentRow)->applyFromArray([
+            $sheet->getStyle('A' . $currentRow . ':I' . $currentRow)->applyFromArray([
                 'font' => [
                     'bold' => true,
                 ],
@@ -1651,7 +1663,7 @@ class DPWController extends Controller
             ]);
 
             // Apply borders to all data rows
-            $sheet->getStyle("A{$startRow}:H" . $currentRow)->applyFromArray([
+            $sheet->getStyle("A{$startRow}:I" . $currentRow)->applyFromArray([
                 'borders' => [
                     'allBorders' => [
                         'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
@@ -1683,7 +1695,7 @@ class DPWController extends Controller
             $sheet->getStyle('B' . $currentRow)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
 
             // Apply autosize to all columns
-            foreach (range('A', 'H') as $column) {
+            foreach (range('A', 'I') as $column) {
                 $sheet->getColumnDimension($column)->setAutoSize(true);
             }
 
