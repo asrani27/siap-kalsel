@@ -1682,6 +1682,11 @@ class DPWController extends Controller
             $sheet->setCellValue('B' . $currentRow, Auth::user()->nama_ketua);
             $sheet->getStyle('B' . $currentRow)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
 
+            // Apply autosize to all columns
+            foreach (range('A', 'H') as $column) {
+                $sheet->getColumnDimension($column)->setAutoSize(true);
+            }
+
             $writer = new Xlsx($spreadsheet);
             $fileName = 'laporan_sisa_saldo_' . date('Y-m-d-H-i-s') . '.xlsx';
             $filePath = storage_path('app/public/' . $fileName);
