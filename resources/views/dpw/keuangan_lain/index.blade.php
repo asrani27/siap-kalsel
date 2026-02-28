@@ -33,6 +33,8 @@
                 <button type="submit" name="button" value="pdf" class="btn btn-sm btn-danger">PDF</button>
                 <button type="submit" name="button" value="global" class="btn btn-sm btn-secondary">REKAP
                     GLOBAL</button>
+                <button type="submit" name="button" value="sisa_saldo" class="btn btn-sm btn-secondary">LAPORAN
+                    SISA SALDO</button>
             </form>
             <br />
             {{-- <div class="row">

@@ -1374,6 +1374,321 @@ class DPWController extends Controller
             $writer->save($filePath);
 
             return response()->download($filePath);
+        }
+        if (request()->get('button') == 'sisa_saldo') {
+            $mulai = request()->get('mulai');
+            $sampai = request()->get('sampai');
+
+            $templatePath = public_path('ppni/template2.xlsx');
+            $spreadsheet = IOFactory::load($templatePath);
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->setCellValue('A9', 'LAPORAN SISA SALDO : ' . Carbon::parse($mulai)->translatedFormat('d F Y') . ' s/d ' . Carbon::parse($sampai)->translatedFormat('d F Y'));
+
+            // Get DPW data
+            $dpw = Dpw::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->get()->map(function ($item) use ($mulai, $sampai) {
+                $item->penerimaan = DB::table('keuangan')
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->where('user_id', $item->user_id)
+                    ->value(DB::raw('SUM(masuk)')) ?? 0;
+                $item->pengeluaran = DB::table('keuangan')
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->where('user_id', $item->user_id)
+                    ->value(DB::raw('SUM(keluar)')) ?? 0;
+
+                $pajak = Keuangan::where('user_id', $item->user_id)
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->orderBy('created_at', 'asc')
+                    ->get();
+
+                $pajak->each(function ($keuangan) use (&$saldo) {
+                    $pajak = 0;
+                    if (!is_null($keuangan->pajak)) {
+                        $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+                        if ($keuangan->masuk > 0) {
+                            $pajak = $keuangan->masuk * $persenPajak;
+                        } elseif ($keuangan->keluar > 0) {
+                            $pajak = $keuangan->keluar * $persenPajak;
+                        }
+                    }
+                    $keuangan->nilai_pajak = $pajak;
+                });
+
+                $item->pajak = $pajak->sum('nilai_pajak');
+                $item->pajak21 = $pajak->where('pajak', '21')->sum('nilai_pajak');
+                $item->pajak23 = $pajak->where('pajak', '23')->sum('nilai_pajak');
+                $item->pajak25 = $pajak->where('pajak', '25')->sum('nilai_pajak');
+                return $item;
+            });
+
+            // Get DPD data
+            $dpd = Dpd::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->get()->map(function ($item) use ($mulai, $sampai) {
+                $item->penerimaan = DB::table('keuangan')
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->where('user_id', $item->user_id)
+                    ->value(DB::raw('SUM(masuk)')) ?? 0;
+                $item->pengeluaran = DB::table('keuangan')
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->where('user_id', $item->user_id)
+                    ->value(DB::raw('SUM(keluar)')) ?? 0;
+
+                $pajak = Keuangan::where('user_id', $item->user_id)
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->orderBy('created_at', 'asc')
+                    ->get();
+
+                $pajak->each(function ($keuangan) use (&$saldo) {
+                    $pajak = 0;
+                    if (!is_null($keuangan->pajak)) {
+                        $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+                        if ($keuangan->masuk > 0) {
+                            $pajak = $keuangan->masuk * $persenPajak;
+                        } elseif ($keuangan->keluar > 0) {
+                            $pajak = $keuangan->keluar * $persenPajak;
+                        }
+                    }
+                    $keuangan->nilai_pajak = $pajak;
+                });
+
+                $item->pajak = $pajak->sum('nilai_pajak');
+                $item->pajak21 = $pajak->where('pajak', '21')->sum('nilai_pajak');
+                $item->pajak23 = $pajak->where('pajak', '23')->sum('nilai_pajak');
+                $item->pajak25 = $pajak->where('pajak', '25')->sum('nilai_pajak');
+                return $item;
+            });
+
+            // Get DPK data
+            $dpk = Dpk::where('bidang', 'KEBENDAHARAAN / KEUANGAN')->get()->map(function ($item) use ($mulai, $sampai) {
+                $item->penerimaan = DB::table('keuangan')
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->where('user_id', $item->user_id)
+                    ->value(DB::raw('SUM(masuk)')) ?? 0;
+                $item->pengeluaran = DB::table('keuangan')
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->where('user_id', $item->user_id)
+                    ->value(DB::raw('SUM(keluar)')) ?? 0;
+
+                $pajak = Keuangan::where('user_id', $item->user_id)
+                    ->whereBetween('created_at', [
+                        $mulai . ' 00:00:00',
+                        $sampai . ' 23:59:59'
+                    ])
+                    ->orderBy('created_at', 'asc')
+                    ->get();
+
+                $pajak->each(function ($keuangan) use (&$saldo) {
+                    $pajak = 0;
+                    if (!is_null($keuangan->pajak)) {
+                        $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+                        if ($keuangan->masuk > 0) {
+                            $pajak = $keuangan->masuk * $persenPajak;
+                        } elseif ($keuangan->keluar > 0) {
+                            $pajak = $keuangan->keluar * $persenPajak;
+                        }
+                    }
+                    $keuangan->nilai_pajak = $pajak;
+                });
+
+                $item->pajak = $pajak->sum('nilai_pajak');
+                $item->pajak21 = $pajak->where('pajak', '21')->sum('nilai_pajak');
+                $item->pajak23 = $pajak->where('pajak', '23')->sum('nilai_pajak');
+                $item->pajak25 = $pajak->where('pajak', '25')->sum('nilai_pajak');
+                return $item;
+            });
+
+            // Start from row 12
+            $startRow = 12;
+            $currentRow = $startRow;
+
+            // Header
+            $sheet->setCellValue('A' . $currentRow, 'NO');
+            $sheet->setCellValue('B' . $currentRow, 'NAMA');
+            $sheet->setCellValue('C' . $currentRow, 'PENERIMAAN');
+            $sheet->setCellValue('D' . $currentRow, 'PENGELUARAN');
+            $sheet->setCellValue('E' . $currentRow, 'PPH 21');
+            $sheet->setCellValue('F' . $currentRow, 'PPH 23');
+            $sheet->setCellValue('G' . $currentRow, 'PPH 25');
+            $sheet->setCellValue('H' . $currentRow, 'SISA SALDO');
+
+            // Style header
+            $sheet->getStyle('A' . $currentRow . ':H' . $currentRow)->applyFromArray([
+                'font' => [
+                    'bold' => true,
+                ],
+                'alignment' => [
+                    'horizontal' => Alignment::HORIZONTAL_CENTER,
+                    'vertical' => Alignment::VERTICAL_CENTER,
+                ],
+                'fill' => [
+                    'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                    'startColor' => [
+                        'argb' => 'FFE0E0E0',
+                    ],
+                ],
+            ]);
+
+            $currentRow++;
+            $no = 1;
+
+            // DPW Section
+            foreach ($dpw as $item) {
+                $sisa_saldo = $item->penerimaan - $item->pengeluaran - $item->pajak;
+                $sheet->setCellValue('A' . $currentRow, $no++);
+                $sheet->setCellValue('B' . $currentRow, $item->nama);
+                $sheet->setCellValue('C' . $currentRow, $item->penerimaan);
+                $sheet->setCellValue('D' . $currentRow, $item->pengeluaran);
+                $sheet->setCellValue('E' . $currentRow, $item->pajak21 ?? 0);
+                $sheet->setCellValue('F' . $currentRow, $item->pajak23 ?? 0);
+                $sheet->setCellValue('G' . $currentRow, $item->pajak25 ?? 0);
+                $sheet->setCellValue('H' . $currentRow, $sisa_saldo);
+                
+                // Apply number formatting
+                $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                $sheet->getStyle('E' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                $sheet->getStyle('F' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                $sheet->getStyle('G' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                $sheet->getStyle('H' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                $currentRow++;
+            }
+
+            // DPD Section
+            foreach ($dpd as $item) {
+                $sisa_saldo = $item->penerimaan - $item->pengeluaran - $item->pajak;
+                $sheet->setCellValue('A' . $currentRow, $no++);
+                $sheet->setCellValue('B' . $currentRow, '   ' . $item->nama . ' - ' . $item->kota);
+                $sheet->setCellValue('C' . $currentRow, $item->penerimaan);
+                $sheet->setCellValue('D' . $currentRow, $item->pengeluaran);
+                $sheet->setCellValue('E' . $currentRow, $item->pajak21 ?? 0);
+                $sheet->setCellValue('F' . $currentRow, $item->pajak23 ?? 0);
+                $sheet->setCellValue('G' . $currentRow, $item->pajak25 ?? 0);
+                $sheet->setCellValue('H' . $currentRow, $sisa_saldo);
+                
+                // Apply number formatting
+                $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                $sheet->getStyle('E' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                $sheet->getStyle('F' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                $sheet->getStyle('G' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                $sheet->getStyle('H' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                $currentRow++;
+
+                // DPK under DPD
+                foreach ($dpk->where('kota', $item->kota) as $itemDPK) {
+                    $sisa_saldo_dpk = $itemDPK->penerimaan - $itemDPK->pengeluaran - $itemDPK->pajak;
+                    $sheet->setCellValue('A' . $currentRow, $no++);
+                    $sheet->setCellValue('B' . $currentRow, '      ' . $itemDPK->nama . ' - ' . $itemDPK->kota);
+                    $sheet->setCellValue('C' . $currentRow, $itemDPK->penerimaan);
+                    $sheet->setCellValue('D' . $currentRow, $itemDPK->pengeluaran);
+                    $sheet->setCellValue('E' . $currentRow, $itemDPK->pajak21 ?? 0);
+                    $sheet->setCellValue('F' . $currentRow, $itemDPK->pajak23 ?? 0);
+                    $sheet->setCellValue('G' . $currentRow, $itemDPK->pajak25 ?? 0);
+                    $sheet->setCellValue('H' . $currentRow, $sisa_saldo_dpk);
+                    
+                    // Apply number formatting
+                    $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                    $sheet->getStyle('E' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                    $sheet->getStyle('F' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                    $sheet->getStyle('G' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                    $sheet->getStyle('H' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+                    $currentRow++;
+                }
+            }
+
+            // Total Row
+            $sheet->mergeCells('A' . $currentRow . ':B' . $currentRow);
+            $sheet->setCellValue('A' . $currentRow, 'TOTAL');
+            $sheet->setCellValue('C' . $currentRow, $dpw->sum('penerimaan') + $dpd->sum('penerimaan') + $dpk->sum('penerimaan'));
+            $sheet->setCellValue('D' . $currentRow, $dpw->sum('pengeluaran') + $dpd->sum('pengeluaran') + $dpk->sum('pengeluaran'));
+            $sheet->setCellValue('E' . $currentRow, $dpw->sum('pajak21') + $dpd->sum('pajak21') + $dpk->sum('pajak21'));
+            $sheet->setCellValue('F' . $currentRow, $dpw->sum('pajak23') + $dpd->sum('pajak23') + $dpk->sum('pajak23'));
+            $sheet->setCellValue('G' . $currentRow, $dpw->sum('pajak25') + $dpd->sum('pajak25') + $dpk->sum('pajak25'));
+            $sheet->setCellValue('H' . $currentRow, ($dpw->sum('penerimaan') + $dpd->sum('penerimaan') + $dpk->sum('penerimaan')) - ($dpw->sum('pengeluaran') + $dpd->sum('pengeluaran') + $dpk->sum('pengeluaran')) - ($dpw->sum('pajak') + $dpd->sum('pajak') + $dpk->sum('pajak')));
+            
+            // Apply number formatting to total row
+            $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('E' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('F' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('G' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('H' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+
+            // Style total row
+            $sheet->getStyle('A' . $currentRow . ':H' . $currentRow)->applyFromArray([
+                'font' => [
+                    'bold' => true,
+                ],
+                'alignment' => [
+                    'horizontal' => Alignment::HORIZONTAL_CENTER,
+                    'vertical' => Alignment::VERTICAL_CENTER,
+                ],
+                'fill' => [
+                    'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                    'startColor' => [
+                        'argb' => 'FFFFFF00',
+                    ],
+                ],
+            ]);
+
+            // Apply borders to all data rows
+            $sheet->getStyle("A{$startRow}:H" . $currentRow)->applyFromArray([
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                        'color' => ['argb' => 'FF000000'],
+                    ],
+                ],
+            ]);
+
+            // Add signature section
+            $currentRow += 2;
+
+            $sheet->setCellValue('C' . $currentRow, 'Banjarmasin, ' . Carbon::now()->translatedFormat('d F Y'));
+            $sheet->getStyle('C' . $currentRow)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
+            $sheet->setCellValue('B' . $currentRow, 'Mengetahui, ');
+            $sheet->getStyle('B' . $currentRow)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
+
+            $currentRow++;
+
+            $sheet->setCellValue('C' . $currentRow, 'Bendahara, ');
+            $sheet->getStyle('C' . $currentRow)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
+            $sheet->setCellValue('B' . $currentRow, 'Ketua, ');
+            $sheet->getStyle('B' . $currentRow)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
+
+            $currentRow += 3;
+
+            $sheet->setCellValue('C' . $currentRow, Auth::user()->nama_bendahara);
+            $sheet->getStyle('C' . $currentRow)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
+            $sheet->setCellValue('B' . $currentRow, Auth::user()->nama_ketua);
+            $sheet->getStyle('B' . $currentRow)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
+
+            $writer = new Xlsx($spreadsheet);
+            $fileName = 'laporan_sisa_saldo_' . date('Y-m-d-H-i-s') . '.xlsx';
+            $filePath = storage_path('app/public/' . $fileName);
+
+            $writer->save($filePath);
+
+            return response()->download($filePath);
         } else {
             $kabkota = request()->get('kota');
             if (request()->get('dpd') == 'DPD') {
