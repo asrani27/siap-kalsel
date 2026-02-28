@@ -1531,7 +1531,7 @@ class DPWController extends Controller
             $sheet->setCellValue('E' . $currentRow, 'PPH 21');
             $sheet->setCellValue('F' . $currentRow, 'PPH 23');
             $sheet->setCellValue('G' . $currentRow, 'PPH 25');
-            $sheet->setCellValue('H' . $currentRow, 'SISA SALDO');
+            $sheet->setCellValue('H' . $currentRow, 'SURPLUS/DEFISIT');
 
             // Style header
             $sheet->getStyle('A' . $currentRow . ':H' . $currentRow)->applyFromArray([
@@ -1564,7 +1564,7 @@ class DPWController extends Controller
                 $sheet->setCellValue('F' . $currentRow, $item->pajak23 ?? 0);
                 $sheet->setCellValue('G' . $currentRow, $item->pajak25 ?? 0);
                 $sheet->setCellValue('H' . $currentRow, $sisa_saldo);
-                
+
                 // Apply number formatting
                 $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
                 $sheet->getStyle('E' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
@@ -1585,7 +1585,7 @@ class DPWController extends Controller
                 $sheet->setCellValue('F' . $currentRow, $item->pajak23 ?? 0);
                 $sheet->setCellValue('G' . $currentRow, $item->pajak25 ?? 0);
                 $sheet->setCellValue('H' . $currentRow, $sisa_saldo);
-                
+
                 // Apply number formatting
                 $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
                 $sheet->getStyle('E' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
@@ -1605,7 +1605,7 @@ class DPWController extends Controller
                     $sheet->setCellValue('F' . $currentRow, $itemDPK->pajak23 ?? 0);
                     $sheet->setCellValue('G' . $currentRow, $itemDPK->pajak25 ?? 0);
                     $sheet->setCellValue('H' . $currentRow, $sisa_saldo_dpk);
-                    
+
                     // Apply number formatting
                     $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
                     $sheet->getStyle('E' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
@@ -1625,7 +1625,7 @@ class DPWController extends Controller
             $sheet->setCellValue('F' . $currentRow, $dpw->sum('pajak23') + $dpd->sum('pajak23') + $dpk->sum('pajak23'));
             $sheet->setCellValue('G' . $currentRow, $dpw->sum('pajak25') + $dpd->sum('pajak25') + $dpk->sum('pajak25'));
             $sheet->setCellValue('H' . $currentRow, ($dpw->sum('penerimaan') + $dpd->sum('penerimaan') + $dpk->sum('penerimaan')) - ($dpw->sum('pengeluaran') + $dpd->sum('pengeluaran') + $dpk->sum('pengeluaran')) - ($dpw->sum('pajak') + $dpd->sum('pajak') + $dpk->sum('pajak')));
-            
+
             // Apply number formatting to total row
             $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
             $sheet->getStyle('E' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
