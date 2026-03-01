@@ -218,6 +218,9 @@ Route::middleware(['auth', 'dpk'])->group(function () {
     Route::post('/dpk/keuangan/edit/{id}', [DPKController::class, 'keuangan_update']);
     Route::get('/dpk/keuangan/delete/{id}', [DPKController::class, 'keuangan_delete']);
 
+    Route::get('/dpk/keuangan_lain/get', [DPKController::class, 'keuangan_lain_get']);
+    Route::get('/dpk/keuangan_lain', [DPKController::class, 'keuangan_lain']);
+
     Route::get('/dpk/surat-keputusan', [DPKController::class, 'surat_keputusan']);
     Route::get('/dpk/surat-keputusan/create', [DPKController::class, 'surat_keputusan_create']);
     Route::post('/dpk/surat-keputusan/create', [DPKController::class, 'surat_keputusan_store']);

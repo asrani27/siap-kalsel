@@ -1103,4 +1103,549 @@ class DPKController extends Controller
         $pdf = Pdf::loadView('laporan.pdf_keuangan', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai', 'pajak', 'kota', 'pajak21', 'pajak23', 'pajak25'));
         return $pdf->stream();
     }
+
+    public function keuangan_lain()
+    {
+        $data = null;
+        return view('dpk.keuangan_lain.index', compact('data'));
+    }
+
+    public function keuangan_lain_get()
+    {
+        $user_id = Auth::user()->id;
+
+        if (request()->get('button') == 'pdf') {
+            $mulai = request()->get('mulai');
+            $sampai = request()->get('sampai');
+
+            $penerimaan =  DB::table('keuangan')
+                ->select('coa', 'coa_name', DB::raw('SUM(masuk) as total_penerimaan'))
+                ->where('user_id', $user_id)
+                ->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])
+                ->groupBy('coa', 'coa_name')
+                ->havingRaw('SUM(masuk) > 0')
+                ->get();
+
+            $pengeluaran =  DB::table('keuangan')
+                ->select('coa', 'coa_name', DB::raw('SUM(keluar) as total_pengeluaran'))
+                ->where('user_id', $user_id)
+                ->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])
+                ->groupBy('coa', 'coa_name')
+                ->havingRaw('SUM(keluar) > 0')
+                ->get();
+
+            $allKeuangans = Keuangan::where('user_id',  $user_id)
+                ->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])
+                ->orderBy('created_at', 'asc')->get();
+
+            // Hitung saldo secara akurat dengan iterasi dari awal
+            $saldo = 0;
+            $allKeuangans->each(function ($keuangan) use (&$saldo) {
+                $pajak = 0;
+
+                if (!is_null($keuangan->pajak)) {
+                    $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+
+                    if ($keuangan->masuk > 0) {
+                        $pajak = $keuangan->masuk * $persenPajak;
+                        $nettoMasuk = $keuangan->masuk - $pajak;
+                        $saldo += $nettoMasuk;
+                    } elseif ($keuangan->keluar > 0) {
+                        $pajak = $keuangan->keluar * $persenPajak;
+                        $totalKeluar = $keuangan->keluar + $pajak;
+                        $saldo -= $totalKeluar;
+                    }
+                } else {
+                    // Tidak ada pajak
+                    $saldo += $keuangan->masuk - $keuangan->keluar;
+                }
+
+                $keuangan->nilai_pajak = $pajak;
+                $keuangan->saldo = $saldo;
+            });
+
+            $pajak = $allKeuangans->groupBy('coa')->map(function ($items) {
+                return $items->sum('nilai_pajak');
+            })->filter(function ($totalPajak) {
+                return $totalPajak > 0;
+            });
+
+            $pdf = Pdf::loadView('laporan.pdf_keuangan_lain', compact('penerimaan', 'pengeluaran', 'mulai', 'sampai', 'pajak', 'user_id'));
+            return $pdf->stream();
+        }
+        if (request()->get('button') == 'global') {
+            $user_id = Auth::user()->id;
+            $dpkKota = Auth::user()->dpk->kota;
+            $dpkNama = Auth::user()->dpk->nama;
+            $mulai = request()->get('mulai');
+            $sampai = request()->get('sampai');
+
+            $templatePath = public_path('ppni/template.xlsx');
+            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($templatePath);
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->setCellValue('A9', 'PERIODE : ' . Carbon::parse($mulai)->translatedFormat('d F Y') . ' s/d ' . Carbon::parse($sampai)->translatedFormat('d F Y'));
+            
+            // Get financial data for current user only
+            $penerimaan = DB::table('keuangan')
+                ->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])
+                ->where('user_id', $user_id)
+                ->value(DB::raw('SUM(masuk)')) ?? 0;
+
+            $pengeluaran = DB::table('keuangan')
+                ->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])
+                ->where('user_id', $user_id)
+                ->value(DB::raw('SUM(keluar)')) ?? 0;
+
+            $pajak = Keuangan::where('user_id', $user_id)
+                ->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])
+                ->orderBy('created_at', 'asc')
+                ->get();
+
+            $pajak->each(function ($keuangan) use (&$saldo) {
+                $pajak = 0;
+                if (!is_null($keuangan->pajak)) {
+                    $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+                    if ($keuangan->masuk > 0) {
+                        $pajak = $keuangan->masuk * $persenPajak;
+                    } elseif ($keuangan->keluar > 0) {
+                        $pajak = $keuangan->keluar * $persenPajak;
+                    }
+                }
+                $keuangan->nilai_pajak = $pajak;
+            });
+
+            $totalPajak = $pajak->sum('nilai_pajak');
+            $pajak21 = $pajak->where('pajak', '21')->sum('nilai_pajak');
+            $pajak23 = $pajak->where('pajak', '23')->sum('nilai_pajak');
+            $pajak25 = $pajak->where('pajak', '25')->sum('nilai_pajak');
+
+            // PENERIMAAN Section
+            $dpdStart = 13;
+            $currentRow = $dpdStart;
+            $sheet->setCellValue('A' . $currentRow, 1);
+            $sheet->setCellValue('B' . $currentRow, $dpkNama . "  " . $dpkKota);
+            $sheet->setCellValue('C' . $currentRow, $penerimaan);
+            $currentRow++;
+            $sheet->mergeCells('A' . $currentRow . ':B' . $currentRow);
+            $sheet->setCellValue('A' . $currentRow, 'TOTAL PENERIMAAN');
+            $sheet->setCellValue('C' . $currentRow, $penerimaan);
+            $sheet->getStyle('A' . $currentRow . ':C' . $currentRow)->applyFromArray([
+                'font' => ['bold' => true],
+                'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+            ]);
+            $sheet->getStyle("A{$dpdStart}:C" . ($currentRow))->applyFromArray([
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                        'color' => ['argb' => 'FF000000'],
+                    ],
+                ],
+            ]);
+
+            // PENGELUARAN Section
+            $pengeluaranRow = $currentRow + 1;
+            $sheet->mergeCells('A' . $pengeluaranRow . ':C' . $pengeluaranRow);
+            $sheet->setCellValue('A' . $pengeluaranRow, 'PENGELUARAN');
+            $sheet->getStyle('A' . $pengeluaranRow . ':C' . $pengeluaranRow)->applyFromArray([
+                'font' => ['bold' => true],
+                'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+            ]);
+            $pengeluaranRow++;
+            $sheet->setCellValue('A' . $pengeluaranRow, 1);
+            $sheet->setCellValue('B' . $pengeluaranRow, $dpkNama . "  " . $dpkKota);
+            $sheet->setCellValue('C' . $pengeluaranRow, $pengeluaran);
+            $pengeluaranRow++;
+            $sheet->mergeCells('A' . $pengeluaranRow . ':B' . $pengeluaranRow);
+            $sheet->setCellValue('A' . $pengeluaranRow, 'TOTAL PENGELUARAN');
+            $sheet->setCellValue('C' . $pengeluaranRow, $pengeluaran);
+            $sheet->getStyle('A' . $pengeluaranRow . ':C' . $pengeluaranRow)->applyFromArray([
+                'font' => ['bold' => true],
+                'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+            ]);
+            $sheet->getStyle("A{$currentRow}:C" . ($pengeluaranRow))->applyFromArray([
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                        'color' => ['argb' => 'FF000000'],
+                    ],
+                ],
+            ]);
+
+            // PAJAK Section
+            $pajakRow = $pengeluaranRow + 1;
+            $sheet->mergeCells('A' . $pajakRow . ':C' . $pajakRow);
+            $sheet->setCellValue('A' . $pajakRow, 'PAJAK');
+            $sheet->getStyle('A' . $pajakRow . ':C' . $pajakRow)->applyFromArray([
+                'font' => ['bold' => true],
+                'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+            ]);
+            $pajakRow++;
+            $sheet->setCellValue('A' . $pajakRow, 1);
+            $sheet->setCellValue('B' . $pajakRow, $dpkNama . "  " . $dpkKota);
+            $sheet->setCellValue('C' . $pajakRow, $totalPajak);
+            $pajakRow++;
+            $sheet->setCellValue('A' . $pajakRow, null);
+            $sheet->setCellValue('B' . $pajakRow, 'PPH 21');
+            $sheet->setCellValue('C' . $pajakRow, $pajak21);
+            $pajakRow++;
+            $sheet->setCellValue('A' . $pajakRow, null);
+            $sheet->setCellValue('B' . $pajakRow, 'PPH 23');
+            $sheet->setCellValue('C' . $pajakRow, $pajak23);
+            $pajakRow++;
+            $sheet->setCellValue('A' . $pajakRow, null);
+            $sheet->setCellValue('B' . $pajakRow, 'PPH 25');
+            $sheet->setCellValue('C' . $pajakRow, $pajak25);
+            $pajakRow++;
+            $sheet->mergeCells('A' . $pajakRow . ':B' . $pajakRow);
+            $sheet->setCellValue('A' . $pajakRow, 'TOTAL PAJAK');
+            $sheet->setCellValue('C' . $pajakRow, $totalPajak);
+            $sheet->getStyle('A' . $pajakRow . ':C' . $pajakRow)->applyFromArray([
+                'font' => ['bold' => true],
+                'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+            ]);
+            $pajakRow++;
+
+            $sheet->mergeCells('A' . $pajakRow . ':B' . $pajakRow);
+            $sheet->setCellValue('A' . $pajakRow, 'PPH 21');
+            $sheet->setCellValue('C' . $pajakRow, $pajak21);
+            $sheet->getStyle('A' . $pajakRow . ':C' . $pajakRow)->applyFromArray([
+                'font' => ['bold' => true],
+                'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+            ]);
+            $pajakRow++;
+
+            $sheet->mergeCells('A' . $pajakRow . ':B' . $pajakRow);
+            $sheet->setCellValue('A' . $pajakRow, 'PPH 23');
+            $sheet->setCellValue('C' . $pajakRow, $pajak23);
+            $sheet->getStyle('A' . $pajakRow . ':C' . $pajakRow)->applyFromArray([
+                'font' => ['bold' => true],
+                'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+            ]);
+            $pajakRow++;
+
+            $sheet->mergeCells('A' . $pajakRow . ':B' . $pajakRow);
+            $sheet->setCellValue('A' . $pajakRow, 'PPH 25');
+            $sheet->setCellValue('C' . $pajakRow, $pajak25);
+            $sheet->getStyle('A' . $pajakRow . ':C' . $pajakRow)->applyFromArray([
+                'font' => ['bold' => true],
+                'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+            ]);
+            $pajakRow++;
+
+            $sheet->mergeCells('A' . $pajakRow . ':B' . $pajakRow);
+            $sheet->setCellValue('A' . $pajakRow, 'SURPLUS/DEFISIT OPERASIONAL');
+            $sheet->setCellValue('C' . $pajakRow, $penerimaan - $pengeluaran - $totalPajak);
+            $sheet->getStyle('A' . $pajakRow . ':C' . $pajakRow)->applyFromArray([
+                'font' => ['bold' => true],
+                'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+            ]);
+
+            $sheet->getStyle("A{$pengeluaranRow}:C" . ($pajakRow))->applyFromArray([
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                        'color' => ['argb' => 'FF000000'],
+                    ],
+                ],
+            ]);
+            $pajakRow++;
+            $pajakRow++;
+
+            $sheet->setCellValue('C' . $pajakRow, $dpkKota . ', ' . Carbon::now()->translatedFormat('d F Y'));
+            $sheet->getStyle('C' . $pajakRow)
+                ->getAlignment()
+                ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+            $sheet->setCellValue('B' . $pajakRow, 'Mengetahui, ');
+            $sheet->getStyle('B' . $pajakRow)
+                ->getAlignment()
+                ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+            $pajakRow++;
+
+            $sheet->setCellValue('C' . $pajakRow, 'Bendahara, ');
+            $sheet->getStyle('C' . $pajakRow)
+                ->getAlignment()
+                ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+            $sheet->setCellValue('B' . $pajakRow, 'Ketua, ');
+            $sheet->getStyle('B' . $pajakRow)
+                ->getAlignment()
+                ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+            $pajakRow++;
+            $pajakRow++;
+            $pajakRow++;
+            $pajakRow++;
+            $sheet->setCellValue('C' . $pajakRow, Auth::user()->nama_bendahara);
+            $sheet->getStyle('C' . $pajakRow)
+                ->getAlignment()
+                ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+            $sheet->setCellValue('B' . $pajakRow, Auth::user()->nama_ketua);
+            $sheet->getStyle('B' . $pajakRow)
+                ->getAlignment()
+                ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+            $fileName = 'keuangan_dpk_' . date('Y-m-d-H-i-s') . '.xlsx';
+            $filePath = storage_path('app/public/' . $fileName);
+            $writer->save($filePath);
+
+            return response()->download($filePath);
+        }
+        if (request()->get('button') == 'sisa_saldo') {
+            $user_id = Auth::user()->id;
+            $dpkKota = Auth::user()->dpk->kota;
+            $dpkNama = Auth::user()->dpk->nama;
+            $mulai = request()->get('mulai');
+            $sampai = request()->get('sampai');
+
+            $templatePath = public_path('ppni/template2.xlsx');
+            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($templatePath);
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->setCellValue('A9', 'LAPORAN SISA SALDO : ' . Carbon::parse($mulai)->translatedFormat('d F Y') . ' s/d ' . Carbon::parse($sampai)->translatedFormat('d F Y'));
+
+            // Get financial data for current user only
+            $penerimaan = DB::table('keuangan')
+                ->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])
+                ->where('user_id', $user_id)
+                ->value(DB::raw('SUM(masuk)')) ?? 0;
+
+            $pengeluaran = DB::table('keuangan')
+                ->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])
+                ->where('user_id', $user_id)
+                ->value(DB::raw('SUM(keluar)')) ?? 0;
+
+            $pajak = Keuangan::where('user_id', $user_id)
+                ->whereBetween('created_at', [
+                    $mulai . ' 00:00:00',
+                    $sampai . ' 23:59:59'
+                ])
+                ->orderBy('created_at', 'asc')
+                ->get();
+
+            $pajak->each(function ($keuangan) use (&$saldo) {
+                $pajak = 0;
+                if (!is_null($keuangan->pajak)) {
+                    $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+                    if ($keuangan->masuk > 0) {
+                        $pajak = $keuangan->masuk * $persenPajak;
+                    } elseif ($keuangan->keluar > 0) {
+                        $pajak = $keuangan->keluar * $persenPajak;
+                    }
+                }
+                $keuangan->nilai_pajak = $pajak;
+            });
+
+            $totalPajak = $pajak->sum('nilai_pajak');
+            $pajak21 = $pajak->where('pajak', '21')->sum('nilai_pajak');
+            $pajak23 = $pajak->where('pajak', '23')->sum('nilai_pajak');
+            $pajak25 = $pajak->where('pajak', '25')->sum('nilai_pajak');
+
+            // Start from row 12
+            $startRow = 12;
+            $currentRow = $startRow;
+
+            // Header
+            $sheet->setCellValue('A' . $currentRow, 'NO');
+            $sheet->setCellValue('B' . $currentRow, 'NAMA');
+            $sheet->setCellValue('C' . $currentRow, 'PENERIMAAN');
+            $sheet->setCellValue('D' . $currentRow, 'PENGELUARAN');
+            $sheet->setCellValue('E' . $currentRow, 'PPH 21');
+            $sheet->setCellValue('F' . $currentRow, 'PPH 23');
+            $sheet->setCellValue('G' . $currentRow, 'PPH 25');
+            $sheet->setCellValue('H' . $currentRow, 'TOTAL PAJAK');
+            $sheet->setCellValue('I' . $currentRow, 'SURPLUS/DEFISIT OPERASIONAL');
+
+            // Style header
+            $sheet->getStyle('A' . $currentRow . ':I' . $currentRow)->applyFromArray([
+                'font' => ['bold' => true],
+                'alignment' => [
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                    'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+                ],
+                'fill' => [
+                    'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                    'startColor' => ['argb' => 'FFE0E0E0'],
+                ],
+            ]);
+
+            $currentRow++;
+            $no = 1;
+
+            // DPK Section - Single user only
+            $sisa_saldo = $penerimaan - $pengeluaran - $totalPajak;
+            $total_pajak = ($pajak21 ?? 0) + ($pajak23 ?? 0) + ($pajak25 ?? 0);
+            $sheet->setCellValue('A' . $currentRow, $no++);
+            $sheet->setCellValue('B' . $currentRow, $dpkNama . ' - ' . $dpkKota);
+            $sheet->setCellValue('C' . $currentRow, $penerimaan);
+            $sheet->setCellValue('D' . $currentRow, $pengeluaran);
+            $sheet->setCellValue('E' . $currentRow, $pajak21 ?? 0);
+            $sheet->setCellValue('F' . $currentRow, $pajak23 ?? 0);
+            $sheet->setCellValue('G' . $currentRow, $pajak25 ?? 0);
+            $sheet->setCellValue('H' . $currentRow, $total_pajak);
+            $sheet->setCellValue('I' . $currentRow, $sisa_saldo);
+
+            // Apply number formatting
+            $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('E' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('F' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('G' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('H' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('I' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $currentRow++;
+
+            // Total Row
+            $sheet->mergeCells('A' . $currentRow . ':B' . $currentRow);
+            $sheet->setCellValue('A' . $currentRow, 'TOTAL');
+            $sheet->setCellValue('C' . $currentRow, $penerimaan);
+            $sheet->setCellValue('D' . $currentRow, $pengeluaran);
+            $sheet->setCellValue('E' . $currentRow, $pajak21 ?? 0);
+            $sheet->setCellValue('F' . $currentRow, $pajak23 ?? 0);
+            $sheet->setCellValue('G' . $currentRow, $pajak25 ?? 0);
+            $sheet->setCellValue('H' . $currentRow, $totalPajak);
+            $sheet->setCellValue('I' . $currentRow, $penerimaan - $pengeluaran - $totalPajak);
+
+            // Apply number formatting to total row
+            $sheet->getStyle('D' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('E' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('F' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('G' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('H' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+            $sheet->getStyle('I' . $currentRow)->getNumberFormat()->setFormatCode('#,##0');
+
+            // Style total row
+            $sheet->getStyle('A' . $currentRow . ':I' . $currentRow)->applyFromArray([
+                'font' => ['bold' => true],
+                'alignment' => [
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                    'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+                ],
+                'fill' => [
+                    'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                    'startColor' => ['argb' => 'FFFFFF00'],
+                ],
+            ]);
+
+            // Apply borders to all data rows
+            $sheet->getStyle("A{$startRow}:I" . $currentRow)->applyFromArray([
+                'borders' => [
+                    'allBorders' => [
+                        'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                        'color' => ['argb' => 'FF000000'],
+                    ],
+                ],
+            ]);
+
+            // Add signature section
+            $currentRow += 2;
+
+            $sheet->setCellValue('C' . $currentRow, $dpkKota . ', ' . Carbon::now()->translatedFormat('d F Y'));
+            $sheet->getStyle('C' . $currentRow)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+            $sheet->setCellValue('B' . $currentRow, 'Mengetahui, ');
+            $sheet->getStyle('B' . $currentRow)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+
+            $currentRow++;
+
+            $sheet->setCellValue('C' . $currentRow, 'Bendahara, ');
+            $sheet->getStyle('C' . $currentRow)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+            $sheet->setCellValue('B' . $currentRow, 'Ketua, ');
+            $sheet->getStyle('B' . $currentRow)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+
+            $currentRow += 3;
+
+            $sheet->setCellValue('C' . $currentRow, Auth::user()->nama_bendahara);
+            $sheet->getStyle('C' . $currentRow)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+            $sheet->setCellValue('B' . $currentRow, Auth::user()->nama_ketua);
+            $sheet->getStyle('B' . $currentRow)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);
+
+            // Apply autosize to all columns
+            foreach (range('A', 'I') as $column) {
+                $sheet->getColumnDimension($column)->setAutoSize(true);
+            }
+
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+            $fileName = 'laporan_sisa_saldo_dpk_' . date('Y-m-d-H-i-s') . '.xlsx';
+            $filePath = storage_path('app/public/' . $fileName);
+            $writer->save($filePath);
+
+            return response()->download($filePath);
+        } else {
+            // Ambil semua transaksi agar saldo bisa dihitung dengan benar
+            $allKeuangans = Keuangan::where('user_id',  $user_id)
+                ->whereBetween('created_at', [
+                    Carbon::parse(request()->get('mulai')),
+                    Carbon::parse(request()->get('sampai'))
+                ])
+                ->orderBy('created_at', 'asc')->get();
+
+            // Hitung saldo secara akurat dengan iterasi dari awal
+            $saldo = 0;
+            $allKeuangans->each(function ($keuangan) use (&$saldo) {
+                $pajak = 0;
+
+                if (!is_null($keuangan->pajak)) {
+                    $persenPajak = floatval($keuangan->nilai_pajak) / 100;
+
+                    if ($keuangan->masuk > 0) {
+                        $pajak = $keuangan->masuk * $persenPajak;
+                        $nettoMasuk = $keuangan->masuk - $pajak;
+                        $saldo += $nettoMasuk;
+                    } elseif ($keuangan->keluar > 0) {
+                        $pajak = $keuangan->keluar * $persenPajak;
+                        $totalKeluar = $keuangan->keluar + $pajak;
+                        $saldo -= $totalKeluar;
+                    }
+                } else {
+                    // Tidak ada pajak
+                    $saldo += $keuangan->masuk - $keuangan->keluar;
+                }
+
+                $keuangan->nilai_pajak = $pajak;
+                $keuangan->saldo = $saldo;
+            });
+
+            $allKeuangans = $allKeuangans->sortByDesc('created_at')->values();
+
+            // Paginasi manual
+            $perPage = 10;
+            $currentPage = request()->input('page', 1);
+            $offset = ($currentPage - 1) * $perPage;
+
+            // Ambil data sesuai halaman saat ini
+            $currentItems = $allKeuangans->slice($offset, $perPage)->values();
+
+            // Buat pagination dengan LengthAwarePaginator
+            $data = new LengthAwarePaginator(
+                $currentItems,
+                $allKeuangans->count(),
+                $perPage,
+                $currentPage,
+                ['path' => request()->url(), 'query' => request()->query()]
+            );
+
+            request()->flash();
+            return view('dpk.keuangan_lain.index', compact('data'));
+        }
+    }
 }
