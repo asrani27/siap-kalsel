@@ -298,6 +298,7 @@ Route::middleware(['auth', 'dpw'])->group(function () {
     Route::get('/dpw/keuangan_lain', [DPWController::class, 'keuangan_lain']);
     Route::get('/dpw/keuangan', [DPWController::class, 'keuangan']);
     Route::get('/dpw/keuangan/laporan', [DPWController::class, 'laporan']);
+    Route::get('/dpw/keuangan/export', [DPWController::class, 'keuangan_export']);
     Route::get('/dpw/keuangan/create', [DPWController::class, 'keuangan_create']);
     Route::post('/dpw/keuangan/create', [DPWController::class, 'keuangan_store']);
     Route::get('/dpw/keuangan/edit/{id}', [DPWController::class, 'keuangan_edit']);

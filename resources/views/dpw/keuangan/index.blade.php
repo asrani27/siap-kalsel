@@ -9,11 +9,11 @@
             <br />
             <div class="row">
                 <div class="col-md-9 col-sm-6 col-12">
-                    <form method="get" action="/dpw/keuangan/laporan" target="_blank">
-                        @csrf
-                        <input type="date" name="mulai" value="{{\carbon\carbon::now()->format('Y-m-d')}}">
-                        <input type="date" name="sampai" value="{{\carbon\carbon::now()->format('Y-m-d')}}">
-                        <button type="submit" class="btn btn-sm btn-secondary">Laporan</button>
+                    <form method="get" id="filterForm">
+                        <input type="date" name="mulai" id="mulai" value="{{\carbon\carbon::now()->format('Y-m-d')}}">
+                        <input type="date" name="sampai" id="sampai" value="{{\carbon\carbon::now()->format('Y-m-d')}}">
+                        <button type="button" onclick="submitLaporan()" class="btn btn-sm btn-secondary">Laporan</button>
+                        <button type="button" onclick="submitExport()" class="btn btn-sm btn-success">Export to Excel</button>
                     </form>
                 </div>
                 <!-- /.col -->
@@ -100,5 +100,21 @@
 </div>
 @endsection
 @push('js')
-
+<script>
+    function submitLaporan() {
+        var mulai = document.getElementById('mulai').value;
+        var sampai = document.getElementById('sampai').value;
+        var form = document.getElementById('filterForm');
+        form.action = '/dpw/keuangan/laporan';
+        form.target = '_blank';
+        form.submit();
+    }
+    
+    function submitExport() {
+        var form = document.getElementById('filterForm');
+        form.action = '/dpw/keuangan/export';
+        form.target = '_self';
+        form.submit();
+    }
+</script>
 @endpush

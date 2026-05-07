@@ -2019,6 +2019,15 @@ class DPWController extends Controller
         return redirect('/dpw/keuangan');
     }
 
+    public function keuangan_export()
+    {
+        $mulai = request()->get('mulai');
+        $sampai = request()->get('sampai');
+        
+        $export = new \App\Exports\KeuanganDpwsExport($mulai, $sampai, Auth::user()->id);
+        return $export->download();
+    }
+
     public function coa()
     {
         $data = COA::get();
