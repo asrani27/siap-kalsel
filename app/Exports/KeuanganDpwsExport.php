@@ -114,7 +114,7 @@ class KeuanganDpwsExport
             $sheet->setCellValue('C' . $row, $item->coa . ' - ' . $item->coa_name);
             $sheet->setCellValue('D' . $row, $item->total_masuk);
             $sheet->getStyle('D' . $row)->getNumberFormat()->setFormatCode('#,##0');
-            $sheet->setCellValue('E' . $row, $item->pajak ?? '-');
+            $sheet->setCellValue('E' . $row, $item->pajak ? 'PPH ' . $item->pajak : '-');
 
             // Calculate PPH 21 5%
             $pph21 = ($item->pajak == '21') ? ($item->total_masuk * 0.05) : 0;
@@ -233,7 +233,7 @@ class KeuanganDpwsExport
             $sheet->setCellValue('C' . $row, $item->coa . ' - ' . $item->coa_name);
             $sheet->setCellValue('D' . $row, $item->total_keluar);
             $sheet->getStyle('D' . $row)->getNumberFormat()->setFormatCode('#,##0');
-            $sheet->setCellValue('E' . $row, $item->pajak ?? '-');
+            $sheet->setCellValue('E' . $row, $item->pajak ? 'PPH ' . $item->pajak : '-');
 
             // Calculate PPH 21 5%
             $pph21 = ($item->pajak == '21') ? ($item->total_keluar * 0.05) : 0;
