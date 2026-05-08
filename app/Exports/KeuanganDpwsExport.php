@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Models\Keuangan;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
@@ -99,7 +100,8 @@ class KeuanganDpwsExport
                 $this->sampai . ' 23:59:59'
             ])
             ->where('masuk', '>', 0)
-            ->orderBy('created_at', 'asc')
+            ->select('coa', 'coa_name', DB::raw('SUM(masuk) as total_masuk'), DB::raw('MAX(pajak) as pajak'))
+            ->groupBy('coa', 'coa_name')
             ->get();
 
         // Fill data starting from row 8
@@ -110,19 +112,19 @@ class KeuanganDpwsExport
         foreach ($data as $item) {
             $sheet->setCellValue('B' . $row, $no);
             $sheet->setCellValue('C' . $row, $item->coa . ' - ' . $item->coa_name);
-            $sheet->setCellValue('D' . $row, $item->masuk);
+            $sheet->setCellValue('D' . $row, $item->total_masuk);
             $sheet->getStyle('D' . $row)->getNumberFormat()->setFormatCode('#,##0');
-            $sheet->setCellValue('E' . $row, $item->keterangan ?? '-');
+            $sheet->setCellValue('E' . $row, $item->pajak ?? '-');
 
             // Calculate PPH 21 5%
-            $pph21 = ($item->pajak == '21') ? ($item->masuk * 0.05) : 0;
+            $pph21 = ($item->pajak == '21') ? ($item->total_masuk * 0.05) : 0;
             $sheet->setCellValue('F' . $row, $pph21);
 
             // Bunga, royalti dan hadian (if applicable)
             $sheet->setCellValue('G' . $row, 0);
 
             // PPH Pasal 25 20%
-            $pph25 = ($item->pajak == '25') ? ($item->masuk * 0.20) : 0;
+            $pph25 = ($item->pajak == '25') ? ($item->total_masuk * 0.20) : 0;
             $sheet->setCellValue('H' . $row, $pph25);
 
             // Style for data row
@@ -218,7 +220,8 @@ class KeuanganDpwsExport
                 $this->sampai . ' 23:59:59'
             ])
             ->where('keluar', '>', 0)
-            ->orderBy('created_at', 'asc')
+            ->select('coa', 'coa_name', DB::raw('SUM(keluar) as total_keluar'), DB::raw('MAX(pajak) as pajak'))
+            ->groupBy('coa', 'coa_name')
             ->get();
 
         $row++;
@@ -228,19 +231,19 @@ class KeuanganDpwsExport
         foreach ($dataPengeluaran as $item) {
             $sheet->setCellValue('B' . $row, $no);
             $sheet->setCellValue('C' . $row, $item->coa . ' - ' . $item->coa_name);
-            $sheet->setCellValue('D' . $row, $item->keluar);
+            $sheet->setCellValue('D' . $row, $item->total_keluar);
             $sheet->getStyle('D' . $row)->getNumberFormat()->setFormatCode('#,##0');
-            $sheet->setCellValue('E' . $row, $item->keterangan ?? '-');
+            $sheet->setCellValue('E' . $row, $item->pajak ?? '-');
 
             // Calculate PPH 21 5%
-            $pph21 = ($item->pajak == '21') ? ($item->keluar * 0.05) : 0;
+            $pph21 = ($item->pajak == '21') ? ($item->total_keluar * 0.05) : 0;
             $sheet->setCellValue('F' . $row, $pph21);
 
             // Bunga, royalti dan hadian (if applicable)
             $sheet->setCellValue('G' . $row, 0);
 
             // PPH Pasal 25 20%
-            $pph25 = ($item->pajak == '25') ? ($item->keluar * 0.20) : 0;
+            $pph25 = ($item->pajak == '25') ? ($item->total_keluar * 0.20) : 0;
             $sheet->setCellValue('H' . $row, $pph25);
 
             // Style for data row
