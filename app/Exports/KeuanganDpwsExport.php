@@ -94,11 +94,10 @@ class KeuanganDpwsExport
         ]);
 
         // Get keuangan data for PENERIMAAN
-        $data = Keuangan::where('user_id', $this->user_id)
-            ->whereBetween('created_at', [
-                $this->mulai . ' 00:00:00',
-                $this->sampai . ' 23:59:59'
-            ])
+        $data = Keuangan::whereBetween('created_at', [
+            $this->mulai . ' 00:00:00',
+            $this->sampai . ' 23:59:59'
+        ])
             ->where('masuk', '>', 0)
             ->select('coa', 'coa_name', DB::raw('SUM(masuk) as total_masuk'), DB::raw('MAX(pajak) as pajak'))
             ->groupBy('coa', 'coa_name')
@@ -214,11 +213,10 @@ class KeuanganDpwsExport
         ]);
 
         // Get keuangan data for pengeluaran (where keluar > 0)
-        $dataPengeluaran = Keuangan::where('user_id', $this->user_id)
-            ->whereBetween('created_at', [
-                $this->mulai . ' 00:00:00',
-                $this->sampai . ' 23:59:59'
-            ])
+        $dataPengeluaran = Keuangan::whereBetween('created_at', [
+            $this->mulai . ' 00:00:00',
+            $this->sampai . ' 23:59:59'
+        ])
             ->where('keluar', '>', 0)
             ->select('coa', 'coa_name', DB::raw('SUM(keluar) as total_keluar'), DB::raw('MAX(pajak) as pajak'))
             ->groupBy('coa', 'coa_name')
