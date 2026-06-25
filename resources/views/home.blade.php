@@ -132,7 +132,7 @@
                                 <div class="col-xl-4 d-flex align-items-stretch">
                                     <div class="icon-box" data-aos="zoom-out" data-aos-delay="400">
                                         <i class="bi bi-gem"></i>
-                                        <h4>Pelatihan</h4>
+                                        <h4>Workshop</h4>
                                         <p>Meningkatkan keterampilan dan membuka peluang baru</p>
                                         <div class="text-center">
                                             <a href="/masuk" class="btn btn-danger"><span>Ajukan Sekarang</span></a>
@@ -143,13 +143,14 @@
                                 <div class="col-xl-4 d-flex align-items-stretch">
                                     <div class="icon-box" data-aos="zoom-out" data-aos-delay="500">
                                         <i class="bi bi-inboxes"></i>
-                                        <h4>Workshop</h4>
-                                        <p>Tempat terbaik untuk mengasah keterampilan</p>
+                                        <h4>Ejurnal</h4>
+                                        <p>Publish Jurnal Anda</p>
                                         <div class="text-center">
-                                            <a href="/masuk" class="btn btn-danger"><span>Ajukan Sekarang</span></a>
+                                            <a href="https://ejurnal.ppnikalsel.or.id"
+                                                class="btn btn-danger"><span>Masuk</span></a>
                                         </div>
                                     </div>
-                                </div><!-- End Icon Box -->
+                                </div>
 
                             </div>
                         </div>
