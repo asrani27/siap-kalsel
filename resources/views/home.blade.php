@@ -146,7 +146,7 @@
                                         <h4>Ejurnal</h4>
                                         <p>Publish Jurnal Anda</p>
                                         <div class="text-center">
-                                            <a href="https://ejurnal.ppnikalsel.or.id"
+                                            <a href="https://ojs.ppnikalsel.or.id"
                                                 class="btn btn-danger"><span>Masuk</span></a>
                                         </div>
                                     </div>
