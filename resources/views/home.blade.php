@@ -30,6 +30,22 @@
     <!-- Main CSS File -->
     <link href="/ppni/assets/css/main.css" rel="stylesheet">
 
+    <style>
+        /* Text merah dengan border putih pada welcome agar visible di atas background gambar */
+        .welcome h2,
+        .welcome p {
+            color: #d04d4d;
+            -webkit-text-stroke: 1px #ffffff;
+            paint-order: stroke fill;
+            text-shadow:
+                -1px -1px 0 #ffffff,
+                1px -1px 0 #ffffff,
+                -1px 1px 0 #ffffff,
+                1px 1px 0 #ffffff,
+                0 0 6px rgba(0, 0, 0, 0.45);
+        }
+    </style>
+
     <!-- =======================================================
   * Template Name: Medilab
   * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
@@ -89,13 +105,13 @@
         <!-- Hero Section -->
         <section id="hero" class="hero section light-background">
 
-            <img src="/ppni/assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+            <img src="/ppni/assets/img/hero-bg2.png" alt="" data-aos="fade-in">
 
             <div class="container position-relative">
 
                 <div class="welcome position-relative" data-aos="fade-down" data-aos-delay="100">
                     <h2>SELAMAT DATANG <br />DI SISTEM INFORMASI <br />APLIKASI PPNI (SIAP) KALSEL</h2>
-                    <p>Organisasi Persatuan Perawat Nasional Indonesia (PPNI)<br /> Provinsi Kalimantan Selatan</p>
+                    <p>DPW Persatuan Perawat Nasional Indonesia (PPNI)<br /> Provinsi Kalimantan Selatan</p>
                 </div><!-- End Welcome -->
 
                 <div class="content row gy-4">
