@@ -119,9 +119,12 @@
                         <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
                             <h3>APA SIH SIAP KALSEL?</h3>
                             <p>
-                                Adalah Sebuah Aplikasi Terpadu dari Organisasi PPNI Kalsel Yang Menyediakan Layanan
-                                Pelaporan Kegiatan, Keuangan, Kesekretariatan dan
-                                Pengajuan Kegiatan Pembelajaran Secara Online.
+                                SIAP KALSEL adalah aplikasi layanan terpadu yang dikembangkan oleh DPW PPNI Provinsi
+                                Kalimantan Selatan untuk mendukung pengelolaan organisasi secara digital.
+                                <br /><br />
+                                SIAP KALSEL menyediakan layanan pelaporan program kerja, pelaporan keuangan,
+                                kesekretariatan, pengajuan kegiatan pembelajaran secara online, serta E-Jurnal dalam
+                                satu sistem yang terintegrasi.
                             </p>
                             {{-- <div class="text-center">
                                 <a href="/masuk" class="more-btn"><span>Ajukan Sekarang</span> <i
@@ -180,7 +183,7 @@
 
     </main>
 
-    <footer id="footer" class="footer light-background">
+    {{-- <footer id="footer" class="footer light-background">
         <div class="container copyright text-center mt-4">
             <p>© <span>Copyright</span> <strong class="px-1 sitename">Asrandev</strong> <span>All Rights Reserved</span>
             </p>
@@ -188,7 +191,7 @@
                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
         </div>
-    </footer>
+    </footer> --}}
 
     <!-- Scroll Top -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
